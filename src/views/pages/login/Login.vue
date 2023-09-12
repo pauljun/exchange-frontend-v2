@@ -1,37 +1,35 @@
 <template>
-  <div class="h-screen flex w-full bg-img vx-row no-gutter items-center justify-center" id="page-login">
+  <div
+    class="h-screen flex w-full bg-img vx-row no-gutter items-center justify-center"
+    id="page-login"
+  >
     <div class="vx-col sm:w-1/2 md:w-1/2 lg:w-3/4 xl:w-3/5 sm:m-0 m-4">
       <vx-card>
         <div slot="no-body" class="full-page-bg-color">
-
           <div class="vx-row no-gutter justify-center items-center">
-
             <div class="vx-col hidden lg:block lg:w-1/2">
-              <img src="@/assets/images/pages/login.png" alt="login" class="mx-auto">
+              <img
+                src="@/assets/images/pages/login.png"
+                alt="login"
+                class="mx-auto"
+              />
             </div>
 
             <div class="vx-col sm:w-full md:w-full lg:w-1/2 d-theme-dark-bg">
               <div class="px-8 pt-8 login-tabs-container">
-
                 <div class="vx-card__title mb-4">
-                  <h4 class="mb-4">Đăng nhập</h4>
-                  <p>Xin chào, làm ơn hãy đăng nhập.</p>
+                  <h4 class="mb-4">
+                    {{ $t("Login") }}
+                    <I18n />
+                  </h4>
+                  <p>{{ $t("LoginP") }}</p>
                 </div>
 
                 <vs-tabs>
-                  <vs-tab label="Hệ thống">
+                  <vs-tab :label="$t('System')">
                     <login-jwt></login-jwt>
                   </vs-tab>
-
-                  <!-- <vs-tab label="Firebase">
-                    <login-firebase></login-firebase>
-                  </vs-tab>
-
-                  <vs-tab label="Auth0">
-                    <login-auth0></login-auth0>
-                  </vs-tab> -->
                 </vs-tabs>
-
               </div>
             </div>
           </div>
@@ -43,17 +41,15 @@
 
 
 <script>
-import LoginJwt from "./LoginJWT.vue"
-//import LoginFirebase from "./LoginFirebase.vue"
-//import LoginAuth0 from "./LoginAuth0.vue"
+import LoginJwt from "./LoginJWT.vue";
+import I18n from "../../../layouts/components/navbar/components/I18n.vue";
 
 export default {
   components: {
     LoginJwt,
-    //LoginFirebase,
-    //LoginAuth0
-  }
-}
+    I18n,
+  },
+};
 </script>
 
 <style lang="scss">
@@ -66,6 +62,9 @@ export default {
 
   .con-slot-tabs {
     margin-top: 1rem;
+  }
+  .vs-con-dropdown {
+    float: right;
   }
 }
 </style>

@@ -2,7 +2,7 @@
   <div class="wrapper">
     <div class="login">
       <form class="form" @submit.prevent="login">
-        <h2>Xin chào đại lý</h2>
+        <h2>Xin chào đại lý11111111</h2>
         <input type="text" placeholder="Tên đăng nhập" v-model="email" />
         <input type="password" placeholder="Mật khẩu" v-model="password" />
         <input type="submit" value="Đăng nhập" class="submit" />
@@ -28,7 +28,7 @@ export default {
         password: this.password,
       };
       const loginRes = await AuthenticationService.loginUser(loginInfo);
-      if (loginRes.data.success == 1) {
+      if (loginRes.data.code == 10000) {
         let token = loginRes.data.token;
         localStorage.setItem("tokenAgency", token);
         const infoRes = await AuthenticationService.getInfoAgency(loginInfo);

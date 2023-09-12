@@ -17,7 +17,7 @@ export default {
   },
   methods: {
     setAppClasses(classesStr) {
-      this.vueAppClasses.push(classesStr);
+      // this.vueAppClasses.push(classesStr);
     },
   },
 };

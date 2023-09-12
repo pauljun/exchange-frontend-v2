@@ -207,6 +207,7 @@
       <div
         class="headerContent w-full flex lg:flex-row flex-col justify-between items-center mb-4"
       >
+        <!--交易记录-->
         <h1 class="text-3xl white font-bold capitalize mt-5">
           Lịch Sử Giao Dịch
         </h1>
@@ -588,9 +589,9 @@ export default {
     getListHistoryOrder() {
       this.isLoading = true;
       AuthenticationService.getListHisOrder().then((res) => {
-        if (res.data.success) {
+        if (res.data.code === 10000) {
           this.isLoading = false;
-          this.dataHisOrder = res.data.data;
+          this.dataHisOrder = res.data.data?.list || [];
         }
       });
     },
@@ -602,14 +603,14 @@ export default {
       let end = this.formatDateHis(this.endDate);
 
       let obj = {
-        s: start,
-        e: end,
+        sday: start,
+        eday: end,
       };
 
       AuthenticationService.getSeachListOrder(obj).then((res) => {
-        if (res.data.success) {
+        if (res.data.code === 10000) {
           this.isLoading = false;
-          this.dataHisOrder = res.data.data;
+          this.dataHisOrder = res.data.data || [];
         }
       });
     },

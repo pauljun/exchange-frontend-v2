@@ -97,10 +97,10 @@ export default {
     },
     RegisterUrl() {
       this.$router.push({ path: "/register" });
-    }
+    },
   },
   created() {
-    window.addEventListener("scroll", function() {
+    window.addEventListener("scroll", function () {
       if ($(this).scrollTop() !== 0) {
         $(".h-header-custom").addClass("wrapper-header");
         $(".h-header-custom").removeClass("wrapper-desktop");
@@ -109,6 +109,6 @@ export default {
         $(".h-header-custom").removeClass("wrapper-header");
       }
     });
-  }
+  },
 };
 </script>

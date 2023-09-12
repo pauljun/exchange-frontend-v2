@@ -114,33 +114,6 @@
                   :route="$route"
                   :isRTL="$vs.rtl"
                 />
-
-                <!-- DROPDOWN -->
-                <!-- <vs-dropdown vs-trigger-click class="ml-auto md:block hidden cursor-pointer">
-                  <vs-button radius icon="icon-settings" icon-pack="feather" />
-
-                  <vs-dropdown-menu class="w-32">
-                    <vs-dropdown-item>
-                      <div @click="$router.push('/pages/profile').catch(() => {})" class="flex items-center">
-                        <feather-icon icon="UserIcon" class="inline-block mr-2" svgClasses="w-4 h-4" />
-                        <span>Profile</span>
-                      </div>
-                    </vs-dropdown-item>
-                    <vs-dropdown-item>
-                      <div @click="$router.push('/apps/todo').catch(() => {})" class="flex items-center">
-                        <feather-icon icon="CheckSquareIcon" class="inline-block mr-2" svgClasses="w-4 h-4" />
-                        <span>Tasks</span>
-                      </div>
-                    </vs-dropdown-item>
-                    <vs-dropdown-item>
-                      <div @click="$router.push('/apps/email').catch(() => {})" class="flex items-center">
-                        <feather-icon icon="MailIcon" class="inline-block mr-2" svgClasses="w-4 h-4" />
-                        <span>Inbox</span>
-                      </div>
-                    </vs-dropdown-item>
-                  </vs-dropdown-menu>
-
-                </vs-dropdown> -->
               </div>
             </transition>
 
@@ -186,11 +159,6 @@ import VNavMenu from "@/pages/trade/navbar/components/VerticalNavMenu.vue";
 import AuthenticationService from "@/services/AuthenticationService";
 import getData from "@/pages/trade/navbar/components/data.json";
 
-//import LogRegForGet  from '@/pages/user/LogRegForGet.vue'
-
-//import TheCustomizer       from "@/layouts/components/customizer/TheCustomizer.vue"
-// import TheFooter           from '@/layouts/components/TheFooter.vue'
-
 const VxTour = () => import("@/components/VxTour.vue");
 
 export default {
@@ -223,32 +191,6 @@ export default {
           target: "#btnVNavMenuMinToggler",
           content: "Thu gọn.",
         },
-        // {
-        //   target  : '.vx-navbar__starred-pages',
-        //   content : 'Tạo dấu trang của riêng bạn. Bạn cũng có thể sắp xếp lại chúng bằng cách kéo và thả.'
-        // },
-        // {
-        //   target  : '.i18n-locale',
-        //   content : 'Bạn có thể thay đổi ngôn ngữ từ đây.'
-        // },
-        // {
-        //   target  : '.navbar-fuzzy-search',
-        //   content : 'Thử tìm kiếm để truy cập các trang trong nháy mắt.'
-        // },
-        // {
-        //   target  : '.customizer-btn',
-        //   content : 'Tùy chỉnh mẫu dựa trên sở thích của bạn',
-        //   params  : {
-        //     placement: 'left'
-        //   }
-        // },
-        // {
-        //   target  : '.vs-button.buy-now',
-        //   content : 'Chúng tôi còn rất nhiều sản phẩm khác ^.^!',
-        //   params  : {
-        //     placement: 'top'
-        //   }
-        // },
       ],
     };
   },
@@ -260,15 +202,17 @@ export default {
         this.iSLogin = true;
         //this.khoiTaoPrintUser();
         AuthenticationService.getInfoUser().then((res) => {
-          if (res.data.success == 1) {
+          if (res.data.code == 10000) {
             let dt = res.data.data;
 
             getData.uid = dt.id;
             getData.email = dt.email;
             getData.profile_image = dt.profile_image;
             getData.displayName = dt.nick_name;
-            getData.uidLive = dt.order[1]?.u_id;
-            getData.uidDemo = dt.order[0]?.u_id;
+            if (dt.order && dt.order.length) {
+              getData.uidLive = dt.order[1]?.u_id;
+              getData.uidDemo = dt.order[0]?.u_id;
+            }
             getData.am_usdt = dt.b;
             getData.vip = dt.vip;
             getData.vip_lv = dt.level_vip;
@@ -284,23 +228,13 @@ export default {
             getData.num_secu = dt.num_secury;
             getData.country = dt.c;
             getData.so_cmnd = dt.so_cmnd;
-
-            getData.blLive = dt.order[1]?.balance ?? 0;
-            getData.blDemo = dt.order[0]?.balance ?? 0;
+            if (dt.order && dt.order.length) {
+              getData.blLive = dt.order[1]?.balance ?? 0;
+              getData.blDemo = dt.order[0]?.balance ?? 0;
+            }
             getData.balance = dt.balance;
 
             localStorage.setItem("INFO", JSON.stringify(dt));
-            //localStorage.removeItem('isLog')
-          } else if (res.data.success == 4) {
-            localStorage.removeItem("INFO");
-            localStorage.removeItem("tokenUser");
-            window.location.href = window.location.origin + "/login";
-            //let checkLog = localStorage.getItem('isLog')
-            //localStorage.setItem('isLog', true);
-            //if(!checkLog){
-            //    localStorage.setItem('isLog', true)
-            //window.location.href = window.location.origin + '/login'
-            //}
           }
         });
       } else {
@@ -502,7 +436,7 @@ export default {
 }
 
 .vs-con-input .vs-inputx {
-  border: 1px solid rgba(255, 255, 255, 0.3)!important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
 }
 
 button.vs-tabs--btn {

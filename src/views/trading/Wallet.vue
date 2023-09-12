@@ -4,35 +4,11 @@
       <div class="w-full h-48 subBanner">
         <div class="container h-full flex custom-flex items-center info">
           <div class="flex flex-col justify-center relative">
+            <!--总资产-->
             <p class="text-lg">Tổng tài sản (VND)</p>
             <p>
-              <span
-                class="price mr-2"
-                v-if="getSetSys.typeCurrUseSys == 'usdt'"
-              >
-                {{
-                  isHideMoney
-                    ? "******"
-                    : formatPrice(balanceForUser * getSetSys.quotePriceUSDT, 0)
-                }}
-              </span>
-              <span class="price mr-2" v-if="getSetSys.typeCurrUseSys == 'btc'">
-                {{
-                  isHideMoney
-                    ? "******"
-                    : formatPrice(balanceForUser * getSetSys.quotePriceBTC, 0)
-                }}
-              </span>
-              <span class="price mr-2" v-if="getSetSys.typeCurrUseSys == 'eth'">
-                {{
-                  isHideMoney
-                    ? "******"
-                    : formatPrice(balanceForUser * getSetSys.quotePriceETH, 0)
-                }}
-              </span>
-              <span
-                :class="`icon ${getSetSys.typeCurrUseSys} inline-block`"
-              ></span>
+              <span class="price mr-2">{{price}}</span>
+              <span :class="`icon ${getSetSys.typeCurrUseSys} inline-block`"></span>
               <!--<span class="basePrice text-lg">~ ${{ formatPrice(balanceUser, 2) }}</span> -->
             </p>
           </div>
@@ -49,10 +25,12 @@
       <div class="w-full" style="padding: 0 4rem">
         <div class="container">
           <vs-tabs style="margin: 20px 0px">
+            <!--主钱包-->
             <vs-tab
               label="Ví chính"
               @click="getListHisTrade(), (showVC = true), (showVGD = false)"
             ></vs-tab>
+            <!--交易钱包-->
             <vs-tab
               label="Ví giao dịch"
               @click="getListHisTradeWGD(), (showVGD = true), (showVC = false)"
@@ -69,7 +47,7 @@
                 <!-- <h6 class="colorGray mb-0 italic"><span >Giá trị ước tính: {{ giaTriUocTinh }} USD</span></h6> -->
               </div>
               <div class="vx-row">
-<!--                <div
+                <!--                <div
                   class="vx-col w-full lg:w-1/3 mb-3"
                   v-if="getSetSys.isActiveWalletUSDT"
                 >
@@ -141,10 +119,7 @@
                     </div>
                   </div>
                 </div>-->
-                <div
-                  class="vx-col w-full lg:w-1/3 mb-3"
-                  v-if="getSetSys.isActiveWalletETH"
-                >
+                <div class="vx-col w-full lg:w-1/3 mb-3" v-if="getSetSys.isActiveWalletETH">
                   <div class="boxCoin">
                     <div class="boxCoin-body">
                       <div class="leftBox flex flex-col sm:flex-row">
@@ -201,10 +176,7 @@
                     </div>
                   </div>
                 </div>
-                <div
-                  class="vx-col w-full lg:w-1/3 mb-3"
-                  v-if="getSetSys.isActiveWalletBTC"
-                >
+                <div class="vx-col w-full lg:w-1/3 mb-3" v-if="getSetSys.isActiveWalletBTC">
                   <div class="boxCoin">
                     <div class="boxCoin-body">
                       <div class="leftBox flex flex-col sm:flex-row">
@@ -261,10 +233,7 @@
                     </div>
                   </div>
                 </div>
-                <div
-                  class="vx-col w-full lg:w-1/3 mb-3"
-                  v-if="getSetSys.isActiveWalletPaypal"
-                >
+                <div class="vx-col w-full lg:w-1/3 mb-3" v-if="getSetSys.isActiveWalletPaypal">
                   <div class="boxCoin">
                     <div class="boxCoin-body">
                       <div class="leftBox flex flex-col sm:flex-row">
@@ -335,10 +304,7 @@
                     </div>
                   </div>
                 </div>
-                <div
-                  class="vx-col w-full lg:w-1/3 mb-3"
-                  v-if="getSetSys.isActiveWalletVND"
-                >
+                <div class="vx-col w-full lg:w-1/3 mb-3" v-if="getSetSys.isActiveWalletVND">
                   <div class="boxCoin">
                     <div class="boxCoin-body">
                       <div class="leftBox flex flex-col sm:flex-row">
@@ -521,7 +487,7 @@
                                 <div
                                   v-if="
                                     blObj.displayName.toUpperCase() ==
-                                    tr.from_u.toUpperCase()
+                                    tr.from_u?.toUpperCase()
                                   "
                                 >
                                   <span
@@ -542,7 +508,7 @@
                                 <div
                                   v-else-if="
                                     blObj.displayName.toUpperCase() ==
-                                    tr.to_u.toUpperCase()
+                                    tr.to_u?.toUpperCase()
                                   "
                                 >
                                   <span class="green"
@@ -554,7 +520,7 @@
                                 <div
                                   v-if="
                                     blObj.displayName.toUpperCase() ==
-                                    tr.from_u.toUpperCase()
+                                    tr.from_u?.toUpperCase()
                                   "
                                 >
                                   <span
@@ -566,11 +532,10 @@
                                     class="deitalType transfer_in"
                                     v-if="tr.type_key == 'nt'"
                                     >Nạp tiền
-<!--                                    {{
+                                    <!--                                    {{
                                       tr.paypal_order_id ? "Paypal" : ""
                                     }}-->
-                                  </span
-                                  >
+                                  </span>
                                 </div>
                                 <span
                                   class="deitalType transfer_in"
@@ -583,7 +548,7 @@
                                     v-if="tr.type_key == 'rt'"
                                     >Nạp tiền</span
                                   >
-<!--                                  <span
+                                  <!--                                  <span
                                     class="deitalType transfer_in"
                                     v-if="tr.type_key == 'nt'"
                                     >Rút tiền
@@ -605,13 +570,15 @@
                                 <span
                                   class="deitalType transfer_in"
                                   v-if="tr.type_key == 'nn'"
-                                  >Nạp nhanh</span
                                 >
+                                  Nạp nhanh
+                                </span>
                                 <span
                                   class="deitalType transfer_in"
                                   v-if="tr.type_key == 'mv'"
-                                  >Mua VIP</span
                                 >
+                                  Mua VIP
+                                </span>
                               </div>
                               <div class="block-col" style="flex: 2 1 0%">
                                 <p class="text-left">
@@ -619,7 +586,7 @@
                                     class="item-txid-desc"
                                     v-if="
                                       blObj.displayName.toUpperCase() ==
-                                      tr.from_u.toUpperCase()
+                                      tr.from_u?.toUpperCase()
                                     "
                                   >
                                     {{
@@ -821,17 +788,18 @@
               </div>
             </div>
           </div>
+          <!--交易钱包-->
           <div class="showV" :class="{ block: showVGD }">
             <div class="contentBox">
               <div class="vx-row">
-                <div class="vx-col w-full lg:w-2/2 mt-4" style="max-width: 500px;">
+                <div
+                  class="vx-col w-full lg:w-2/2 mt-4"
+                  style="max-width: 500px"
+                >
                   <div class="background backgroundImg backgroundLive">
-                    <div
-                      class="content flex flex-col justify-center items-center"
-                    >
-                      <span class="text-lg color-gray sm:mb-3 font-bold"
-                        >Tài khoản Thực</span
-                      >
+                    <div class="content flex flex-col justify-center items-center">
+                      <!--真实账户-->
+                      <span class="text-lg color-gray sm:mb-3 font-bold">Tài khoản Thực</span>
                       <span class="price flex items-center mb:sm-3 mb-2">
                         <span class="text-3xl font-bold">{{
                           isHideMoney
@@ -842,22 +810,16 @@
                       <button
                         @click="popupTransferActive = true"
                         type="button"
-                        class="
-                          btn
-                          button
-                          wbtn
-                          btn-large btn-radius
-                          w-9/12
-                          cursor-pointer
-                        "
+                        class="btn button wbtn btn-large btn-radius w-9/12 cursor-pointer"
                       >
                         <span class="iconSubmit iconSubmitLive"></span>
+                        <!--划款-->
                         <span>Chuyển Tiền</span>
                       </button>
                     </div>
                   </div>
                 </div>
-<!--                <div class="vx-col w-full lg:w-1/2 mt-4">
+                <!--                <div class="vx-col w-full lg:w-1/2 mt-4">
                   <div class="background backgroundImg backgroundDemo">
                     <div
                       class="content flex flex-col justify-center items-center"
@@ -896,6 +858,7 @@
                   <div class="wrapBalance">
                     <div class="boxBalance">
                       <div class="history">
+                        <!--交易记录-->
                         <h4 class="history-title mb-3">Lịch sử giao dịch</h4>
                         <div class="history-body">
                           <div class="history-content">
@@ -1271,8 +1234,21 @@ export default {
     //       return this.formatPrice(getSetSys.quotePriceUSDT + getSetSys.quotePriceETH + getSetSys.quotePriceBTC + getSetSys.quotePricePAYPAL, 2)
     //   },
     balanceForUser() {
-      return getData.balance;
+      return getData.balance || 0;
     },
+    price() {
+      if (this.isHideMoney) {return '******'}
+      let num = this.getSetSys.quotePriceUSDT
+      switch (this.getSetSys.typeCurrUseSys) {
+        case 'btc':
+          num = this.getSetSys.quotePriceBTC
+          break;
+        case 'eth':
+          num = this.getSetSys.quotePriceETH
+          break;
+      }
+      return this.formatPrice(this.balanceForUser * num,0)
+    }
   },
   methods: {
     toggleHideMoney() {
@@ -1302,15 +1278,15 @@ export default {
     },
     async getUserInfo() {
       const res = await AuthenticationService.getInfoUser();
-      if (res.data.success == 1) {
+      if (res.data.code == 10000) {
         let gData = res.data.data;
 
         (getData.uid = gData.id),
           (getData.email = gData.email),
           (getData.profile_image = gData.profile_image),
           (getData.displayName = gData.nick_name),
-          (getData.uidLive = gData.order[1].u_id),
-          (getData.uidDemo = gData.order[0].u_id),
+          (getData.uidLive = gData.order[1]?.u_id),
+          (getData.uidDemo = gData.order[0]?.u_id),
           (getData.vip = gData.vip),
           (getData.vip_lv = gData.level_vip),
           (getData.pen_commiss = gData.pending_commission),
@@ -1323,13 +1299,11 @@ export default {
           (getData.verify = gData.verify),
           (getData.num_secu = gData.num_secury),
           (getData.country = gData.c),
-          (getData.blLive = gData.order[1].balance);
-        getData.blDemo = gData.order[0].balance;
-        (getData.balance = gData.balance), (getData.mkt = gData.mkt);
+          (getData.blLive = gData.order[1]?.balance || 0);
+        getData.blDemo = gData.order[0]?.balance;
+        (getData.balance = gData.balance || 0), (getData.mkt = gData.mkt);
 
         localStorage.setItem("INFO", JSON.stringify(gData));
-      } else {
-        window.location.href = window.location.origin + "/login";
       }
     },
 
@@ -1338,7 +1312,7 @@ export default {
 
       this.timeShow = this.formatDateWallet(tr.created_at);
 
-      if (getData.displayName.toUpperCase() == tr.from_u.toUpperCase()) {
+      if (getData.displayName.toUpperCase() == tr.from_u?.toUpperCase()) {
         this.valueShow =
           tr.type_key == "rt" ||
           tr.type_key == "ct" ||
@@ -1347,13 +1321,13 @@ export default {
           tr.type_key == "mv"
             ? "-" + this.formatPrice(tr.amount, 2)
             : "+" + this.formatPrice(tr.amount, 2);
-      } else if (getData.displayName.toUpperCase() == tr.to_u.toUpperCase()) {
+      } else if (getData.displayName.toUpperCase() == tr.to_u?.toUpperCase()) {
         this.valueShow = "+" + this.formatPrice(tr.amount, 2);
       }
 
       switch (tr.type_key) {
         case "rt":
-          if (getData.displayName.toUpperCase() == tr.from_u.toUpperCase()) {
+          if (getData.displayName.toUpperCase() == tr.from_u?.toUpperCase()) {
             this.typeShow = "Rút tiền";
           } else {
             this.typeShow = "Nạp tiền";
@@ -1361,7 +1335,7 @@ export default {
           break;
         case "nt":
           this.typeShow = `Nạp tiền ${
-            tr.paypal_order_id ? "Paypal" : tr.currency.toUpperCase()
+            tr.paypal_order_id ? "Paypal" : tr.currency?.toUpperCase()
           }`;
           break;
         case "nn":
@@ -1386,7 +1360,7 @@ export default {
           ? ""
           : tr.from_u + ": " + tr.type;
       if (
-        getData.displayName.toUpperCase() != tr.from_u.toUpperCase() &&
+        getData.displayName.toUpperCase() != tr.from_u?.toUpperCase() &&
         tr.type_key == "rt"
       ) {
         this.descriptShow = "Nạp tiền (Nội bộ) từ: " + tr.from_u;
@@ -1464,7 +1438,7 @@ export default {
 
     clickReloadMoneyDemo() {
       AuthenticationService.reloadMoneyDemo().then((res) => {
-        if (res.data.success) {
+        if (res.data.code === 10000) {
           this.blObj.blDemo = 1000;
 
           return this.$vs.notify({
@@ -1494,7 +1468,7 @@ export default {
       let amount = this.enterAmount.toString();
       amount = this.replaceAll(amount, ",", "");
       amount = this.replaceAll(amount.toString(), "-", "");
-
+      console.log('before axion', JSON.parse(JSON.stringify(getData)))
       if (!this.isNumber(amount) || amount <= 0) {
         return this.$vs.notify({
           text: "Giá trị không hợp lệ",
@@ -1515,7 +1489,7 @@ export default {
         };
 
         AuthenticationService.sendMoneyLiveToUsdt(obj).then((res) => {
-          if (res.data.success) {
+          if (res.data.code === 10000) {
             getData.blLive = Number(getData.blLive) - Number(amount);
             getData.balance = Number(getData.balance) + Number(amount);
 
@@ -1552,10 +1526,10 @@ export default {
         };
 
         AuthenticationService.sendMoneyUsdtToLive(obj).then((res) => {
-          if (res.data.success) {
+          if (res.data.code === 10000) {
             getData.blLive = Number(getData.blLive) + Number(amount);
-            getData.balance = Number(getData.blLive) - Number(amount);
-
+            getData.balance = Number(getData.balance) - Number(amount);
+            console.log(getData)
             this.amountAcc = getData.balance;
             this.amountAccLive = getData.blLive;
 
@@ -1585,9 +1559,9 @@ export default {
     getListHisTrade() {
       this.isLoading = true;
       AuthenticationService.getListHisTradeWallet().then((res) => {
-        if (res.data.success) {
+        if (res.data.code === 10000) {
           this.isLoading = false;
-          this.dataHisWallet = res.data.data;
+          this.dataHisWallet = res.data.data?.list || [];
           let c = (res.data.count / 10).toString();
           //this.totalRUSDT = Number(c.split(".")[0])
           this.totalRUSDT = Math.ceil(c);
@@ -1598,7 +1572,7 @@ export default {
     clickPageUSDT(page) {
       this.isLoading = true;
       AuthenticationService.getListHisTradeWalletNumber(page).then((res) => {
-        if (res.data.success) {
+        if (res.data.code === 10000) {
           this.isLoading = false;
           this.dataHisWallet = res.data.data;
         }
@@ -1608,9 +1582,9 @@ export default {
     getListHisTradeHH() {
       this.isLoading = true;
       AuthenticationService.getListHisTradeWalletHH().then((res) => {
-        if (res.data.success) {
+        if (res.data.code === 10000) {
           this.isLoading = false;
-          this.dataHisWalletHoaHong = res.data.data;
+          this.dataHisWalletHoaHong = res.data.data?.list || [];
           let c = (res.data.count / 10).toString();
           //this.totalRHH = Number(c.split(".")[0])
           this.totalRHH = Math.ceil(c);
@@ -1621,7 +1595,7 @@ export default {
     clickPageHH(page) {
       this.isLoading = true;
       AuthenticationService.getListHisTradeWalletHHNumber(page).then((res) => {
-        if (res.data.success) {
+        if (res.data.code === 10000) {
           this.isLoading = false;
           this.dataHisWalletHoaHong = res.data.data;
         }
@@ -1631,9 +1605,9 @@ export default {
     getListHisTradeWGD() {
       this.isLoading = true;
       AuthenticationService.getListHisTradeWalletWGD().then((res) => {
-        if (res.data.success) {
+        if (res.data.code === 10000) {
           this.isLoading = false;
-          this.dataHisWalletWGD = res.data.data;
+          this.dataHisWalletWGD = res.data.data?.list || [];
           let c = (res.data.count / 10).toString();
           this.totalRWGD = Number(c.split(".")[0]);
         }
@@ -1643,7 +1617,7 @@ export default {
     clickPageWGD(page) {
       this.isLoading = true;
       AuthenticationService.getListHisTradeWalletWGDNumber(page).then((res) => {
-        if (res.data.success) {
+        if (res.data.code === 10000) {
           this.isLoading = false;
           this.dataHisWalletWGD = res.data.data;
         }
@@ -1660,20 +1634,14 @@ export default {
 
     formatDateWallet(value) {
       if (value) {
-        return moment(String(value)).format("MM/DD/YYYY HH:mm:ss");
+        return moment(value *1000 ).format("MM/DD/YYYY HH:mm:ss");
       }
     },
 
     getBalanceWallet() {
       AuthenticationService.getBalanceWallet().then((res) => {
         let d = res.data;
-        if (d.success == 3 || d.success == 4) {
-          localStorage.removeItem("token");
-          // this.$router.push("/login").catch(() => {});
-          window.location.href = window.location.origin + "/login";
-          return;
-        }
-        if (d.success) {
+        if (d.code === 10000) {
           let mU = d.data.usdt;
           let mE = d.data.eth;
           let mB = d.data.btc;
@@ -1973,7 +1941,7 @@ export default {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background-color: #F1DD48;
+  background-color: #f1dd48;
   color: #fff;
   font-weight: 400;
 }
@@ -2129,7 +2097,7 @@ export default {
   color: rgba(255, 255, 255, 0.3);
   height: 160px;
   width: 100%;
-  background: linear-gradient(180deg, #F1DD48, #15797c 110%) !important;
+  background: linear-gradient(180deg, #f1dd48, #15797c 110%) !important;
 }
 
 .subBanner .price {

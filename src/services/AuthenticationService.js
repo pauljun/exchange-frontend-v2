@@ -1,627 +1,605 @@
-import Api from '@/services/Api'
-import ApiAdmin from '@/services/ApiAdmin'
-import ApiAgency from '@/services/ApiAgency'
+import Api from '@/services/Api';
+import ApiAdmin, { ApiAdminNew } from '@/services/ApiAdmin';
+import ApiAgency from '@/services/ApiAgency';
 
 export default {
-    //2fa admin
-    active2fa(obj) {
-        return ApiAdmin().post('api/users/active-2fa', obj)
-    },
-
-    disable2fa(obj) {
-        return ApiAdmin().post('api/users/disable-2fa', obj)
-    },
-
-    adminDisable2fa(obj) {
-        return ApiAdmin().post('api/users/admin-disable-2fa', obj)
-    },
-
-    check2fa(obj) {
-        return ApiAdmin().post('api/users/check-2fa', obj)
-    },
-
-    checkOn2fa() {
-        return ApiAdmin().get('api/users/check-on-2fa')
-    },
-
-
-    //
-    //=========== USER
-    loginUser(obj) {
-        return Api().post('api/users/login', obj)
-    },
-
-    getTokenActive(obj) {
-        return Api().post('api/users/activeUser', obj)
-    },
-
-    registerUser(obj) {
-        return Api().post('api/users/createAccount', obj)
-    },
-
-    forgotPassUser(obj) {
-        return Api().post('api/users/forgot-password', obj)
-    },
-
-    resendConfirUser(obj) {
-        return Api().post('api/users/resend-confirmation-email', obj)
-    },
-
-    changePassword(obj) {
-        return Api().patch('api/users/change-password', obj)
-    },
-
-    changePassword2(obj) {
-        return Api().patch('api/users/change-password-is', obj)
-    },
-
-    getInfoUser() {
-        return Api().get('api/users/info')
-    },
-
-    updateXacMinhTK(obj) {
-        return Api().post('api/users/update-info', obj)
-    },
-
-    activeGG2FA(obj) {
-        return Api().post('api/users/update-gg2fa', obj)
-    },
-
-    unActiveGG2FA(obj) {
-        return Api().post('api/users/disable-gg2fa', obj)
-    },
-
-    sendGG2FA() {
-        return Api().get('api/users/code-2fa')
-    },
-
-    createGG2FA(role) {
-        if (void 0 !== role) {
-            return ApiAdmin().get('api/users/create-gg2fa')
-        }
-        return Api().get('api/users/create-gg2fa')
-    },
-
-    loginGG2FA(obj) {
-        return Api().post('api/users/login-2fa', obj)
-    },
-
-    reloadMoneyDemo() {
-        return Api().put('api/users/demo')
-    },
-
-    getListHitoryOrder() {
-        return Api().get('api/users/listbo')
-    },
-
-    sendMoneyLiveToUsdt(obj) {
-        return Api().post('api/users/live-to-usdt', obj)
-    },
-
-    sendMoneyUsdtToLive(obj) {
-        return Api().post('api/users/usdt-to-live', obj)
-    },
-
-    withdrawalUserNoiBo(obj) {
-        return Api().post('api/users/withdrawal', obj)
-    },
-
-    withdrawalUsdtERC(obj) {
-        return Api().post('api/users/withdrawal-erc', obj)
-    },
-
-    withdrawalUsdtBSC(obj) {
-        return Api().post('api/users/withdrawal-bsc', obj)
-    },
-
-    withdrawalUsdtVND(obj) {
-        return Api().post('api/users/withdrawal-vnd', obj)
-    },
-
-    withdrawalPaypalNoiBo(obj) {
-        return Api().post('api/users/paypal/withdrawal', obj)
-    },
-
-    withdrawalPaypalAccount(obj) {
-        return Api().post('api/users/paypal/withdrawal-acc', obj)
-    },
-
-    getBalanceWallet() {
-        return Api().get('api/users/balance-wallet')
-    },
-
-    scanWallet(email) {
-        return Api().get(`api/users/scan-wallet?e=${email}`)
-    },
+  //2fa admin
+  active2fa(obj) {
+    return ApiAdmin().post('/users/active-2fa', obj);
+  },
+
+  disable2fa(obj) {
+    return ApiAdmin().post('/users/disable-2fa', obj);
+  },
+
+  check2fa(obj) {
+    return ApiAdmin().post('/users/check-2fa', obj);
+  },
+
+  checkOn2fa() {
+    return ApiAdmin().get('/users/check-on-2fa');
+  },
+
+  //
+  //=========== USER
+  loginUser(obj) {
+    return Api().post('login', obj);
+  },
+
+  getTokenActive(obj) {
+    return Api().post('/users/activeUser', obj);
+  },
+
+  registerUser(obj) {
+    return Api().post('api/createAccount', obj);
+  },
+
+  forgotPassUser(obj) {
+    return Api().post('api/forgot_password', obj);
+  },
+
+  resendConfirUser(obj) {
+    return Api().post('/api/resend_confirmation_email', obj);
+  },
+
+  changePassword(obj) {
+    return Api().patch('/users/change-password', obj);
+  },
+
+  changePassword2(obj) {
+    return Api().patch('/users/change-password-is', obj);
+  },
+
+  getInfoUser() {
+    return Api().get('user/info');
+  },
+
+  updateXacMinhTK(obj) {
+    return Api().post('/users/update-info', obj);
+  },
+
+  activeGG2FA(obj) {
+    return Api().post('/users/update-gg2fa', obj);
+  },
+
+  unActiveGG2FA(obj) {
+    return Api().post('/users/disable-gg2fa', obj);
+  },
+
+  sendGG2FA() {
+    return Api().get('/users/code-2fa');
+  },
+
+  createGG2FA(role) {
+    if (void 0 !== role) {
+      return ApiAdmin().get('/users/create-gg2fa');
+    }
+    return Api().get('/users/create-gg2fa');
+  },
+
+  loginGG2FA(obj) {
+    return Api().post('/users/login-2fa', obj);
+  },
+
+  reloadMoneyDemo() {
+    return Api().put('/users/demo');
+  },
+
+  getListHitoryOrder() {
+    return Api().get('/user/listbo');
+  },
+
+  sendMoneyLiveToUsdt(obj) {
+    return Api().post('/user/live_to_usdt', obj);
+  },
+
+  sendMoneyUsdtToLive(obj) {
+    return Api().post('/user/usdt_to_live', obj);
+  },
+
+  withdrawalUserNoiBo(obj) {
+    return Api().post('/users/withdrawal', obj);
+  },
+
+  withdrawalUsdtERC(obj) {
+    return Api().post('/users/withdrawal-erc', obj);
+  },
+
+  withdrawalUsdtBSC(obj) {
+    return Api().post('/users/withdrawal-bsc', obj);
+  },
+
+  withdrawalUsdtVND(obj) {
+    return Api().post('/user/withdrawal_vnd', obj);
+  },
+
+  withdrawalPaypalNoiBo(obj) {
+    return Api().post('/users/paypal/withdrawal', obj);
+  },
+
+  withdrawalPaypalAccount(obj) {
+    return Api().post('/users/paypal/withdrawal-acc', obj);
+  },
+
+  getBalanceWallet() {
+    return Api().get('user/balance_wallet');
+  },
+
+  scanWallet(email) {
+    return Api().get(`/users/scan-wallet?e=${email}`);
+  },
+
+  getBankInfo() {
+    return Api().get('/user/bank_info');
+  },
+
+  depositWallet(obj) {
+    return Api().post('/users/usdt-wallet', obj);
+  },
+
+  UserBuyVip() {
+    return Api().post('/users/buy-vip');
+  },
+
+  getNguoiGioiThieu() {
+    return Api().get('/users/presenter');
+  },
+
+  getThongTinLoiNhuan() {
+    return Api().get('user/bo_statistics');
+  },
 
-    getBankInfo() {
-        return Api().get('api/users/bank-info')
-    },
+  getListHisOrder() {
+    return Api().get('user/history_order');
+  },
 
-    depositWallet(obj) {
-        return Api().post('api/users/usdt-wallet', obj)
-    },
+  getSeachListOrder(obj) {
+    return Api().get('/user/history_order_date', {params:obj});
+  },
 
-    UserBuyVip() {
-        return Api().post('api/users/buy-vip')
-    },
+  getListHisTradeWallet() {
+    return Api().get('user/history_wallet');
+  },
 
-    getNguoiGioiThieu() {
-        return Api().get('api/users/presenter')
-    },
+  getListHisTradeWalletNumber(num) {
+    return Api().get('/users/history-wallet/' + num);
+  },
 
-    getThongTinLoiNhuan() {
-        return Api().get('api/users/bo-statistics')
-    },
+  getListHisTradeWalletHH() {
+    return Api().get('/user/history_wallet_co');
+  },
 
-    getListHisOrder() {
-        return Api().get('api/users/history-order')
-    },
+  getListHisTradeWalletHHNumber(num) {
+    return Api().get('/user/history-wallet-co/' + num);
+  },
 
-    getSeachListOrder(obj) {
-        return Api().post('api/users/history-order-date', obj)
-    },
+  getListHisTradeWalletWGD() {
+    return Api().get('user/history_wallet_trade');
+  },
 
-    getListHisTradeWallet() {
-        return Api().get('api/users/history-wallet')
-    },
+  getListHisTradeWalletWGDNumber(num) {
+    return Api().get('/users/history-wallet-trade/' + num);
+  },
 
-    getListHisTradeWalletNumber(num) {
-        return Api().get('api/users/history-wallet/' + num)
-    },
+  chiTietLoiNhuanHoaHong() {
+    return Api().get('/users/commission-details');
+  },
 
-    getListHisTradeWalletHH() {
-        return Api().get('api/users/history-wallet-co')
-    },
+  chiTietLoiNhuanHoaHongPage(num) {
+    return Api().get('/users/commission-details/' + num);
+  },
 
-    getListHisTradeWalletHHNumber(num) {
-        return Api().get('api/users/history-wallet-co/' + num)
-    },
+  getSeachListChiTietHH(obj) {
+    return Api().post('/users/commission-details-date', obj);
+  },
 
-    getListHisTradeWalletWGD() {
-        return Api().get('api/users/history-wallet-trade')
-    },
+  getSeachListLvAgency(obj) {
+    return Api().post('/users/agency-search-lv', obj);
+  },
 
-    getListHisTradeWalletWGDNumber(num) {
-        return Api().get('api/users/history-wallet-trade/' + num)
-    },
+  getSeachListNameAgency(obj) {
+    return Api().post('/users/agency-search-name', obj);
+  },
 
-    chiTietLoiNhuanHoaHong() {
-        return Api().get('api/users/commission-details')
-    },
+  depositPaypal(obj) {
+    return Api().get('/paypal/pay?a=' + obj.a + '&n=' + obj.n);
+  },
 
-    chiTietLoiNhuanHoaHongPage(num) {
-        return Api().get('api/users/commission-details/' + num)
-    },
+  depositVND(obj) {
+    return Api().post('/user/pay_vnd',obj);
+  },
 
-    getSeachListChiTietHH(obj) {
-        return Api().post('api/users/commission-details-date', obj)
-    },
+  getAddressCoin(coin) {
+    return Api().get('/wallet/' + coin + '/address');
+  },
 
-    getSeachListLvAgency(obj) {
-        return Api().post('api/users/agency-search-lv', obj)
-    },
+  transWallet(obj) {
+    return Api().post('/exs/trans', obj);
+  },
 
-    getSeachListNameAgency(obj) {
-        return Api().post('api/users/agency-search-name', obj)
-    },
+  getSetupWallet() {
+    return Api().get('api/setup_wallet');
+  },
 
-    depositPaypal(obj) {
-        return Api().get('api/paypal/pay?a=' + obj.a + '&n=' + obj.n)
-    },
+  getSupport() {
+    return Api().get('api/setup_supports');
+  },
 
-    depositVND(obj) {
-        return Api().get('api/pay/vnd?a=' + obj.a + '&n=' + obj.n + '&al=' + obj.al + '&b=' + obj.b)
-    },
+  getExChangeUser() {
+    return Api().get('/exs/hisUser');
+  },
 
-    getAddressCoin(coin) {
-        return Api().get('api/wallet/' + coin + '/address')
-    },
+  getStatusServer() {
+    return Api().get('api/status');
+  },
 
-    transWallet(obj) {
-        return Api().post('api/exs/trans', obj)
-    },
+  checkGiaoDich(obj) {
+    return Api().post('/user/balance/trans/check', obj);
+  },
 
-    getSetupWallet() {
-        return Api().get('api/setup/wallet')
-    },
+  getListNotifi(obj) {
+    return Api().post('user/getListNotifi', obj);
+  },
 
-    getSupport() {
-        return Api().get('api/setup/supports')
-    },
+  updateListNotifi(obj) {
+    return Api().post('/users/updateListNotifi', obj);
+  },
 
+  //=========== END USER
 
-    getExChangeUser() {
-        return Api().get('api/exs/hisUser')
-    },
+  //========== MEMBER
 
-    getStatusServer() {
-        return Api().get('status')
-    },
+  activeUser(id, obj) {
+    return ApiAdminNew().put(`users/${id}`, obj);
+  },
 
-    checkGiaoDich(obj) {
-        return Api().post('api/user/balance/trans/check', obj)
-    },
+  getRevenueNap() {
+    return ApiAdminNew().get('history/trade_count?type=rn');
+  },
 
-    getListNotifi(obj) {
-        return Api().post('api/users/getListNotifi', obj)
-    },
+  getRevenueRut() {
+    return ApiAdminNew().get('history/trade_count?type=rt');
+  },
 
-    updateListNotifi(obj) {
-        return Api().post('api/users/updateListNotifi', obj)
-    },
+  getRevenueTrans() {
+    return ApiAdmin().get('/trades/getRevenueTrans');
+  },
 
+  getShowDT(obj) {
+    return ApiAdminNew().get(`history/trade_showDT?from=${obj.from}&to=${obj.to}`);
+  },
 
-    //=========== END USER
+  changePassAdmin(obj) {
+    return ApiAdmin().post('/users/changPassAd', obj);
+  },
 
+  createUser(obj) {
+    return ApiAdminNew().post('users', obj);
+  },
 
-    //========== MEMBER
+  register(obj) {
+    return ApiAdmin().post('/users/register', obj);
+  },
 
-    activeUser(obj) {
-        return ApiAdmin().post('api/users/admin-active-user', obj)
-    },
-
-    getRevenueNap() {
-        return ApiAdmin().get('api/trades/getRevenueNap')
-    },
-
-    getRevenueRut() {
-        return ApiAdmin().get('api/trades/getRevenueRut')
-    },
-
-    getRevenueTrans() {
-        return ApiAdmin().get('api/trades/getRevenueTrans')
-    },
-
-    getShowDT(obj) {
-        return ApiAdmin().post('api/trades/getShowDT', obj)
-    },
-
-    changeAccMarketing(obj) {
-        return ApiAdmin().post('api/users/changeAcc', obj)
-    },
-
-    changePassAdmin(obj) {
-        return ApiAdmin().post('api/users/changPassAd', obj)
-    },
-
-    createUser(obj) {
-        return ApiAdmin().post('api/users/create', obj)
-    },
-
-    register(obj) {
-        return ApiAdmin().post('api/users/register', obj)
-    },
-
-    loginAdmin(obj) {
-        return ApiAdmin().post('api/users/AdminSingIn', obj)
-    },
-
-    checkEmail(email) {
-        return ApiAdmin().get('api/users/checkEmail/' + email)
-    },
-
-    getAllMember() {
-        return ApiAdmin().get('api/users/getAllUser')
-    },
-
-    updateMember(obj) {
-        return ApiAdmin().patch('api/users/updateUser', obj)
-    },
-
-    updatePriceMember(obj) {
-        return ApiAdmin().patch('api/users/updateMoney', obj)
-    },
-
-    handleMoney(obj) {
-        return ApiAdmin().post('api/pay/approval', obj);
-    },
-
-    handleMoneyRut(obj) {
-        return ApiAdmin().post('api/pay/approval-rut', obj);
-    },
-
-    deleteMember(id) {
-        return ApiAdmin().delete('api/users/deleteUserById/' + id)
-    },
-
-    verifiedUser(obj) {
-        return ApiAdmin().post('api/users/verifiedUser', obj)
-    },
-
-    getListAgency() {
-        return ApiAdmin().get('api/users/getAgency')
-    },
-
-    viewMemberAgency(id) {
-        return ApiAdmin().get('api/users/viewTotalMAgency/' + id)
-    },
-
-    addMoneyMember(obj) {
-        return ApiAdmin().post('api/users/addMoneyMember', obj)
-    },
-
-    getRateCommission() {
-        return ApiAdmin().get('api/setup/getRateCommission')
-    },
-
-    saveRateCommission(obj) {
-        return ApiAdmin().post('api/setup/saveRateCommission', obj)
-    },
-
-    getStakingRate() {
-        return ApiAdmin().get('api/staking/set-rate')
-    },
-
-    setStakingRate(data) {
-        return ApiAdmin().post('api/staking/set-rate', data)
-    },
-
-
-    //==========
-
-    //================
-    //================
-    //================
-    //========== TRADE
-    //================
-    //================
-    //================
-
-    getAddMoneyListHistory() {
-        return ApiAdmin().get('api/trades/historyAllAddMoney');
-    },
-
-    getTotalAddMoney() {
-        return ApiAdmin().get('api/trades/totalAddMoney');
-    },
-
-
-    getTradeListHistory() {
-        return ApiAdmin().get('api/trades/historyAll');
-    },
-
-
-    gethistoryAllTrash() {
-        return ApiAdmin().get('api/trades/historyAllTrash');
-    },
-
-
-    deleteTrashByID(obj) {
-        return ApiAdmin().patch('api/trades/deleteTradeHisById', obj);
-    },
-
-    getDepositListHistory() {
-        return ApiAdmin().get('api/trades/hisDepositAll');
-    },
-
-    // Đại lý
-    getDepositListHistoryAgency(email, f) {
-        return Api().get(`api/trades/hisDepositAll?email=${email}&${f}`);
-    },
-    //
-
-
-    getDepositAllTrash() {
-        return ApiAdmin().get('api/trades/hisDepositAllTrash');
-    },
-
-    getWithdrawalListHistory() {
-        return ApiAdmin().get('api/trades/hisWithDrawalAll');
-    },
-
-    // Dai ly
-    getWithdrawalListHistoryAgency(email, f) {
-        return Api().get(`api/trades/hisWithDrawalAll?email=${email}${f}`);
-    },
-    //
-
-    doneWithDrawalByID(obj) {
-        return ApiAdmin().post('api/trades/doneWithdrawal', obj)
-    },
-
-    doneRefuseWithDrawalByID(obj) {
-        return ApiAdmin().post('api/trades/doneRefuseWithdrawal', obj)
-    },
-
-    getListF1F7(obj) {
-        return ApiAdmin().post('api/users/getListF1F7', obj)
-    },
-    //Dai lý
-
-    getStatisticsListF1F7(email, f) {
-        return ApiAgency().get(`api/users/thong-ke-getListF1F7?email=${email}${f}`);
-    },
-    //
-    getSuperior(uplineID) {
-        return ApiAdmin().get(`api/users/getSuperior/${uplineID}`)
-    },
-
-    getLiveAccount(ref) {
-        return ApiAdmin().get(`api/users/get-live-account/${ref}`)
-    },
-
-    getLisCommissionSearch(obj) {
-        return ApiAdmin().post('api/users/getListCmsHis', obj)
-    },
-
-
-    //================
-    //================
-    //================
-    //================
-    //================
-
-    //================
-    //================
-    //================
-    //========== Analytics
-    //================
-    //================
-    //================
-
-
-    getAnalytics() {
-        return ApiAdmin().get('api/users/analytics')
-    },
-
-
-    //================
-    //================
-    //================
-    //========== Analytics
-    //================
-    //================
-    //================
-
-
-    //================
-    //================
-    //================
-    //========== BET
-    //================
-    //================
-    //================
-
-    getBetsListHistory() {
-        return ApiAdmin().get('api/bets/historyBet')
-    },
-
-    //Đại lý
-    getBetsListHistoryAgency(email, f) {
-        return Api().get(`api/bets/historyBet?email=${email}&${f}`);
-    },
-    //
-
-    getBetsListHisTrash() {
-        return ApiAdmin().get('api/bets/hisBetTrash')
-    },
-
-    deleteBetsTrash(obj) {
-        return ApiAdmin().patch('api/bets/deleteBet', obj)
-    },
-
-    //================
-    //================
-    //================
-    //================
-    //================
-
-
-    //================
-    //================
-    //================
-    //========== EXCHANGE
-    //================
-    //================
-    //================
-
-    getExListHistory() {
-        return ApiAdmin().get('api/exs/historyEx')
-    },
-
-    getExListHisTrash() {
-        return ApiAdmin().get('api/exs/historyExTrash')
-    },
-
-    deleteExTrash(obj) {
-        return ApiAdmin().patch('api/exs/deleteEx', obj)
-    },
-
-    //================
-    //================
-    //================
-    //================
-    //================
-
-    uploadAvatar(obj) {
-        return Api().post('api/auth/avatar', obj)
-    },
-
-    uploadPassportFront(obj) {
-        return Api().post('api/auth/passport/front', obj)
-    },
-
-    uploadPassportBack(obj) {
-        return Api().post('api/auth/passport/back', obj)
-    },
-
-    //================
-    //================
-    //================
-    //========== GAME
-    //================
-    //================
-    //================
-    // Giải đấu
-    createChampion(obj) {
-        return ApiAdmin().post('api/game/champion', obj)
-    },
-    getChampions() {
-        return ApiAdmin().get('api/game/champions')
-    },
-    getChampionsClient() {
-        return Api().get('api/game/champions')
-    },
-    deleteChampion(id) {
-        return ApiAdmin().delete(`api/game/champion/${id}`)
-    },
-    updateChampion(id, obj) {
-        return ApiAdmin().put(`api/game/champion/${id}`, obj)
-    },
-    uploadBackgroundImage(obj) {
-        return Api().post('api/auth/champion', obj)
-    },
-
-    getActiveGames() {
-        return Api().get('api/game/active-games')
-    },
-
-    // Rút thăm may mắn
-    createLuckyDrawAdmin(obj, type) {
-        return ApiAdmin().put(`api/game1/lucky-draws/${type}`, obj)
-    },
-    getLuckyDrawAdmin() {
-        return ApiAdmin().get('api/game1/lucky-draws-admin')
-    },
-    getLuckyDraw() {
-        return Api().get('api/game1/lucky-draws')
-    },
-    getThongTinLoiNhuanHangNgay() {
-        return Api().get('api/users/bo-statistics-current-day')
-    },
-
-    createStreakChallenge(config) {
-        return ApiAdmin().post('/api/game2/streak-challenge', config);
-    },
-
-    getStreakChallenge() {
-        return ApiAdmin().get('/api/game2/streak-challenge');
-    },
-
-    getStreakClientChallenge() {
-        return Api().get('/api/game2/streak-challenge');
-    },
-
-    getUserStreakChallenge() {
-        return ApiAdmin().get('/api/game2/streak-challenge-user');
-    },
-
-    getUserClientStreakChallenge() {
-        return Api().get('/api/game2/streak-challenge-user');
-    },
-
-    addUserStreakChallenge(dataAddUser) {
-        return ApiAdmin().post('/api/game2/streak-challenge-user', dataAddUser);
-    },
-
-    getPrizeUser() {
-        return Api().get('/api/game2/prize');
-    },
-
-    //Agency
-    getInfoAgency() {
-        return ApiAgency().get('api/users/info')
-    },
-
-}
+  loginAdmin(obj) {
+    return ApiAdminNew().post('login', obj);
+  },
+
+  checkEmail(email) {
+    return ApiAdminNew().get('users?email=' + email);
+  },
+
+  getAllMember() {
+    return ApiAdminNew().get('users?limit=1000');
+  },
+
+  updateMember(obj) {
+    return ApiAdminNew().put('users/' + obj.id, obj);
+  },
+
+  updatePriceMember(obj) {
+    return ApiAdmin().post('/users/updateMoney', obj);
+  },
+
+  handleMoney(obj) {
+    return ApiAdmin().post('/pay/approval', obj);
+  },
+
+  handleMoneyRut(obj) {
+    return ApiAdmin().post('/pay/approval-rut', obj);
+  },
+
+  deleteMember(id) {
+    return ApiAdminNew().delete('users/' + id);
+  },
+
+  verifiedUser(obj) {
+    return ApiAdmin().post('/users/verifiedUser', obj);
+  },
+
+  getListAgency() {
+    return ApiAdminNew().get('users?vip_user=1');
+  },
+
+  viewMemberAgency(id) {
+    return ApiAdmin().get('/users/viewTotalMAgency/' + id);
+  },
+
+  addMoneyMember(obj) {
+    return ApiAdmin().post('/users/addMoneyMember', obj);
+  },
+
+  getRateCommission() {
+    return ApiAdmin().get('/setup/getRateCommission');
+  },
+
+  saveRateCommission(obj) {
+    return ApiAdmin().post('/setup/saveRateCommission', obj);
+  },
+
+  getStakingRate() {
+    return ApiAdmin().get('/staking/set-rate');
+  },
+
+  setStakingRate(data) {
+    return ApiAdmin().post('/staking/set-rate', data);
+  },
+
+  //==========
+
+  //================
+  //================
+  //================
+  //========== TRADE
+  //================
+  //================
+  //================
+
+  getAddMoneyListHistory() {
+    return ApiAdminNew().get('history/add_money');
+  },
+
+  getTotalAddMoney() {
+    return ApiAdmin().get('/trades/totalAddMoney');
+  },
+
+  getTradeListHistory() {
+    return ApiAdminNew().get('history/trade?type=Trade&limit=500');
+  },
+
+  gethistoryAllTrash() {
+    return ApiAdmin().get('/trades/historyAllTrash');
+  },
+
+  deleteTrashByID(id) {
+    return ApiAdminNew().delete(`history/trade/${id}`);
+  },
+
+  getDepositListHistory() {
+    return ApiAdminNew().get('history/trade?type=Deposit&limit=10');
+  },
+
+  // Đại lý
+  getDepositListHistoryAgency(email, f) {
+    return Api().get(`/trades/hisDepositAll?email=${email}&${f}`);
+  },
+  //
+
+  getDepositAllTrash() {
+    return ApiAdmin().get('/trades/hisDepositAllTrash');
+  },
+
+  getWithdrawalListHistory() {
+    return ApiAdminNew().get('history/trade?type=WithDrawal&limit=500');
+  },
+
+  // Dai ly
+  getWithdrawalListHistoryAgency(email, f) {
+    return Api().get(`/trades/hisWithDrawalAll?email=${email}${f}`);
+  },
+  //
+
+  doneWithDrawalByID(obj) {
+    return ApiAdmin().post('/trades/doneWithdrawal', obj);
+  },
+
+  doneRefuseWithDrawalByID(obj) {
+    return ApiAdmin().post('/trades/doneRefuseWithdrawal', obj);
+  },
+
+  getListF1F7(obj) {
+    return ApiAdmin().post('/users/getListF1F7', obj);
+  },
+  //Dai lý
+
+  getStatisticsListF1F7(email, f) {
+    return ApiAgency().get(`/users/thong-ke-getListF1F7?email=${email}${f}`);
+  },
+  //
+  getMemberInfo(id) {
+    return ApiAdminNew().get(`users/${id}`);
+  },
+
+  getLiveAccount(ref) {
+    return ApiAdmin().get(`/users/get-live-account/${ref}`);
+  },
+
+  getLisCommissionSearch(obj) {
+    return ApiAdmin().post('/users/getListCmsHis', obj);
+  },
+
+  //================
+  //================
+  //================
+  //================
+  //================
+
+  //================
+  //================
+  //================
+  //========== Analytics
+  //================
+  //================
+  //================
+
+  getAnalytics() {
+    return ApiAdminNew().get('admin/users_analytics');
+  },
+
+  //================
+  //================
+  //================
+  //========== Analytics
+  //================
+  //================
+  //================
+
+  //================
+  //================
+  //================
+  //========== BET
+  //================
+  //================
+  //================
+
+  getBetsListHistory() {
+    return ApiAdminNew().get('history/bet');
+  },
+
+  //Đại lý
+  getBetsListHistoryAgency(email, f) {
+    return Api().get(`/bets/historyBet?email=${email}&${f}`);
+  },
+  //
+
+  getBetsListHisTrash() {
+    return ApiAdmin().get('/bets/hisBetTrash');
+  },
+
+  deleteBetsTrash(obj) {
+    console.log(obj);
+    return ApiAdminNew().delete('history/bet/' + obj.id);
+  },
+
+  //================
+  //================
+  //================
+  //================
+  //================
+
+  //================
+  //================
+  //================
+  //========== EXCHANGE
+  //================
+  //================
+  //================
+
+  getExListHistory() {
+    return ApiAdminNew().get('history/exchange');
+  },
+
+  getExListHisTrash() {
+    return ApiAdminNew().get('/exs/historyExTrash');
+  },
+
+  deleteExTrash(obj) {
+    return ApiAdmin().patch('/exs/deleteEx', obj);
+  },
+
+  //================
+  //================
+  //================
+  //================
+  //================
+
+  uploadAvatar(obj) {
+    return Api().post('/auth/avatar', obj);
+  },
+
+  uploadPassportFront(obj) {
+    return Api().post('/auth/passport/front', obj);
+  },
+
+  uploadPassportBack(obj) {
+    return Api().post('/auth/passport/back', obj);
+  },
+
+  //================
+  //================
+  //================
+  //========== GAME
+  //================
+  //================
+  //================
+  // Giải đấu
+  createChampion(obj) {
+    return ApiAdmin().post('/game/champion', obj);
+  },
+  getChampions() {
+    return ApiAdmin().get('/game/champions');
+  },
+  getChampionsClient() {
+    return Api().get('/game/champions');
+  },
+  deleteChampion(id) {
+    return ApiAdmin().delete(`/game/champion/${id}`);
+  },
+  updateChampion(id, obj) {
+    return ApiAdmin().put(`/game/champion/${id}`, obj);
+  },
+  uploadBackgroundImage(obj) {
+    return Api().post('/auth/champion', obj);
+  },
+
+  getActiveGames() {
+    return Api().get('api/active_games');
+  },
+
+  // Rút thăm may mắn
+  createLuckyDrawAdmin(obj, type) {
+    return ApiAdmin().put(`/game1/lucky-draws/${type}`, obj);
+  },
+  getLuckyDrawAdmin() {
+    return ApiAdmin().get('/game1/lucky-draws-admin');
+  },
+  getLuckyDraw() {
+    return Api().get('/game1/lucky-draws');
+  },
+  getThongTinLoiNhuanHangNgay() {
+    return Api().get('/users/bo-statistics-current-day');
+  },
+
+  createStreakChallenge(config) {
+    return ApiAdmin().post('//game2/streak-challenge', config);
+  },
+
+  getStreakChallenge() {
+    return ApiAdmin().get('//game2/streak-challenge');
+  },
+
+  getStreakClientChallenge() {
+    return Api().get('//game2/streak-challenge');
+  },
+
+  getUserStreakChallenge() {
+    return ApiAdmin().get('//game2/streak-challenge-user');
+  },
+
+  getUserClientStreakChallenge() {
+    return Api().get('//game2/streak-challenge-user');
+  },
+
+  addUserStreakChallenge(dataAddUser) {
+    return ApiAdmin().post('//game2/streak-challenge-user', dataAddUser);
+  },
+
+  getPrizeUser() {
+    return Api().get('/api/game2_prize');
+  },
+
+  //Agency
+  getInfoAgency() {
+    return ApiAgency().get('/users/info');
+  }
+};

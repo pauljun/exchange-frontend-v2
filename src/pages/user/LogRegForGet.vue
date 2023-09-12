@@ -6,13 +6,7 @@
       v-if="activeLogin"
     >
       <div
-        class="
-          contentAuthentication
-          bgPrimary
-          flex flex-col
-          items-center
-          justify-between
-        "
+        class="contentAuthentication bgPrimary flex flex-col items-center justify-between"
         :class="{ 'ld-loading': ldFrom }"
       >
         <div class="loading">
@@ -50,16 +44,7 @@
           </div>
         </div>
         <div
-          class="
-            header-sidebar
-            p-10
-            fixed
-            flex
-            items-center
-            justify-between
-            flex-col
-            w-full
-          "
+          class="header-sidebar p-10 fixed flex items-center justify-between flex-col w-full"
         >
           <div class="header w-full">
             <a href="/" class="logoLogin mb-0 router-link-active">BoTrade</a>
@@ -73,27 +58,25 @@
           </div>
           <div class="formWapper w-full">
             <div class="loginForm login_acc white mt-0" v-if="!isG2FA">
-              <h2 class="lg:mb-5">Đăng nhập vào Tài khoản của bạn</h2>
+              <h2 class="lg:mb-5">{{ $t("login.1") }}</h2>
               <div class="centerx labelx">
                 <div class="mb-3">
-                  <label class="label_custom" for="input-bvxi30l9g"
-                    >Địa chỉ Email *</label
-                  >
+                  <label class="label_custom" for="input-bvxi30l9g">
+                    {{ $t("login.2") }} *
+                  </label>
                   <input
                     type="email"
                     class="w-full input-bvxi30l9g"
-                    placeholder="Điền Email"
                     v-model="email"
                   />
                 </div>
                 <div class="mb-3 relative">
-                  <label class="label_custom" for="input-bvxi30l9g"
-                    >Mật khẩu *</label
-                  >
+                  <label class="label_custom" for="input-bvxi30l9g">
+                    {{ $t("login.3") }} *
+                  </label>
                   <input
                     :type="passTypeLog"
                     class="w-full input-bvxi30l9g"
-                    placeholder="Điền mật khẩu"
                     v-model="password"
                   />
                   <feather-icon
@@ -120,136 +103,27 @@
                   <router-link
                     to="/forgot-password"
                     class="mb-5 inline-block float-right cursor-pointer"
-                    >Quên mật khẩu?</router-link
                   >
+                    {{ $t("login.4") }}?
+                  </router-link>
                   <vs-button
                     style="
-                      background: #F1DD48 !important;
+                      background: #f1dd48 !important;
                       color: #fff !important;
                     "
                     class="w-full"
                     type="filled"
                     :disabled="!disabledLogin"
                     @click="loginForm"
-                    >Đăng nhập</vs-button
                   >
+                    {{ $t("login.5") }}
+                  </vs-button>
                 </div>
-
-<!--                <div>
-                  <div
-                    data-text="Or continue with"
-                    class="divider__with-text mt-4 mb-4"
-                  ></div>
-                  <div class="social-group">
-                    <a
-                      ><button
-                        type="button"
-                        class="
-                          btn btn-primary
-                          d-flex
-                          align-items-center
-                          btn-block
-                          text-white
-                        "
-                        data-dashlane-rid="1cc655c18186c0cd"
-                        data-form-type=""
-                        data-kwimpalastatus="dead"
-                        data-dashlane-label="true"
-                        @click="loginFb()"
-                      >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="11.339"
-                          height="21.332"
-                          viewBox="0 0 11.339 21.332"
-                          class=""
-                        >
-                          <path
-                            id="Path_71950"
-                            data-name="Path 71950"
-                            d="M25.162,21.893l.588-3.831H22.074V15.575a1.916,1.916,0,0,1,2.16-2.07h1.671V10.243a20.347,20.347,0,0,0-2.967-.259c-3.028,0-5.007,1.835-5.007,5.157v2.92H14.566v3.831h3.366v9.262a13.374,13.374,0,0,0,4.142,0V21.893Z"
-                            transform="translate(-14.566 -9.984)"
-                            fill="#fff"
-                          ></path></svg
-                        ><span class="flex-fill">Facebook</span>
-                      </button></a
-                    ><a
-                      ><button
-                        type="button"
-                        class="
-                          btn btn-danger
-                          d-flex
-                          align-items-center
-                          btn-block
-                        "
-                        data-dashlane-rid="226b221f96645152"
-                        data-form-type=""
-                        data-dashlane-label="true"
-                        @click="loginGoogle()"
-                      >
-                        <svg
-                          id="Component_1_1"
-                          data-name="Component 1 – 1"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="23"
-                          height="23"
-                          viewBox="0 0 23 23"
-                          class=""
-                        >
-                          <rect
-                            id="Rectangle_6721"
-                            data-name="Rectangle 6721"
-                            width="23"
-                            height="23"
-                            rx="11.5"
-                            fill="#fff"
-                          ></rect>
-                          <g id="google" transform="translate(3.147 2.87)">
-                            <g
-                              id="Group_25522"
-                              data-name="Group 25522"
-                              transform="translate(0 0)"
-                            >
-                              <path
-                                id="Path_71963"
-                                data-name="Path 71963"
-                                d="M12.107,5.568a5.128,5.128,0,0,1,3.309,1.208L18.01,4.307A8.713,8.713,0,0,0,4.293,6.851L7.216,9.1a5.161,5.161,0,0,1,4.891-3.536Z"
-                                transform="translate(-3.384 -2)"
-                                fill="#d94f3d"
-                              ></path>
-                              <path
-                                id="Path_71964"
-                                data-name="Path 71964"
-                                d="M5.569,18.108a5.132,5.132,0,0,1,.264-1.618L2.909,14.236a8.7,8.7,0,0,0,0,7.743l2.923-2.253a5.132,5.132,0,0,1-.264-1.618Z"
-                                transform="translate(-2 -9.384)"
-                                fill="#f2c042"
-                              ></path>
-                              <path
-                                id="Path_71965"
-                                data-name="Path 71965"
-                                d="M32.427,20H24.1v3.569h4.718a4.253,4.253,0,0,1-1.806,2.443l2.9,2.236C31.767,26.584,32.856,23.879,32.427,20Z"
-                                transform="translate(-15.337 -12.863)"
-                                fill="#5085ed"
-                              ></path>
-                              <path
-                                id="Path_71966"
-                                data-name="Path 71966"
-                                d="M15.058,30.889a5.543,5.543,0,0,1-2.951.729,5.161,5.161,0,0,1-4.891-3.536L4.293,30.334a8.732,8.732,0,0,0,7.814,4.852,8.67,8.67,0,0,0,5.852-2.062Z"
-                                transform="translate(-3.384 -17.739)"
-                                fill="#57a75c"
-                              ></path>
-                            </g>
-                          </g></svg
-                        ><span class="flex-fill">Google</span>
-                      </button></a
-                    >
-                  </div>
-                </div>-->
               </div>
             </div>
             <div class="loginForm white mt-0" v-else>
               <h2 class="mt5m font-24 white font-bold lg:mb-5 mb-3">
-                Xác minh bảo mật
+                {{ $t("login.6") }}
               </h2>
               <div class="centerx labelx">
                 <div class="mb-3 custom-input-wrapper">
@@ -258,7 +132,9 @@
                     label="Mã Google Authentication"
                     v-model="G2FACodeEnter"
                   />
-                 <span class="icon" @click="pasteCode">Paste</span>
+                  <span class="icon" @click="pasteCode">
+                    {{ $t("login.8") }}
+                  </span>
                 </div>
                 <div>
                   <vs-button
@@ -267,29 +143,30 @@
                     type="filled"
                     :disabled="!disabledLogin"
                     @click="loginFormAuthG2FA"
-                    >Gửi</vs-button
                   >
+                    {{ $t("login.7") }}
+                  </vs-button>
                 </div>
               </div>
             </div>
           </div>
           <div slot="footer">
             <p class="colorWhite bottomText mb-2">
-              Cần có tài khoản {{ domain }}?
-              <router-link to="/register" class="cursor-pointer"
-                >Đăng ký</router-link
-              >
+              {{ $t("login.9") }} {{ domain }}?
+              <router-link to="/register" class="cursor-pointer">
+                {{ $t("Index.register") }}
+              </router-link>
             </p>
             <div class="colorWhite">
-              <span class="colorWhite text-center"
-                >Không nhận được email xác nhận?</span
-              >
+              <span class="colorWhite text-center">
+                {{ $t("login.10") }}?
+              </span>
               <router-link
                 to="/register-resend-verify-email"
                 class="cursor-pointer"
               >
-                Yêu cầu một email mới.</router-link
-              >
+                {{ $t("login.11") }}.
+              </router-link>
             </div>
           </div>
         </div>
@@ -302,13 +179,7 @@
       v-if="activeLogin3rd"
     >
       <div
-        class="
-          contentAuthentication
-          bgPrimary
-          flex flex-col
-          items-center
-          justify-between
-        "
+        class="contentAuthentication bgPrimary flex flex-col items-center justify-between"
         :class="{ 'ld-loading': ldFrom }"
       >
         <div class="loading">
@@ -346,16 +217,7 @@
           </div>
         </div>
         <div
-          class="
-            header-sidebar
-            p-10
-            fixed
-            flex
-            items-center
-            justify-between
-            flex-col
-            w-full
-          "
+          class="header-sidebar p-10 fixed flex items-center justify-between flex-col w-full"
         >
           <div class="header w-full">
             <a href="/" class="logoLogin mb-0 router-link-active">BoTrade</a>
@@ -373,7 +235,7 @@
                 style="font-weight: 500 !important"
                 class="mt5m font-24 white lg:mb-5 mb-3 space-x-2"
               >
-                <span>Đăng nhập với</span>
+                <span>{{ $t("login.12") }}</span>
                 <span class="login-social-icon facebook" v-if="type3rd == 'fb'">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -456,13 +318,12 @@
                   class="mb-5 relative"
                   :class="{ 'md-invalid': msgEm3rd != '' }"
                 >
-                  <label class="label_custom" for="input-bvxi30l9g"
-                    >Địa chỉ Email *</label
-                  >
+                  <label class="label_custom" for="input-bvxi30l9g">
+                    {{ $t("login.2") }} *
+                  </label>
                   <input
                     type="email"
                     class="w-full input-bvxi30l9g"
-                    placeholder="Điền Email"
                     v-model="email3rd"
                   />
                   <small class="md-error text-danger text-sm">
@@ -473,15 +334,15 @@
                   class="mb-5 relative"
                   :class="{ 'md-invalid': msgPass3rd != '' }"
                 >
-                  <label class="label_custom" for="input-bvxi30l9g"
-                    >Mật khẩu *</label
-                  >
+                  <label class="label_custom" for="input-bvxi30l9g">
+                    {{ $t("login.3") }}*
+                  </label>
                   <input
                     v-validate="'required|min:6|max:20'"
                     maxlength="20"
                     :type="passType3rd"
                     class="w-full input-bvxi30l9g"
-                    placeholder="Điền mật khẩu"
+                    :placeholder="$t('login.14')"
                     v-model="password3rd"
                   />
 
@@ -506,43 +367,18 @@
                   <small class="md-error text-danger text-sm">
                     {{ msgPass3rd }}
                   </small>
-                  <span class="md-count float-right text-xs italic"
-                    >{{ password3rd.length }} / 20</span
-                  >
+                  <span class="md-count float-right text-xs italic">
+                    {{ password3rd.length }} / 20
+                  </span>
                 </div>
-
-<!--                <div
-                  class="mb-5 relative"
-                  :class="{ 'md-invalid': msgNickName3rd != '' }"
-                >
-                  <label class="label_custom" for="input-bvxi30l9g"
-                    >Biệt danh *</label
-                  >
-                  <input
-                    type="email"
-                    class="w-full input-bvxi30l9g"
-                    placeholder="Điền Nickname"
-                    v-model="nickName3rd"
-                    v-validate="'required|min:3|max:20|alpha_dash'"
-                    maxlength="20"
-                  />
-
-                  <small class="md-error text-danger text-sm">
-                    {{ msgNickName3rd }}
-                  </small>
-                  <span class="md-count float-right text-xs italic"
-                    >{{ nickName3rd.length }} / 20</span
-                  >
-                </div>-->
-
                 <div class="flex">
                   <div
                     class="mb-5 relative mr-5"
                     :class="{ 'md-invalid': msgFirstName != '' }"
                   >
-                    <label class="label_custom" for="input-bvxi30l9g"
-                      >Tên *</label
-                    >
+                    <label class="label_custom" for="input-bvxi30l9g">
+                      {{ $t("login.15") }} *
+                    </label>
                     <input
                       type="email"
                       class="w-full input-bvxi30l9g"
@@ -555,9 +391,9 @@
                     <small class="md-error text-danger text-sm">
                       {{ msgFirstName }}
                     </small>
-                    <span class="md-count float-right text-xs italic"
-                      >{{ firstName.length }} / 20</span
-                    >
+                    <span class="md-count float-right text-xs italic">
+                      {{ firstName.length }} / 20
+                    </span>
                   </div>
                   <div
                     class="mb-5 relative"
@@ -588,9 +424,9 @@
                   class="mb-5 relative"
                   :class="{ 'mt-10': msgNickName != '' }"
                 >
-                  <label class="label_custom" for="input-bvxi30l9g"
-                    >Mã giới thiệu / Mã khuyến mãi</label
-                  >
+                  <label class="label_custom" for="input-bvxi30l9g">
+                    Mã giới thiệu / Mã khuyến mãi
+                  </label>
                   <input
                     type="email"
                     class="w-full input-bvxi30l9g"
@@ -601,14 +437,15 @@
                 <div>
                   <vs-button
                     style="
-                      background: #F1DD48 !important;
+                      background: #f1dd48 !important;
                       color: #fff !important;
                     "
                     class="w-full"
                     type="filled"
                     @click="submitForm3rd"
-                    >Xác nhận</vs-button
                   >
+                    Xác nhận
+                  </vs-button>
                 </div>
               </div>
             </div>
@@ -616,16 +453,6 @@
               <h2 class="font-weight-bold mb-5 font-24 colorSecondary">
                 KÍCH HOẠT TÀI KHOẢN
               </h2>
-              <!--<p class="colorSecondary">
-                              Để được kích hoạt tài khoản: <a :href="`mailto:${emailReg}`" class="colorBlue4">{{ emailReg }}</a><br><br>
-                              - B1: Tải ứng dụng Telegram về trên App Store (IOS) hoặc CH Play (Android).<br>
-                              - B2: Nếu đã có ứng dụng (Bỏ qua Bước 1) Nhấp vào nút KÍCH HOẠT bên dưới 👇🏻 để mở App Telegram.<br>
-                              - B3: Nhấp lệnh start (Bắt đầu) và làm theo hướng dẫn.<br>
-                            </p>-->
-              <!-- <p class="colorSecondary">
-                               Một liên kết xác nhận đã được gửi tới
-                                Vui lòng xác nhận email: <a :href="`mailto:${emailReg}`" class="colorBlue4">{{ emailReg }}</a> qua TELEGRAM BOT để kích hoạt tài khoản<a target="_blank" href="https://t.me/ares_idefibo_bot">NHẤP VÀO ĐÂY</a>
-                            </p> -->
               <p class="colorSecondary">
                 Một liên kết xác nhận đã được gửi tới
                 <a :href="`mailto:${emailReg}`" class="colorBlue4">{{
@@ -633,19 +460,12 @@
                 }}</a>
                 Vui lòng chờ ít phút để nhận liên kết xác nhận và kích hoạt tài
                 khoản của bạn.<br />
-                <!-- Nếu không nhận được email xin vui lòng dùng TELEGRAM BOT để kích hoạt tài khoản: <a target="_blank" href="https://t.me/ares_idefibo_bot">Nhấp vào đây</a>-->
               </p>
 
               <p>
-                <!-- <button class="btn btn-resendemail w-full mt-4" @click="openSite">NHẤP VÀO ĐÂY 🤝KÍCH HOẠT🤝</button> -->
                 <button
                   id="button-with-loading"
-                  class="
-                    btn btn-resendemail
-                    w-full
-                    mt-4
-                    vs-con-loading__container
-                  "
+                  class="btn btn-resendemail w-full mt-4 vs-con-loading__container"
                   :disabled="disSendMail"
                   @click="reSendMail"
                 >
@@ -666,13 +486,7 @@
       v-if="activeRegister"
     >
       <div
-        class="
-          contentAuthentication
-          bgPrimary
-          flex flex-col
-          items-center
-          justify-between
-        "
+        class="contentAuthentication bgPrimary flex flex-col items-center justify-between"
         :class="{ 'ld-loading': ldFrom }"
       >
         <div class="loading">
@@ -710,16 +524,7 @@
           </div>
         </div>
         <div
-          class="
-            header-sidebar
-            p-10
-            fixed
-            flex
-            items-center
-            justify-between
-            flex-col
-            w-full
-          "
+          class="header-sidebar p-10 fixed flex items-center justify-between flex-col w-full"
         >
           <div class="header w-full">
             <a href="/" class="logoLogin mb-0 router-link-active">BoTrade</a>
@@ -737,20 +542,19 @@
                 style="font-weight: 500 !important"
                 class="mt5m font-24 white lg:mb-5 mb-3"
               >
-                Tạo tài khoản {{ config.domainRealName }}
+                {{ $t("login.13") }} {{ config.domainRealName }}
               </h2>
               <div class="centerx labelx">
                 <div
                   class="mb-5 relative"
                   :class="{ 'md-invalid': msgEmReg != '' }"
                 >
-                  <label class="label_custom" for="input-bvxi30l9g"
-                    >Địa chỉ Email *</label
-                  >
+                  <label class="label_custom" for="input-bvxi30l9g">
+                    {{ $t("login.2") }} *
+                  </label>
                   <input
                     type="email"
                     class="w-full input-bvxi30l9g"
-                    placeholder="Điền Email"
                     v-model="emailReg"
                   />
                   <small class="md-error text-danger text-sm">
@@ -761,15 +565,14 @@
                   class="mb-5 relative"
                   :class="{ 'md-invalid': msgPassReg != '' }"
                 >
-                  <label class="label_custom" for="input-bvxi30l9g"
-                    >Mật khẩu *</label
-                  >
+                  <label class="label_custom" for="input-bvxi30l9g">
+                    {{ $t("login.3") }} *
+                  </label>
                   <input
                     v-validate="'required|min:6|max:20'"
                     maxlength="20"
                     :type="passTypeReg"
                     class="w-full input-bvxi30l9g"
-                    placeholder="Điền mật khẩu"
                     v-model="passwordReg"
                   />
 
@@ -794,187 +597,43 @@
                   <small class="md-error text-danger text-sm">
                     {{ msgPassReg }}
                   </small>
-                  <span class="md-count float-right text-xs italic"
-                    >{{ countPassReg }} / 20</span
-                  >
+                  <span class="md-count float-right text-xs italic">
+                    {{ countPassReg }} / 20
+                  </span>
                 </div>
-
-<!--                <div
-                  class="mb-5 relative"
-                  :class="{ 'md-invalid': msgNickName != '' }"
-                >
-                  <label class="label_custom" for="input-bvxi30l9g"
-                    >Biệt danh *</label
-                  >
-                  <input
-                    type="email"
-                    class="w-full input-bvxi30l9g"
-                    placeholder="Điền Nickname"
-                    v-model="nickName"
-                    v-validate="'required|min:3|max:20|alpha_dash'"
-                    maxlength="20"
-                  />
-
-                  <small class="md-error text-danger text-sm">
-                    {{ msgNickName }}
-                  </small>
-                  <span class="md-count float-right text-xs italic"
-                    >{{ countNickNameReg }} / 20</span
-                  >
-                </div>-->
 
                 <div
                   class="mb-5 relative"
                   :class="{ 'mt-10': msgNickName != '' }"
                 >
-                  <label class="label_custom" for="input-bvxi30l9g"
-                    >Mã giới thiệu / Mã khuyến mãi</label
-                  >
+                  <label class="label_custom" for="input-bvxi30l9g">
+                    {{ $t("login.16") }} / {{ $t("login.17") }}
+                  </label>
                   <input
                     type="email"
                     class="w-full input-bvxi30l9g"
-                    placeholder="Điền Mã giới thiệu"
                     v-model="codeRef"
                   />
                 </div>
                 <div>
                   <vs-button
                     style="
-                      background: #F1DD48 !important;
+                      background: #f1dd48 !important;
                       color: #fff !important;
                     "
                     class="w-full"
                     type="filled"
                     @click="submitFormReg"
-                    >Đăng ký</vs-button
                   >
+                    {{ $t("Index.register") }}
+                  </vs-button>
                 </div>
-<!--                <div>
-                  <div
-                    data-text="Or continue with"
-                    class="divider__with-text mt-4 mb-4"
-                  ></div>
-                  <div class="social-group">
-                    <a
-                      ><button
-                        type="button"
-                        class="
-                          btn btn-primary
-                          d-flex
-                          align-items-center
-                          btn-block
-                          text-white
-                        "
-                        data-dashlane-rid="1cc655c18186c0cd"
-                        data-form-type=""
-                        data-kwimpalastatus="dead"
-                        data-dashlane-label="true"
-                        @click="loginFb()"
-                      >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="11.339"
-                          height="21.332"
-                          viewBox="0 0 11.339 21.332"
-                          class=""
-                        >
-                          <path
-                            id="Path_71950"
-                            data-name="Path 71950"
-                            d="M25.162,21.893l.588-3.831H22.074V15.575a1.916,1.916,0,0,1,2.16-2.07h1.671V10.243a20.347,20.347,0,0,0-2.967-.259c-3.028,0-5.007,1.835-5.007,5.157v2.92H14.566v3.831h3.366v9.262a13.374,13.374,0,0,0,4.142,0V21.893Z"
-                            transform="translate(-14.566 -9.984)"
-                            fill="#fff"
-                          ></path></svg
-                        ><span class="flex-fill">Facebook</span>
-                      </button></a
-                    ><a
-                      ><button
-                        type="button"
-                        class="
-                          btn btn-danger
-                          d-flex
-                          align-items-center
-                          btn-block
-                        "
-                        data-dashlane-rid="226b221f96645152"
-                        data-form-type=""
-                        data-dashlane-label="true"
-                        @click="loginGoogle()"
-                      >
-                        <svg
-                          id="Component_1_1"
-                          data-name="Component 1 – 1"
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="23"
-                          height="23"
-                          viewBox="0 0 23 23"
-                          class=""
-                        >
-                          <rect
-                            id="Rectangle_6721"
-                            data-name="Rectangle 6721"
-                            width="23"
-                            height="23"
-                            rx="11.5"
-                            fill="#fff"
-                          ></rect>
-                          <g id="google" transform="translate(3.147 2.87)">
-                            <g
-                              id="Group_25522"
-                              data-name="Group 25522"
-                              transform="translate(0 0)"
-                            >
-                              <path
-                                id="Path_71963"
-                                data-name="Path 71963"
-                                d="M12.107,5.568a5.128,5.128,0,0,1,3.309,1.208L18.01,4.307A8.713,8.713,0,0,0,4.293,6.851L7.216,9.1a5.161,5.161,0,0,1,4.891-3.536Z"
-                                transform="translate(-3.384 -2)"
-                                fill="#d94f3d"
-                              ></path>
-                              <path
-                                id="Path_71964"
-                                data-name="Path 71964"
-                                d="M5.569,18.108a5.132,5.132,0,0,1,.264-1.618L2.909,14.236a8.7,8.7,0,0,0,0,7.743l2.923-2.253a5.132,5.132,0,0,1-.264-1.618Z"
-                                transform="translate(-2 -9.384)"
-                                fill="#f2c042"
-                              ></path>
-                              <path
-                                id="Path_71965"
-                                data-name="Path 71965"
-                                d="M32.427,20H24.1v3.569h4.718a4.253,4.253,0,0,1-1.806,2.443l2.9,2.236C31.767,26.584,32.856,23.879,32.427,20Z"
-                                transform="translate(-15.337 -12.863)"
-                                fill="#5085ed"
-                              ></path>
-                              <path
-                                id="Path_71966"
-                                data-name="Path 71966"
-                                d="M15.058,30.889a5.543,5.543,0,0,1-2.951.729,5.161,5.161,0,0,1-4.891-3.536L4.293,30.334a8.732,8.732,0,0,0,7.814,4.852,8.67,8.67,0,0,0,5.852-2.062Z"
-                                transform="translate(-3.384 -17.739)"
-                                fill="#57a75c"
-                              ></path>
-                            </g>
-                          </g></svg
-                        ><span class="flex-fill">Google</span>
-                      </button></a
-                    >
-                  </div>
-                </div>-->
               </div>
             </div>
             <div v-if="isSubmitReg">
               <h2 class="font-weight-bold mb-5 font-24 colorSecondary">
                 KÍCH HOẠT TÀI KHOẢN
               </h2>
-              <!--<p class="colorSecondary">
-                              Để được kích hoạt tài khoản: <a :href="`mailto:${emailReg}`" class="colorBlue4">{{ emailReg }}</a><br><br>
-                              - B1: Tải ứng dụng Telegram về trên App Store (IOS) hoặc CH Play (Android).<br>
-                              - B2: Nếu đã có ứng dụng (Bỏ qua Bước 1) Nhấp vào nút KÍCH HOẠT bên dưới 👇🏻 để mở App Telegram.<br>
-                              - B3: Nhấp lệnh start (Bắt đầu) và làm theo hướng dẫn.<br>
-                            </p>-->
-              <!-- <p class="colorSecondary">
-                               Một liên kết xác nhận đã được gửi tới
-                                Vui lòng xác nhận email: <a :href="`mailto:${emailReg}`" class="colorBlue4">{{ emailReg }}</a> qua TELEGRAM BOT để kích hoạt tài khoản<a target="_blank" href="https://t.me/ares_idefibo_bot">NHẤP VÀO ĐÂY</a>
-                            </p> -->
               <p class="colorSecondary">
                 Một liên kết xác nhận đã được gửi tới
                 <a :href="`mailto:${emailReg}`" class="colorBlue4">{{
@@ -982,19 +641,12 @@
                 }}</a>
                 Vui lòng chờ ít phút để nhận liên kết xác nhận và kích hoạt tài
                 khoản của bạn.<br />
-                <!-- Nếu không nhận được email xin vui lòng dùng TELEGRAM BOT để kích hoạt tài khoản: <a target="_blank" href="https://t.me/ares_idefibo_bot">Nhấp vào đây</a>-->
               </p>
 
               <p>
-                <!-- <button class="btn btn-resendemail w-full mt-4" @click="openSite">NHẤP VÀO ĐÂY 🤝KÍCH HOẠT🤝</button> -->
                 <button
                   id="button-with-loading"
-                  class="
-                    btn btn-resendemail
-                    w-full
-                    mt-4
-                    vs-con-loading__container
-                  "
+                  class="btn btn-resendemail w-full mt-4 vs-con-loading__container"
                   :disabled="disSendMail"
                   @click="reSendMail"
                 >
@@ -1006,10 +658,10 @@
           </div>
           <div slot="footer">
             <p class="colorWhite bottomText mb-2">
-              Có tài khoản {{ domain }}?
+              {{ $t("login.18") }} {{ domain }}?
               <router-link to="/login" class="cursor-pointer">
-                Đăng nhập vào Tài khoản của bạn.</router-link
-              >
+                {{ $t("login.1") }}.
+              </router-link>
             </p>
           </div>
         </div>
@@ -1021,13 +673,7 @@
       v-if="activeResendVerifyEmail"
     >
       <div
-        class="
-          contentAuthentication
-          bgPrimary
-          flex flex-col
-          items-center
-          justify-between
-        "
+        class="contentAuthentication bgPrimary flex flex-col items-center justify-between"
         :class="{ 'ld-loading': ldFrom }"
       >
         <div class="loading">
@@ -1065,16 +711,7 @@
           </div>
         </div>
         <div
-          class="
-            header-sidebar
-            p-10
-            fixed
-            flex
-            items-center
-            justify-between
-            flex-col
-            w-full
-          "
+          class="header-sidebar p-10 fixed flex items-center justify-between flex-col w-full"
         >
           <div class="header w-full">
             <a href="/" class="logoLogin mb-0 router-link-active">BoTrade</a>
@@ -1095,23 +732,20 @@
               :class="{ block: hideTbResend, hidden: !hideTbResend }"
             >
               <h2 class="mt5m font-24 white font-bold lg:mb-5 mb-5">
-                Gửi lại email xác nhận
+                {{ $t("login.19") }}
               </h2>
-              <p class="color-white-50 mb-8">
-                Vui lòng nhập địa chỉ email của bạn để gửi lại email xác nhận.
-              </p>
+              <p class="color-white-50 mb-8">{{ $t("login.20") }}.</p>
               <div class="centerx labelx">
                 <div
                   class="mb-5 relative"
                   :class="{ 'md-invalid': msgEmailResend != '' }"
                 >
-                  <label class="label_custom" for="input-bvxi30l9g"
-                    >Địa chỉ Email *</label
-                  >
+                  <label class="label_custom" for="input-bvxi30l9g">
+                    {{ $t("login.2") }} *
+                  </label>
                   <input
                     type="email"
                     class="w-full input-bvxi30l9g"
-                    placeholder="Điền Email"
                     v-model="emailResend"
                   />
 
@@ -1123,35 +757,33 @@
                 <div>
                   <vs-button
                     style="
-                      background: #F1DD48 !important;
+                      background: #f1dd48 !important;
                       color: #fff !important;
                     "
                     class="w-full"
                     type="filled"
                     @click="submitFormResendActive"
-                    >Gửi lại</vs-button
                   >
+                    {{ $t("login.21") }}
+                  </vs-button>
                 </div>
               </div>
             </div>
             <div :class="{ hidden: hideTbResend, block: !hideTbResend }">
               <h2 class="font-bold mb-5 white titleHeader">
-                Đã gửi email xác nhận!
+                {{ $t("login.22") }}!
               </h2>
               <p class="white">
                 Một liên kết xác nhận đã được gửi tới email đăng ký của bạn.
               </p>
-              <!--<p class="white">
-                                Nếu không nhận được email xin vui lòng dùng TELEGRAM BOT để kích hoạt tài khoản: <a target="_blank" href="https://t.me/ares_idefibo_bot">Nhấp vào đây</a>
-                            </p> -->
             </div>
           </div>
           <div slot="footer">
             <p class="color-white-50">
-              Đã có tài khoản?
+              {{ $t("login.18") }}?
               <router-link to="/login" class="cursor-pointer">
-                Đăng nhập vào Tài khoản của bạn.</router-link
-              >
+                {{ $t("login.1") }}.
+              </router-link>
             </p>
           </div>
         </div>
@@ -1163,13 +795,7 @@
       v-if="activeFogotPass"
     >
       <div
-        class="
-          contentAuthentication
-          bgPrimary
-          flex flex-col
-          items-center
-          justify-between
-        "
+        class="contentAuthentication bgPrimary flex flex-col items-center justify-between"
         :class="{ 'ld-loading': ldFrom }"
       >
         <div class="loading">
@@ -1207,16 +833,7 @@
           </div>
         </div>
         <div
-          class="
-            header-sidebar
-            p-10
-            fixed
-            flex
-            items-center
-            justify-between
-            flex-col
-            w-full
-          "
+          class="header-sidebar p-10 fixed flex items-center justify-between flex-col w-full"
         >
           <div class="header w-full">
             <a href="/" class="logoLogin mb-0 router-link-active">BoTrade</a>
@@ -1234,7 +851,7 @@
               :class="{ block: hideTbForgot, hidden: !hideTbForgot }"
             >
               <h2 class="mt5m font-24 white font-bold lg:mb-5 mb-5">
-                Quên mật khẩu
+                {{ $t("login.4") }}
               </h2>
               <p class="color-white-50 mb-3"></p>
               <div class="centerx labelx">
@@ -1242,13 +859,12 @@
                   class="mb-5 relative"
                   :class="{ 'md-invalid': msgEmailForgot != '' }"
                 >
-                  <label class="label_custom" for="input-bvxi30l9g"
-                    >Địa chỉ Email *</label
-                  >
+                  <label class="label_custom" for="input-bvxi30l9g">
+                    {{ $t("login.2") }} *
+                  </label>
                   <input
                     type="email"
                     class="w-full input-bvxi30l9g"
-                    placeholder="Điền Email"
                     v-model="emailForgot"
                   />
                   <small class="md-error text-danger text-sm">
@@ -1276,16 +892,13 @@
                 bạn.<br />
                 Vui lòng chờ trong ít phút để nhận liên kết để đặt lại mật khẩu.
               </p>
-              <!-- <p class="white">
-                                Nếu không nhận được email xin vui lòng dùng TELEGRAM BOT để đặt lại mật khẩu: <a target="_blank" href="https://t.me/ares_idefibo_bot">Nhấp vào đây</a>
-                            </p> -->
             </div>
           </div>
           <div slot="footer">
             <p class="color-white-50">
-              Đã có tài khoản?
+              {{ $t("login.18") }}?
               <router-link to="/login" class="cursor-pointer">
-                Đăng nhập vào Tài khoản của bạn.</router-link
+                {{ $t("login.1") }}.</router-link
               >
             </p>
           </div>
@@ -1298,13 +911,7 @@
       v-if="activeResetPass"
     >
       <div
-        class="
-          contentAuthentication
-          bgPrimary
-          flex flex-col
-          items-center
-          justify-between
-        "
+        class="contentAuthentication bgPrimary flex flex-col items-center justify-between"
         :class="{ 'ld-loading': ldFrom }"
       >
         <div class="loading">
@@ -1342,16 +949,7 @@
           </div>
         </div>
         <div
-          class="
-            header-sidebar
-            p-10
-            fixed
-            flex
-            items-center
-            justify-between
-            flex-col
-            w-full
-          "
+          class="header-sidebar p-10 fixed flex items-center justify-between flex-col w-full"
         >
           <div class="header w-full">
             <a href="/" class="logoLogin mb-0 router-link-active">BoTrade</a>
@@ -1383,7 +981,7 @@
                     type="email"
                     disabled="disabled"
                     class="w-full"
-                    label="Địa chỉ Email *"
+                    :label="$t('login.2') + '*'"
                     v-model="emailReset"
                   />
                   <small class="md-error text-danger text-sm">
@@ -1466,9 +1064,6 @@
                     >{{ countPassReReset }} / 20</span
                   >
                 </div>
-                <!-- <div class="mb-5 relative">
-                                    <vs-input class="w-full" maxlength="10" label="Mã 2FA * (Nếu đã bật vui lòng nhập mã 2FA)" v-model="codeReset"/>
-                                </div> -->
                 <div class="mt-2">
                   <vs-button
                     color="success"
@@ -1493,10 +1088,10 @@
           </div>
           <div slot="footer">
             <p class="color-white-50">
-              Đã có tài khoản?
+              {{ $t("login.18") }}?
               <router-link to="/login" class="cursor-pointer">
-                Đăng nhập vào Tài khoản của bạn.</router-link
-              >
+                {{ $t("login.1") }}.
+              </router-link>
             </p>
           </div>
         </div>
@@ -1584,11 +1179,7 @@ export default {
   },
   computed: {
     disabledLogin() {
-      if (
-        this.email !== "" &&
-        this.checkReg(this.email) &&
-        this.password !== ""
-      ) {
+      if (this.email !== "" && this.password !== "") {
         return true;
       }
     },
@@ -1612,7 +1203,6 @@ export default {
     $route() {
       let path = this.$router.currentRoute.path;
       this.activeSlide = false;
-      // console.log(path)
       if (path == "/login") {
         this.activeLogin = true;
         this.activeRegister = false;
@@ -1647,7 +1237,7 @@ export default {
     },
   },
   methods: {
-    async pasteCode(){
+    async pasteCode() {
       this.G2FACodeEnter = await navigator.clipboard.readText();
     },
     loginFb() {
@@ -1760,22 +1350,12 @@ export default {
         isActive = true;
         this.msgPassReReset = "";
       }
-
-      // if(this.codeReset == ''){
-      //     this.msgCoSeReset = 'Mã bảo vệ không được rỗng.'
-      //     isActive = false
-      // }else{
-      //     isActive = true
-      //     this.msgCoSeReset = ''
-      // }
-
       if (isActive) {
         this.ldFrom = true;
 
         let obj = {
           email: this.emailReset,
           password: this.passwordReset,
-          //code_secure: this.codeReset
         };
 
         AuthenticationService.changePassword(obj).then((res) => {
@@ -1818,21 +1398,6 @@ export default {
         this.msgPassReg = "";
       }
 
-      // const regex = /^[a-zA-Z0-9-_]+$/;
-
-      // if (
-      //   this.nickName === "" ||
-      //   this.nickName.length < 6 ||
-      //   this.nickName.length > 20 ||
-      //   !regex.test(this.nickName)
-      // ) {
-      //   this.msgNickName =
-      //     "Biệt danh phải từ 6 đến 20 ký tự, bắt đầu bằng chữ và không chứa ký tự đặc biệt.";
-      //   return;
-      // } else {
-      //   this.msgNickName = "";
-      // }
-
       let isActive = true;
 
       if (isActive) {
@@ -1849,13 +1414,15 @@ export default {
 
         AuthenticationService.registerUser(obj).then(async (res) => {
           this.ldFrom = false;
-          if (res.data.success == 1) {
+          if (res.data.code == 10000) {
             // this.isSubmitReg = true;
-            const {data: {success, g_2fa, token}} = await AuthenticationService.loginUser({
+            const {
+              data: { code, g_2fa, token },
+            } = await AuthenticationService.loginUser({
               email: this.emailReg,
               password: this.passwordReg,
-            })
-            if (success === 1) {
+            });
+            if (code === 10000) {
               if (g_2fa) {
                 this.isG2FA = g_2fa;
                 this.saveToken = token;
@@ -1868,25 +1435,14 @@ export default {
 
             await this.getInfoLogin();
             return;
-            // setTimeout(() => {
-            //   this.countDownResendMail();
-            // }, 500);
-            //
-            // this.$vs.notify({
-            //   title: "Đăng ký thành công",
-            //   text: "Chúng tôi đã gửi 1 một liên kết kích hoạt đến tài khoản của bạn.",
-            //   iconPack: "feather",
-            //   icon: "icon-check",
-            //   color: "success",
-            // });
-          } else if (res.data.success == 2) {
+          } else if (res.data.code == 1001) {
             this.$vs.notify({
               text: "Email này đã tồn tại",
               iconPack: "feather",
               icon: "icon-alert-circle",
               color: "warning",
             });
-          } else if (res.data.success == 3) {
+          } else if (res.data.code == 1002) {
             this.$vs.notify({
               text: "Biệt danh này đã tồn tại",
               iconPack: "feather",
@@ -1953,27 +1509,19 @@ export default {
         }
         const res = await AuthenticationService.registerUser(obj);
         this.ldFrom = false;
-        if (res.data.success == 1) {
+        if (res.data.code == 10000) {
           // this.isSubmitReg = true;
           setTimeout(() => {
             this.countDownResendMail();
           }, 500);
-
-          // this.$vs.notify({
-          //   title: "Đăng ký thành công",
-          //   text: "Chúng tôi đã gửi 1 một liên kết kích hoạt đến tài khoản của bạn.",
-          //   iconPack: "feather",
-          //   icon: "icon-check",
-          //   color: "success",
-          // });
-        } else if (res.data.success == 2) {
+        } else if (res.data.code == 1001) {
           this.$vs.notify({
             text: "Email này đã tồn tại",
             iconPack: "feather",
             icon: "icon-alert-circle",
             color: "warning",
           });
-        } else if (res.data.success == 3) {
+        } else if (res.data.code == 1002) {
           this.$vs.notify({
             text: "Biệt danh này đã tồn tại",
             iconPack: "feather",
@@ -1990,7 +1538,7 @@ export default {
 
         this.ldFrom = false;
         let g = loginRes.data;
-        if (g.success == 1) {
+        if (g.code == 10000) {
           if (g.g_2fa) {
             this.isG2FA = g.g_2fa;
             this.saveToken = g.token;
@@ -2014,40 +1562,6 @@ export default {
             color: "danger",
           });
         }
-
-        //
-
-        //   AuthenticationService.registerUser(obj).then((res) => {
-        //     this.ldFrom = false;
-        //     if (res.data.success == 1) {
-        //       this.isSubmitReg = true;
-        //       setTimeout(() => {
-        //         this.countDownResendMail();
-        //       }, 500);
-
-        //       this.$vs.notify({
-        //         title: "Đăng ký thành công",
-        //         text: "Chúng tôi đã gửi 1 một liên kết kích hoạt đến tài khoản của bạn.",
-        //         iconPack: "feather",
-        //         icon: "icon-check",
-        //         color: "success",
-        //       });
-        //     } else if (res.data.success == 2) {
-        //       this.$vs.notify({
-        //         text: "Email này đã tồn tại",
-        //         iconPack: "feather",
-        //         icon: "icon-alert-circle",
-        //         color: "warning",
-        //       });
-        //     } else if (res.data.success == 3) {
-        //       this.$vs.notify({
-        //         text: "Biệt danh này đã tồn tại",
-        //         iconPack: "feather",
-        //         icon: "icon-alert-circle",
-        //         color: "warning",
-        //       });
-        //     }
-        //   });
       }
     },
     submitFormForgot() {
@@ -2070,7 +1584,7 @@ export default {
 
         AuthenticationService.forgotPassUser(obj).then((res) => {
           this.ldFrom = false;
-          if (res.data.success) {
+          if (res.data.code === 10000) {
             this.hideTbForgot = false;
           }
         });
@@ -2096,24 +1610,28 @@ export default {
         };
         AuthenticationService.resendConfirUser(obj).then((res) => {
           this.ldFrom = false;
-          if (res.data.success) {
+          if (res.data.code === 10000) {
             this.hideTbResend = false;
           }
         });
       }
     },
 
+    /**
+     * 獲取用戶信息
+     */
     async getInfoLogin() {
-      const res = await AuthenticationService.getInfoUser()
-      if (res.data.success == 1) {
+      const res = await AuthenticationService.getInfoUser();
+      if (res.data.code === 10000) {
         let dt = res.data.data;
-
         getData.uid = dt.id;
         getData.email = dt.email;
         getData.profile_image = dt.profile_image;
         getData.displayName = dt.nick_name;
-        getData.uidLive = dt.order[1]?.u_id;
-        getData.uidDemo = (dt.order[0] || {})?.u_id || 0;
+        if (dt.order && dt.order.length) {
+          getData.uidLive = dt.order ? dt.order[1]?.u_id : "";
+          getData.uidDemo = (dt.order[0] || {})?.u_id || 0;
+        }
         getData.am_usdt = dt.b;
         getData.vip = dt.vip;
         getData.vip_lv = dt.level_vip;
@@ -2128,14 +1646,14 @@ export default {
         getData.num_secu = dt.num_secury;
         getData.country = dt.c;
         getData.so_cmnd = dt.so_cmnd;
-
         getData.blLive = dt.order[1]?.balance;
         getData.blDemo = (dt.order[0] || {})?.balance || 0;
         getData.balance = dt.balance;
 
         localStorage.setItem("INFO", JSON.stringify(dt));
-        //localStorage.removeItem('isLog')
-        this.$router.push({path: "/trading"});
+        this.$router.push({ path: "/trading" });
+      } else {
+        localStorage.removeItem("tokenUser");
       }
     },
 
@@ -2147,37 +1665,15 @@ export default {
       }).then((res) => {
         this.ldFrom = false;
         let g = res.data;
-        if (g.success == 1) {
-          // this.$vs.notify({
-          //     text: 'Đăng nhập thành công.',
-          //     iconPack: 'feather',
-          //     icon: 'icon-check',
-          //     color: 'success'
-          // });
-
-          if (g.g_2fa) {
-            this.isG2FA = g.g_2fa;
-            this.saveToken = g.token;
-            return;
-          }
-          localStorage.setItem("tokenUser", g.token);
-
+        if (g.code === 10000) {
+          localStorage.setItem("tokenUser", g.data.token);
           this.activeLogin = false;
-
-          this.getInfoLogin();
-
-          //this.$router.push('/user/affiliate/general').catch(() => {})
-          //window.location.href = window.location.origin + '/user/affiliate/general';
-        } else if (res.data.success == 0) {
+          setTimeout(() => {
+            this.getInfoLogin();
+          }, 100);
+        } else {
           this.$vs.notify({
-            text: "Email hoặc mật khẩu không đúng. Vui lòng nhập lại",
-            iconPack: "feather",
-            icon: "icon-alert-circle",
-            color: "danger",
-          });
-        } else if (res.data.success == 3) {
-          this.$vs.notify({
-            text: "Tài khoản chưa được kích hoạt!",
+            text: g.message,
             iconPack: "feather",
             icon: "icon-alert-circle",
             color: "danger",
@@ -2194,13 +1690,8 @@ export default {
       AuthenticationService.loginGG2FA(obj).then((res) => {
         if (res.data.success == 1) {
           localStorage.setItem("tokenUser", this.saveToken);
-
           this.activeLogin = false;
-
           this.getInfoLogin();
-          //this.$router.push('/trading').catch(() => {})
-          //this.$router.push('/user/affiliate/general').catch(() => {})
-          //window.location.href = window.location.origin + '/user/affiliate/general';
         } else if (res.data.success == 6) {
           return this.$vs.notify({
             text: "Mã đăng nhập không hợp lệ hoặc đã hết hạn.",
@@ -2311,9 +1802,9 @@ export default {
 </style>
 
 <style scoped lang="scss">
-.custom-input-wrapper{
+.custom-input-wrapper {
   position: relative;
-  .icon{
+  .icon {
     position: absolute;
     right: 5px;
     top: 20px;
@@ -2326,7 +1817,7 @@ export default {
     cursor: pointer;
     transition: 0.25s;
 
-    &:hover{
+    &:hover {
       color: #2ada79;
     }
   }
@@ -2576,8 +2067,8 @@ export default {
 .logoLogin {
   background-image: url("~@/assets/images/logo/logo.png");
   display: block;
-  height: 40px;
-  width: 170px;
+  height: 170px;
+  width: 300px;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -2599,7 +2090,7 @@ export default {
 }
 
 a {
-  color: #F1DD48 !important;
+  color: #f1dd48 !important;
   font-size: 14px;
   font-weight: 400;
   line-height: 20px;

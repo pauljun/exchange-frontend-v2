@@ -115,18 +115,18 @@
                       </div>
                     </div>
                   </div>
-            <!--  v-if="getSetSys.isActiveWalletUSDT"-->
+                  <!--  v-if="getSetSys.isActiveWalletUSDT"-->
                   <div
-                      class="itemSelectUnit USDT"
-                      @click="selectTypePay('USDT')"
-                      v-if="false"
+                    class="itemSelectUnit USDT"
+                    @click="selectTypePay('USDT')"
+                    v-if="false"
                   >
-                  <div class="icon USDT"></div>
-                  <div class="info">
-                    <div class="amount w-full">
-                      <span class="number">{{ balanceUSDT }}</span>
+                    <div class="icon USDT"></div>
+                    <div class="info">
+                      <div class="amount w-full">
+                        <span class="number">{{ balanceUSDT }}</span>
+                      </div>
                     </div>
-                  </div>
                   </div>
                   <div
                     class="itemSelectUnit ETH"
@@ -162,10 +162,7 @@
                 <div v-if="!activeNRT">
                   <h4 class="transfer-network-title mt-0">Mạng lưới</h4>
                   <ul
-                    class="
-                      transfer-network-list transfer-network-list--deposit
-                      has-bsc
-                    "
+                    class="transfer-network-list transfer-network-list--deposit has-bsc"
                   >
                     <li
                       class="transfer-network-item"
@@ -285,7 +282,9 @@
                     type="number"
                     v-model="amount"
                     decimal="true"
-                    :placeholder="`Số tiền tối thiểu: ${formatPrice(getSetSys.minDepositUSDT)}`"
+                    :placeholder="`Số tiền tối thiểu: ${formatPrice(
+                      getSetSys.minDepositUSDT
+                    )}`"
                     class="form-control"
                   />
                 </div>
@@ -295,7 +294,7 @@
                       Để thanh toán bạn vui lòng chuyển tiền theo nội dung
                       {{ bank }}
                     </div>
-                   <!-- <div>
+                    <!-- <div>
                       Với số tiền
                       <b>{{
                         formatPrice(getSetSys.quotePriceVND * amount, 0)
@@ -314,7 +313,7 @@
                     >* Lưu ý: Hệ thống sẽ không chịu trách nhiệm nếu bạn gửi sai
                     nội dung!</i
                   >
-                 <!-- <span class="noted"
+                  <!-- <span class="noted"
                     >1 USD =
                     {{ formatPrice(getSetSys.quotePriceVND, 0) }} VNĐ</span
                   >-->
@@ -344,7 +343,9 @@
                     v-model="amount"
                     type="number"
                     decimal="true"
-                    :placeholder="`Số tiền tối thiểu: ${formatPrice(getSetSys.minWithdrawalUSDT)}`"
+                    :placeholder="`Số tiền tối thiểu: ${formatPrice(
+                      getSetSys.minWithdrawalUSDT
+                    )}`"
                     class="form-control"
                   />
                   <button
@@ -469,10 +470,7 @@
               <div class="transfer-network">
                 <h4 class="transfer-network-title mt-0">Mạng lưới</h4>
                 <ul
-                  class="
-                    transfer-network-list transfer-network-list--deposit
-                    has-bsc
-                  "
+                  class="transfer-network-list transfer-network-list--deposit has-bsc"
                 >
                   <li
                     class="transfer-network-item"
@@ -769,13 +767,7 @@ export default {
     getBankInfo() {
       AuthenticationService.getBankInfo().then((res) => {
         let d = res.data;
-        if (d.success == 3 || d.success == 4) {
-          localStorage.removeItem("token");
-          // this.$router.push("/login").catch(() => {});
-          window.location.href = window.location.origin + "/login";
-          return;
-        }
-        if (d.success) {
+        if (d.code === 10000) {
           this.bankInfo = d.data;
         }
       });
@@ -802,16 +794,9 @@ export default {
       AuthenticationService.depositVND(obj).then((res) => {
         let d = res.data;
 
-        if (d.success == 3 || d.success == 4) {
-          localStorage.removeItem("token");
-          // this.$router.push("/login").catch(() => {});
-          window.location.href = window.location.origin + "/login";
-          return;
-        }
-
-        if (d.success) {
+        if (d.code === 10000) {
           this.isNap = false;
-          this.$emit('update:active',false)
+          this.$emit("update:active", false);
           return this.$vs.notify({
             text: "Gửi yêu cầu nạp tiền thành công!",
             iconPack: "feather",
@@ -845,13 +830,6 @@ export default {
 
       AuthenticationService.depositPaypal(obj).then((res) => {
         let d = res.data;
-
-        if (d.success == 3 || d.success == 4) {
-          localStorage.removeItem("token");
-          // this.$router.push("/login").catch(() => {});
-          window.location.href = window.location.origin + "/login";
-          return;
-        }
 
         if (d.success) {
           this.$vs.notify({
@@ -935,13 +913,6 @@ export default {
         AuthenticationService.withdrawalPaypalNoiBo(obj).then((res) => {
           let d = res.data;
 
-          if (d.success == 3 || d.success == 4) {
-            localStorage.removeItem("token");
-            // this.$router.push("/login").catch(() => {});
-            window.location.href = window.location.origin + "/login";
-            return;
-          }
-
           if (res.data.success) {
             return this.$vs.notify({
               text: "Rút tiền thành công.",
@@ -977,14 +948,6 @@ export default {
 
         AuthenticationService.withdrawalPaypalAccount(obj).then((res) => {
           let d = res.data;
-
-          if (d.success == 3 || d.success == 4) {
-            localStorage.removeItem("token");
-            // this.$router.push("/login").catch(() => {});
-            window.location.href = window.location.origin + "/login";
-            return;
-          }
-
           if (res.data.success) {
             return this.$vs.notify({
               text: "Rút tiền thành công.",
@@ -1207,14 +1170,6 @@ export default {
         AuthenticationService.withdrawalUsdtVND(obj).then((res) => {
           let d = res.data;
 
-          if (d.success == 3 || d.success == 4) {
-            localStorage.removeItem("token");
-            // this.$router.push("/login").catch(() => {});
-            window.location.href = window.location.origin + "/login";
-            return;
-          }
-
-          // cập nhật lại tiền ví nếu thành công
           this.balanceUSDT = this.formatPrice(getAmountFormat - amount, 2);
           this.getAmount = this.balanceUSDT;
 
@@ -1280,12 +1235,6 @@ export default {
 
         AuthenticationService.withdrawalUserNoiBo(obj).then((res) => {
           let d = res.data;
-
-          if (d.success == 3 || d.success == 4) {
-            localStorage.removeItem("token");
-            // return this.$router.push("/login").catch(() => {});
-            window.location.href = window.location.origin + "/login";
-          }
 
           if (d.success == 5) {
             return this.$vs.notify({
@@ -1359,13 +1308,6 @@ export default {
         AuthenticationService.withdrawalUsdtBSC(obj).then((res) => {
           let d = res.data;
 
-          if (d.success == 3 || d.success == 4) {
-            localStorage.removeItem("token");
-            // this.$router.push("/login").catch(() => {});
-            window.location.href = window.location.origin + "/login";
-            return;
-          }
-
           // cập nhật lại tiền ví nếu thành công
           this.balanceUSDT = this.formatPrice(
             Number(this.balanceUSDT) - tongphi,
@@ -1431,13 +1373,6 @@ export default {
 
         AuthenticationService.withdrawalUsdtERC(obj).then((res) => {
           let d = res.data;
-
-          if (d.success == 3 || d.success == 4) {
-            localStorage.removeItem("token");
-            // this.$router.push("/login").catch(() => {});
-            window.location.href = window.location.origin + "/login";
-            return;
-          }
 
           // cập nhật lại tiền ví nếu thành công
           this.balanceUSDT = this.formatPrice(
@@ -1514,12 +1449,6 @@ export default {
       AuthenticationService.getAddressCoin(coint).then((res) => {
         this.isLoading = false;
         let d = res.data;
-        if (d.success == 3 || d.success == 4) {
-          localStorage.removeItem("token");
-          // this.$router.push("/login").catch(() => {});
-          window.location.href = window.location.origin + "/login";
-          return;
-        }
         this.textAddress = d.a;
 
         var canvas = document.querySelector("canvas");
@@ -1544,13 +1473,7 @@ export default {
     getBalanceWallet() {
       AuthenticationService.getBalanceWallet().then((res) => {
         let d = res.data;
-        if (d.success == 3 || d.success == 4) {
-          localStorage.removeItem("token");
-          // this.$router.push("/login").catch(() => {});
-          window.location.href = window.location.origin + "/login";
-          return;
-        }
-        if (d.success) {
+        if (d.code === 10000) {
           let mU = d.data.usdt;
           let mE = d.data.eth;
           let mB = d.data.btc;
@@ -1586,7 +1509,7 @@ export default {
         //style: 'currency',
         //currency: '',
         minimumFractionDigits: 0,
-        maximumFractionDigits: 2
+        maximumFractionDigits: 2,
       });
       return formatter.format(value);
     },
@@ -1733,7 +1656,7 @@ export default {
   content: "";
   height: 4px;
   width: 160px;
-  background: #F1DD48;
+  background: #f1dd48;
   border-radius: 3px 3px 0 0;
   display: block;
   position: absolute;
@@ -1778,7 +1701,7 @@ export default {
 
 .borderSecondary2 {
   border: 1px solid;
-  border-color: #F1DD48;
+  border-color: #f1dd48;
 }
 
 .boxAddress,
@@ -1846,7 +1769,7 @@ export default {
 .boxAddress .btn.sendMax {
   top: 50%;
   color: #fff;
-  background-color: #F1DD48;
+  background-color: #f1dd48;
   padding: 7px 10px;
   border-radius: 5px;
 }
@@ -1919,8 +1842,8 @@ export default {
 }
 
 .deposit_widthdraw .transfer-network-item.is-active {
-  background-color: #F1DD48;
-  border-color: #F1DD48;
+  background-color: #f1dd48;
+  border-color: #f1dd48;
 }
 
 .deposit_widthdraw .transfer-network-item {
@@ -2020,7 +1943,7 @@ export default {
   display: block;
   clear: both;
   margin-bottom: 5px;
-  color: #F1DD48;
+  color: #f1dd48;
 }
 
 .address .buttonCommon {
@@ -2043,7 +1966,7 @@ export default {
 }
 
 .address .redButton {
-  background: #F1DD48 !important;
+  background: #f1dd48 !important;
 }
 
 .qr-code-container canvas {

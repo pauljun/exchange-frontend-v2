@@ -45,10 +45,20 @@
               <div class="vx-row">
                 <p class="d-flex w-full">Thông tin cá nhân</p>
                 <div class="vx-col md:w-1/2 w-full mt-5">
-                  <vs-input label="Họ" v-model="first_n" class="w-full" style="border: #333;"/>
+                  <vs-input
+                    label="Họ"
+                    v-model="first_n"
+                    class="w-full"
+                    style="border: #333"
+                  />
                 </div>
                 <div class="vx-col md:w-1/2 w-full mt-5">
-                  <vs-input label="Tên" v-model="last_n" class="w-full" style="border: #333;"/>
+                  <vs-input
+                    label="Tên"
+                    v-model="last_n"
+                    class="w-full"
+                    style="border: #333"
+                  />
                 </div>
                 <div class="vx-col w-full mt-5">
                   <vs-input
@@ -176,26 +186,8 @@ export default {
       type: Boolean,
       required: true,
     },
-    // data: {
-    //   type: Object,
-    //   default: () => {},
-    // }
   },
-  watch: {
-    // isSidebarActive(val) {
-    //   if(!val) return
-    //   if(Object.entries(this.data).length === 0) {
-    //     this.$validator.reset()
-    //   }else {
-    //     let { phone, nickName, first_name, last_name } = JSON.parse(JSON.stringify(this.data))
-    //     this.dataPhone = phone
-    //     this.dataNick = nickName
-    //     this.dataFN = first_name
-    //     this.dataLN = last_name
-    //   }
-    //   // Object.entries(this.data).length === 0 ? this.initValues() : { this.dataId, this.dataName, this.dataCategory, this.dataOrder_status, this.dataPrice } = JSON.parse(JSON.stringify(this.data))
-    // }
-  },
+  watch: {},
   data() {
     return {
       dm: config.domain,
@@ -684,30 +676,6 @@ export default {
           }
         }
       });
-
-      //   this.$validator.validateAll().then(result => {
-      //       if (result) {
-      //         const obj = {
-      //           id: this.dataId,
-      //           name: this.dataName,
-      //           img: this.dataImg,
-      //           category: this.dataCategory,
-      //           order_status: this.dataOrder_status,
-      //           price: this.dataPrice
-      //         }
-
-      //         if(this.dataId !== null && this.dataId >= 0) {
-      //           this.$store.dispatch("dataList/updateItem", obj).catch(err => { console.error(err) })
-      //         }else{
-      //           delete obj.id
-      //           obj.popularity = 0
-      //           this.$store.dispatch("dataList/addItem", obj).catch(err => { console.error(err) })
-      //         }
-
-      //         this.$emit('closeSidebar')
-      //         this.initValues()
-      //       }
-      //   })
     },
     updateCurrImg(input) {
       if (input.target.files && input.target.files[0]) {

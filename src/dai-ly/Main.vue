@@ -47,7 +47,8 @@ export default {
   },
   data() {
     return {
-      isLogin: localStorage.getItem("tokenAgency") ? true : false,
+      // isLogin: localStorage.getItem("tokenAgency") ? true : false,
+      isLogin: true,
       info: {},
     };
   },

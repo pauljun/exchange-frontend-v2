@@ -51,13 +51,7 @@
         >
           <logo class="w-full fill-current text-primary" />
         </router-link>
-
         <vs-spacer />
-        <!--<span style="font-size: 14px;">Ứng dụng chỉ mục đích nghiên cứu và học hỏi, tôi sẽ không chịu trách nhiệm về nội dung hoặc có ai sử dụng với mục đích khác!</span>-->
-        <!-- <i18n /> -->
-
-        <!--<notification-drop-down />-->
-
         <profile />
       </vs-navbar>
     </div>
@@ -66,9 +60,6 @@
 
 
 <script>
-//import I18n                 from "@/layouts/components/navbar/components/I18n.vue"
-//import NotificationDropDown from "@/layouts/components/navbar/components/NotificationDropDown.vue"
-//import NotificationDropDown from "@/pages/user/navbar/NotifiDropDown.vue"
 import Profile from "./components/Profile";
 import Logo from "./Logo.vue";
 import AuthenticationService from "@/services/AuthenticationService";
@@ -140,8 +131,6 @@ h2 {
 @media screen and (max-width: 968px) {
   .vx-logo {
     display: none;
-    /*visibility: hidden;
-    width: 0px;*/
   }
 }
 </style>

@@ -355,10 +355,6 @@ export default {
             position: "top-right",
             color: "danger",
           });
-        } else if (res.data.success == 4) {
-          localStorage.removeItem("INFO");
-          localStorage.removeItem("tokenUser");
-          window.location.href = window.location.origin + "/login";
         }
       });
     },
@@ -417,10 +413,6 @@ export default {
             position: "top-right",
             color: "danger",
           });
-        } else if (res.data.success == 4) {
-          localStorage.removeItem("INFO");
-          localStorage.removeItem("tokenUser");
-          window.location.href = window.location.origin + "/login";
         }
       });
     },
@@ -430,11 +422,6 @@ export default {
         if (res.data.success) {
           this.MSLuu = res.data.s;
           this.linkBase64Img = res.data.qr;
-        }
-        if (res.data.success == 4) {
-          localStorage.removeItem("INFO");
-          localStorage.removeItem("tokenUser");
-          window.location.href = window.location.origin + "/login";
         }
       });
     },

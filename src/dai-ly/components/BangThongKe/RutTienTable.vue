@@ -286,7 +286,6 @@
                 </template>
                
               </vs-td> -->
-              
             </vs-tr>
           </tbody>
         </template>
@@ -453,7 +452,6 @@ Chủ tài khoản: ${noteArr[3]}
           };
       }
     },
-   
 
     doneRefuseWithdra(id, index, amount, email, fee) {
       let obj = {
@@ -521,8 +519,6 @@ Chủ tài khoản: ${noteArr[3]}
             });
           }
         } else {
-          localStorage.removeItem("token");
-          this.$router.push("/pages/login").catch(() => {});
         }
       });
     },
@@ -546,8 +542,6 @@ Chủ tài khoản: ${noteArr[3]}
             icon: "icon-check",
           });
         } else {
-          localStorage.removeItem("token");
-          this.$router.push("/pages/login").catch(() => {});
         }
       });
     },
@@ -559,8 +553,6 @@ Chủ tài khoản: ${noteArr[3]}
 
       AuthenticationService.getDepositAllTrash().then((resp) => {
         if (!resp.data.success) {
-          localStorage.removeItem("token");
-          this.$router.push("/pages/login").catch(() => {});
         } else {
           this.productsFake = resp.data.data;
         }
@@ -705,7 +697,6 @@ Chủ tài khoản: ${noteArr[3]}
         (resp) => {
           if (resp.data.success == 4) {
             localStorage.removeItem("token");
-            this.$router.push("/pages/login").catch(() => {});
           } else {
             this.productsFake = resp.data.data;
           }

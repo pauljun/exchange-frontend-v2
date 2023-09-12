@@ -32,11 +32,11 @@ export default {
       });
       AuthenticationService.check2fa({ t: this.code_2fa })
         .then((res) => {
-          if (res.data.success == 1) {
+          if (res.data.code === 10000) {
             this.$store.dispatch("set2FA", true);
             this.popupActive = false;
             return;
-          } else if (res.data.success == 2) {
+          } else if (res.data.code == 10001) {
             return this.$vs.notify({
               text: "Mã xác 2FA không chính xác",
               color: "danger",
@@ -44,7 +44,7 @@ export default {
               iconPack: "feather",
               icon: "icon-message-square",
             });
-          } else if (res.data.success == 4) {
+          } else if (res.data.code == 40001) {
             this.$router.push({ name: "page-login" });
           }
         })

@@ -53,9 +53,7 @@
             { 'text-base': !isNavbarDark && isThemeDark },
           ]"
         />
-
         <div style="height: 62px" v-if="navbarType === 'static'"></div>
-
         <h-nav-menu
           :class="[
             { 'text-white': isNavbarDark && !isThemeDark },
@@ -79,7 +77,7 @@
       <div class="content-wrapper">
         <div class="router-view">
           <div class="router-content">
-            <transition :name="routerTransition">
+            <transition v-if="false" :name="routerTransition">
               <div
                 v-if="$route.meta.breadcrumb || $route.meta.pageTitle"
                 class="router-header flex flex-wrap items-center mb-6"
@@ -101,33 +99,6 @@
                   :route="$route"
                   :isRTL="$vs.rtl"
                 />
-
-                <!-- DROPDOWN -->
-                <!-- <vs-dropdown vs-trigger-click class="ml-auto md:block hidden cursor-pointer">
-                  <vs-button radius icon="icon-settings" icon-pack="feather" />
-
-                  <vs-dropdown-menu class="w-32">
-                    <vs-dropdown-item>
-                      <div @click="$router.push('/pages/profile').catch(() => {})" class="flex items-center">
-                        <feather-icon icon="UserIcon" class="inline-block mr-2" svgClasses="w-4 h-4" />
-                        <span>Profile</span>
-                      </div>
-                    </vs-dropdown-item>
-                    <vs-dropdown-item>
-                      <div @click="$router.push('/apps/todo').catch(() => {})" class="flex items-center">
-                        <feather-icon icon="CheckSquareIcon" class="inline-block mr-2" svgClasses="w-4 h-4" />
-                        <span>Tasks</span>
-                      </div>
-                    </vs-dropdown-item>
-                    <vs-dropdown-item>
-                      <div @click="$router.push('/apps/email').catch(() => {})" class="flex items-center">
-                        <feather-icon icon="MailIcon" class="inline-block mr-2" svgClasses="w-4 h-4" />
-                        <span>Inbox</span>
-                      </div>
-                    </vs-dropdown-item>
-                  </vs-dropdown-menu>
-
-                </vs-dropdown> -->
               </div>
             </transition>
 
@@ -202,38 +173,7 @@ export default {
       navMenuItems: navMenuItems,
       routerTransition: themeConfig.routerTransition || "none",
       routeTitle: this.$route.meta.pageTitle,
-      steps: [
-        // {
-        //   target  : '#btnVNavMenuMinToggler',
-        //   content : 'Thu gọn.'
-        // },
-        // {
-        //   target  : '.vx-navbar__starred-pages',
-        //   content : 'Tạo dấu trang của riêng bạn. Bạn cũng có thể sắp xếp lại chúng bằng cách kéo và thả.'
-        // },
-        // {
-        //   target  : '.i18n-locale',
-        //   content : 'Bạn có thể thay đổi ngôn ngữ từ đây.'
-        // },
-        // {
-        //   target  : '.navbar-fuzzy-search',
-        //   content : 'Thử tìm kiếm để truy cập các trang trong nháy mắt.'
-        // },
-        // {
-        //   target  : '.customizer-btn',
-        //   content : 'Tùy chỉnh mẫu dựa trên sở thích của bạn',
-        //   params  : {
-        //     placement: 'left'
-        //   }
-        // },
-        // {
-        //   target  : '.vs-button.buy-now',
-        //   content : 'Chúng tôi còn rất nhiều sản phẩm khác ^.^!',
-        //   params  : {
-        //     placement: 'top'
-        //   }
-        // },
-      ],
+      steps: [],
     };
   },
   watch: {

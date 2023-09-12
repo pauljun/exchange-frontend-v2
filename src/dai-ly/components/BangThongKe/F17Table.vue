@@ -27,7 +27,9 @@
           <p style="color: #f00">
             Tổng THUA: ${{ this.formatPrice(betLose, 2) }}
           </p>
-          <p style="color: #7167E8">LỜI: ${{ this.formatPrice(betWin - betLose, 2) }}</p>
+          <p style="color: #7167e8">
+            LỜI: ${{ this.formatPrice(betWin - betLose, 2) }}
+          </p>
         </div>
       </div>
       <div class="flex items-end space-x-4">
@@ -66,14 +68,18 @@
           </template>
 
           <template slot="win-total" slot-scope="row">
-            <div style="color: rgb(25 146 246)">${{ formatPrice(row.tongWin, 2) }}</div>
+            <div style="color: rgb(25 146 246)">
+              ${{ formatPrice(row.tongWin, 2) }}
+            </div>
           </template>
 
           <template slot="lose-total" slot-scope="row">
             <div style="color: #f00">${{ formatPrice(row.tongThua, 2) }}</div>
           </template>
           <template slot="tb-total" slot-scope="row">
-            <div style="color: #7167E8">${{ formatPrice(row.tongWin - row.tongThua, 2) }}</div>
+            <div style="color: #7167e8">
+              ${{ formatPrice(row.tongWin - row.tongThua, 2) }}
+            </div>
           </template>
 
           <template slot="tong-nap" slot-scope="row">
@@ -90,32 +96,10 @@
     </div>
     <div v-else>
       <div class="mb-4">
-        <a-button @click="isShowNapRut = false" icon="arrow-left"
-          >Trở về</a-button
-        >
+        <a-button @click="isShowNapRut = false" icon="arrow-left">
+          Trở về
+        </a-button>
       </div>
-      <!-- <div class="close-table-wrapper">
-        <div
-          class="
-            w-32
-            p-3
-            mb-4
-            mr-4
-            rounded-lg
-            flex
-            cursor-pointer
-            items-center
-            justify-center
-            text-lg
-            font-medium
-            text-success
-            border border-solid border-success
-          "
-          @click="isShowNapRut = false"
-        >
-          <span class="ml-2 text-base text-sucess">Trở về</span>
-        </div>
-      </div> -->
       <F17NapTable :tableData="napRutData" :tableType="tableType" />
     </div>
   </div>
@@ -273,7 +257,6 @@ export default {
       this.isShowNapRut = true;
     },
     onTimeChange(e) {
-      console.log(e);
       let timQuery = e !== "all" ? `&f=${e}` : "";
       this.reloadList(timQuery);
     },
@@ -303,7 +286,6 @@ export default {
           } else {
             this.productsFake = resp.data.data;
           }
-          // this.$vs.loading.close("#loading-corners-f17 > .con-vs-loading");
         })
         .finally(() => {
           this.tableLoading = false;

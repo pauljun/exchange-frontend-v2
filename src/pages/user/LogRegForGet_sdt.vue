@@ -59,7 +59,7 @@
           <div class="formWapper w-full">
             <div class="loginForm login_acc white mt-0" v-if="!isG2FA">
               <h2 class="mt5m font-24 white font-bold lg:mb-5 mb-3">
-                Đăng nhập vào Tài khoản của bạn
+                Đăng nhập vào Tài khoản của bạn111
               </h2>
               <div class="centerx labelx">
                 <div class="mb-3">
@@ -111,7 +111,7 @@
                   >
                   <vs-button
                     style="
-                      background: #F1DD48 !important;
+                      background: #f1dd48 !important;
                       color: #fff !important;
                     "
                     class="w-full"
@@ -138,7 +138,7 @@
                 <div>
                   <vs-button
                     style="
-                      background: #F1DD48 !important;
+                      background: #f1dd48 !important;
                       color: #fff !important;
                     "
                     class="w-full"
@@ -158,10 +158,6 @@
                 >Đăng ký</router-link
               >
             </p>
-            <!-- <div class="colorWhite">
-                            <span class="colorGray text-center">Không nhận được email xác nhận?</span>
-                            <router-link to="/register-resend-verify-email" class="cursor-pointer"> Yêu cầu một email mới.</router-link>
-                        </div> -->
           </div>
         </div>
       </div>
@@ -327,7 +323,7 @@
                 <div>
                   <vs-button
                     style="
-                      background: #F1DD48 !important;
+                      background: #f1dd48 !important;
                       color: #fff !important;
                     "
                     class="w-full"
@@ -339,28 +335,6 @@
               </div>
             </div>
             <div v-if="isSubmitReg">
-              <!-- <h2 class="font-weight-bold mb-5 font-24 colorSecondary">KÍCH HOẠT TÀI KHOẢN</h2> -->
-              <!--<p class="colorSecondary">
-                              Để được kích hoạt tài khoản: <a :href="`mailto:${emailReg}`" class="colorBlue4">{{ emailReg }}</a><br><br>
-                              - B1: Tải ứng dụng Telegram về trên App Store (IOS) hoặc CH Play (Android).<br>
-                              - B2: Nếu đã có ứng dụng (Bỏ qua Bước 1) Nhấp vào nút KÍCH HOẠT bên dưới 👇🏻 để mở App Telegram.<br>
-                              - B3: Nhấp lệnh start (Bắt đầu) và làm theo hướng dẫn.<br>
-                            </p>-->
-              <!-- <p class="colorSecondary">
-                               Một liên kết xác nhận đã được gửi tới
-                                Vui lòng xác nhận email: <a :href="`mailto:${emailReg}`" class="colorBlue4">{{ emailReg }}</a> qua TELEGRAM BOT để kích hoạt tài khoản<a target="_blank" href="https://t.me/ares_idefibo_bot">NHẤP VÀO ĐÂY</a>
-                            </p> -->
-              <!-- <p class="colorSecondary"> -->
-              <!-- Một liên kết xác nhận đã được gửi tới <a :href="`mailto:${emailReg}`" class="colorBlue4">{{ emailReg }}</a>
-                                Vui lòng chờ ít phút để nhận liên kết xác nhận và kích hoạt tài khoản của bạn.<br> -->
-              <!-- Nếu không nhận được email xin vui lòng dùng TELEGRAM BOT để kích hoạt tài khoản: <a target="_blank" href="https://t.me/ares_idefibo_bot">Nhấp vào đây</a>-->
-              <!-- </p> -->
-
-              <!-- <p> -->
-              <!-- <button class="btn btn-resendemail w-full mt-4" @click="openSite">NHẤP VÀO ĐÂY 🤝KÍCH HOẠT🤝</button> -->
-              <!-- <button id="button-with-loading" class="btn btn-resendemail w-full mt-4 vs-con-loading__container" :disabled="disSendMail"  @click="reSendMail">{{ ssDownSend }}</button>  -->
-              <!-- </p> -->
-
               <div class="mb-5 relative wrapper-phone-code">
                 <div>
                   <label class="label_custom" for="input-bvxi30l9g"
@@ -375,7 +349,7 @@
                 </div>
                 <vs-button
                   style="
-                    background: #F1DD48 !important;
+                    background: #f1dd48 !important;
                     color: #fff !important;
                     white-space: nowrap;
                     height: 45px;
@@ -398,7 +372,7 @@
               </vs-alert>
               <div>
                 <vs-button
-                  style="background: #F1DD48 !important; color: #fff !important"
+                  style="background: #f1dd48 !important; color: #fff !important"
                   :disabled="optCode.length === 0"
                   class="w-full"
                   type="filled"
@@ -512,7 +486,7 @@
                 <div>
                   <vs-button
                     style="
-                      background: #F1DD48 !important;
+                      background: #f1dd48 !important;
                       color: #fff !important;
                     "
                     class="w-full"
@@ -530,9 +504,6 @@
               <p class="white">
                 Một liên kết xác nhận đã được gửi tới email đăng ký của bạn.
               </p>
-              <!--<p class="white">
-                                Nếu không nhận được email xin vui lòng dùng TELEGRAM BOT để kích hoạt tài khoản: <a target="_blank" href="https://t.me/ares_idefibo_bot">Nhấp vào đây</a>
-                            </p> -->
             </div>
           </div>
           <div slot="footer">
@@ -633,7 +604,7 @@
                 <div>
                   <vs-button
                     style="
-                      background: #F1DD48 !important;
+                      background: #f1dd48 !important;
                       color: #fff !important;
                     "
                     class="w-full"
@@ -653,9 +624,6 @@
                 bạn.<br />
                 Vui lòng chờ trong ít phút để nhận liên kết để đặt lại mật khẩu.
               </p>
-              <!-- <p class="white">
-                                Nếu không nhận được email xin vui lòng dùng TELEGRAM BOT để đặt lại mật khẩu: <a target="_blank" href="https://t.me/ares_idefibo_bot">Nhấp vào đây</a>
-                            </p> -->
             </div>
           </div>
           <div slot="footer">
@@ -828,13 +796,10 @@
                     >{{ countPassReReset }} / 20</span
                   >
                 </div>
-                <!-- <div class="mb-5 relative">
-                                    <vs-input class="w-full" maxlength="10" label="Mã 2FA * (Nếu đã bật vui lòng nhập mã 2FA)" v-model="codeReset"/>
-                                </div> -->
                 <div class="mt-2">
                   <vs-button
                     style="
-                      background: #F1DD48 !important;
+                      background: #f1dd48 !important;
                       color: #fff !important;
                     "
                     class="w-full"
@@ -1040,7 +1005,7 @@ export default {
           //
           AuthenticationService.registerUser(obj).then((res) => {
             self.ldFrom = false;
-            if (res.data.success == 1) {
+            if (res.data.code == 10000) {
               self.isSubmitReg = true;
               setTimeout(() => {
                 self.countDownResendMail();
@@ -1054,14 +1019,14 @@ export default {
                 color: "success",
               });
               self.$router.push("/login").catch(() => {});
-            } else if (res.data.success == 2) {
+            } else if (res.data.code == 1001) {
               self.$vs.notify({
                 text: "SĐT này đã tồn tại",
                 iconPack: "feather",
                 icon: "icon-alert-circle",
                 color: "warning",
               });
-            } else if (res.data.success == 3) {
+            } else if (res.data.code == 1002) {
               self.$vs.notify({
                 text: "Biệt danh này đã tồn tại",
                 iconPack: "feather",
@@ -1093,14 +1058,8 @@ export default {
           "recaptcha-container",
           {
             size: "invisible",
-            callback: function () {
-              // reCAPTCHA solved, allow signInWithPhoneNumber.
-              // ...
-            },
-            "expired-callback": function () {
-              // Response expired. Ask user to solve reCAPTCHA again.
-              // ...
-            },
+            callback: function () {},
+            "expired-callback": function () {},
           }
         );
         //
@@ -1219,14 +1178,6 @@ export default {
         this.msgPassReReset = "";
       }
 
-      // if(this.codeReset == ''){
-      //     this.msgCoSeReset = 'Mã bảo vệ không được rỗng.'
-      //     isActive = false
-      // }else{
-      //     isActive = true
-      //     this.msgCoSeReset = ''
-      // }
-
       if (isActive) {
         this.ldFrom = true;
 
@@ -1291,54 +1242,6 @@ export default {
         this.msgNickName = "";
       }
       this.isSubmitReg = true;
-
-      // let isActive = true;
-
-      // if(isActive){
-      //     this.ldFrom = true
-
-      //     let obj = {
-      //         email: this.emailReg,
-      //         password: this.passwordReg,
-      //         nick_name: this.nickName,
-      //         upline_id: this.codeRef
-      //     }
-
-      //     //
-      //     AuthenticationService.registerUser(obj)
-      //     .then((res) => {
-      //         this.ldFrom = false
-      //         if(res.data.success == 1){
-      //           this.isSubmitReg = true
-      //           setTimeout(() => {
-      //               this.countDownResendMail();
-      //           }, 500);
-
-      //           this.$vs.notify({
-      //               title: 'Đăng ký thành công',
-      //               text: 'Chúng tôi đã gửi 1 một liên kết kích hoạt đến tài khoản của bạn.',
-      //               iconPack: 'feather',
-      //               icon: 'icon-check',
-      //               color: 'success'
-      //           });
-      //         }else if(res.data.success == 2){
-      //           this.$vs.notify({
-      //               text: 'Email này đã tồn tại',
-      //               iconPack: 'feather',
-      //               icon: 'icon-alert-circle',
-      //               color: 'warning'
-      //           });
-      //         }else if(res.data.success == 3){
-      //           this.$vs.notify({
-      //               text: 'Biệt danh này đã tồn tại',
-      //               iconPack: 'feather',
-      //               icon: 'icon-alert-circle',
-      //               color: 'warning'
-      //           });
-      //         }
-
-      //     })
-      // }
     },
 
     submitFormForgot() {
@@ -1361,7 +1264,7 @@ export default {
 
         AuthenticationService.forgotPassUser(obj).then((res) => {
           this.ldFrom = false;
-          if (res.data.success) {
+          if (res.data.code === 10000) {
             this.hideTbForgot = false;
           }
         });
@@ -1369,6 +1272,7 @@ export default {
     },
 
     submitFormResendActive() {
+      debugger
       let isActive = true;
 
       if (this.emailResend === "" || !this.checkReg(this.emailResend)) {
@@ -1386,8 +1290,9 @@ export default {
           email: this.emailResend,
         };
         AuthenticationService.resendConfirUser(obj).then((res) => {
+          console.log('res', res)
           this.ldFrom = false;
-          if (res.data.success) {
+          if (res.data.code === 10000) {
             this.hideTbResend = false;
           }
         });
@@ -1396,7 +1301,7 @@ export default {
 
     getInfoLogin() {
       AuthenticationService.getInfoUser().then((res) => {
-        if (res.data.success == 1) {
+        if (res.data.code == 10000) {
           let dt = res.data.data;
 
           getData.uid = dt.id;
@@ -1425,8 +1330,6 @@ export default {
           getData.balance = dt.balance;
 
           localStorage.setItem("INFO", JSON.stringify(dt));
-          //localStorage.removeItem('isLog')
-
           this.$router.push("/trading").catch(() => {});
         }
       });
@@ -1441,38 +1344,6 @@ export default {
         this.ldFrom = false;
         let g = res.data;
         if (g.success == 1) {
-          // this.$vs.notify({
-          //     text: 'Đăng nhập thành công.',
-          //     iconPack: 'feather',
-          //     icon: 'icon-check',
-          //     color: 'success'
-          // });
-
-          // let gData = d.data;
-
-          // getData.uid= gData.id,
-          // getData.email= gData.email,
-          // getData.profile_image= gData.profile_image,
-          // getData.displayName= gData.nick_name,
-          // getData.uidLive= gData.order[1].u_id,
-          // getData.uidDemo= gData.order[0].u_id,
-          // getData.vip= gData.vip,
-          // getData.vip_lv= gData.level_vip,
-          // getData.pen_commiss= gData.pending_commission,
-          // getData.ref= gData.ref,
-          // getData.c2fa= gData.fa2,
-          // getData.id_front= gData.id_front,
-          // getData.id_back= gData.id_back,
-          // getData.first_name= gData.first_name,
-          // getData.last_name= gData.last_name,
-          // getData.verify= gData.verify,
-          // getData.num_secu= gData.num_secury,
-          // getData.country= gData.c,
-          // getData.blLive = gData.order[1].balance
-          // getData.blDemo = gData.order[0].balance
-          // getData.balance = gData.balance,
-          // getData.mkt = gData.mkt
-
           if (g.g_2fa) {
             this.isG2FA = g.g_2fa;
             this.saveToken = g.token;
@@ -1483,9 +1354,6 @@ export default {
           this.activeLogin = false;
 
           this.getInfoLogin();
-
-          //this.$router.push('/user/affiliate/general').catch(() => {})
-          //window.location.href = window.location.origin + '/user/affiliate/general';
         } else if (res.data.success == 0) {
           this.$vs.notify({
             text: "Email hoặc mật khẩu không đúng. Vui lòng nhập lại",
@@ -1516,9 +1384,6 @@ export default {
           this.activeLogin = false;
 
           this.getInfoLogin();
-          //this.$router.push('/trading').catch(() => {})
-          //this.$router.push('/user/affiliate/general').catch(() => {})
-          //window.location.href = window.location.origin + '/user/affiliate/general';
         } else if (res.data.success == 6) {
           return this.$vs.notify({
             text: "Mã đăng nhập không hợp lệ hoặc đã hết hạn.",

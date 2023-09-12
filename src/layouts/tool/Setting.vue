@@ -1,401 +1,111 @@
 <template>
   <div id="list-tool-setting" class="data-list-container">
-<template>
-      <!-- <p>Sắp tới sẽ cập nhận liên quan tới hệ thống</p> -->
-      <div class="vx-row">
-        <div class="vx-col w-full mb-base">
-          <p class="mb-4" style="text-decoration: overline">
-            <span style="text-decoration: overline"
-              >[THIẾT LẬP MIN RÚT / NẠP]:</span
+    <el-form label-width="160px" label-position="left">
+      <el-row :gutter="50">
+        <el-col :span="6">
+          <h4>[{{ $t("SetMinWithdraw") }}]:</h4>
+          <el-form-item :label="`${$t('MinDeposit')} USDT`">
+            <el-input type="number" v-model="settingJson.min_d_usdt" />
+          </el-form-item>
+          <el-form-item :label="`${$t('MinWithdraw')} USDT`">
+            <el-input type="number" v-model="settingJson.min_w_usdt" />
+          </el-form-item>
+          <el-form-item :label="`${$t('InternalWithdrawalFee')}`">
+            <el-input type="number" v-model="settingJson.fee_w_usdt_nb" />
+          </el-form-item>
+          <el-form-item :label="`${$t('BscWithdrawalFee')}`">
+            <el-input type="number" v-model="settingJson.fee_w_usdt_BEP20" />
+          </el-form-item>
+        </el-col>
+        <el-col :span="6">
+          <h4>[{{ $t("SetUpWallet") }}]:</h4>
+          <el-form-item :label="$t('DefaultWalletUses')">
+            <el-radio v-model="settingJson.default_wallet_sys" label="usdt">
+              {{ $t("Wallet") }} USDT
+            </el-radio>
+            <el-radio v-model="settingJson.default_wallet_sys" label="vnd">
+              {{ $t("Wallet") }} VNĐ
+            </el-radio>
+          </el-form-item>
+          <p style="line-height: 1.5; margin: -20px 0 10px">
+            {{ $t("DefaultWalletUsesP") }}
+          </p>
+          <el-form-item :label="$t('ShowPaymentWallet')">
+            <el-checkbox
+              v-model="settingJson.show_wallet_usdt"
+              @change="changeWallet('usdt', $event)"
             >
+              {{ $t("Wallet") }} USDT
+            </el-checkbox>
+            <div class="absolute" style="top: 5px; right: 0">
+              <IconCrypto
+                style="width: 20px"
+                coinname="USDT"
+                color="color"
+                format="svg"
+              />
+            </div>
+            <div style="position: relative">
+              <el-checkbox
+                v-model="settingJson.show_wallet_vnd"
+                @change="changeWallet('vnd', $event)"
+              >
+                {{ $t("Wallet") }} VNĐ
+              </el-checkbox>
+              <div class="absolute" style="top: 5px; right: 0">
+                <img
+                  width="20"
+                  :src="require('@/assets/images/sky/icon_bank/vnd-mini.svg')"
+                />
+              </div>
+            </div>
+          </el-form-item>
+          <el-form-item label-width="0" v-if="settingJson.show_wallet_vnd">
+            <div>
+              <el-input
+                type="textarea"
+                rows="5"
+                label-placeholder="Thông tin ngân hàng"
+                v-model="settingJson.bankInfo"
+              />
+            </div>
+            <p>{{ $t("NoteWalletDW") }}</p>
+          </el-form-item>
+        </el-col>
+        <el-col :span="6">
+          <h4>
+            [{{ $t("SetQuoteUsdCoins") }}]:
+            <i>( {{ $t("DefaultAutoUpdate") }} )</i>
+          </h4>
+          <el-form-item :label="$t('AutoUpdateSeconds')">
+            <el-input type="number" v-model="settingJson.timeLoopUpdateQuote" />
+          </el-form-item>
+          <p style="line-height: 1.5; margin: -20px 0 10px">
+            {{ $t("NoteTimeSeconds") }}
           </p>
-          <div class="vx-row">
-            <div
-              class="vx-col centerx mb-4 sm:w-1/2 md:w-1/4 lg:w-3/12 xl:w-3/12"
+          <el-form-item label-width="0">
+            <el-switch
+              v-model="checkOnOffAutoQuote"
+              :active-text="$t('TurnOn')"
+              :inactive-text="$t('TurnOff')"
+              active-value="on"
+              inactive-value="off"
+              @change="checkOnOffAutoQuote = !checkOnOffAutoQuote"
             >
-              <vs-input
-                type="number"
-                style="display: inline-block"
-                class="m-2 mb-4"
-                label-placeholder="Min nạp USDT"
-                v-model="settingJson.min_d_usdt"
-              />
-              <vs-input
-                type="number"
-                style="display: inline-block"
-                class="m-2 mb-4"
-                label-placeholder="Min rút USDT"
-                v-model="settingJson.min_w_usdt"
-              />
-              <vs-input
-                type="number"
-                style="display: inline-block"
-                class="m-2 mb-4"
-                label-placeholder="Phí rút USDT Nội bộ"
-                v-model="settingJson.fee_w_usdt_nb"
-              />
-              <vs-input
-                type="number"
-                style="display: inline-block"
-                class="m-2 mb-4"
-                label-placeholder="Phí rút USDT BEP20 (BSC)"
-                v-model="settingJson.fee_w_usdt_BEP20"
-              />
-            </div>
-          </div>
-        </div>
-
-        <div class="vx-col w-full md:w-1/2 lg:w-6/12 xl:w-6/12 mb-base">
-          <p class="mb-4">
-            <span style="text-decoration: overline">[THIẾT LẬP VÍ]:</span>
-          </p>
-          <div class="vx-row">
-            <div class="vx-col w-full centerx md:w-1/2 lg:w-2/4 xl:w-2/4">
-              <p class="mb-4">Mặc định Ví sử dụng:</p>
-              <ul class="centerx">
-                <li class="mb-4">
-                  <vs-radio
-                    v-model="settingJson.default_wallet_sys"
-                    vs-value="usdt"
-                    >Ví USDT</vs-radio
-                  >
-                </li>
-                <li class="mb-4">
-                  <vs-radio
-                    disabled="disabled"
-                    v-model="settingJson.default_wallet_sys"
-                    vs-value="vnd"
-                    >Ví VNĐ</vs-radio
-                  >
-                </li>
-              </ul>
-              <p>
-                <i
-                  >Ghi chú: Ví sử dụng mặc định dùng để giao dịch tiền tệ giữa
-                  Tài Khoản thực và các Ví phụ khác</i
-                >
-              </p>
-            </div>
-            <div class="vx-col w-full centerx md:w-1/2 lg:w-2/4 xl:w-2/4">
-              <p class="mb-4">Hiển thị Ví thanh toán:</p>
-              <ul class="centerx">
-                <li class="mb-4 relative">
-                  <vs-checkbox
-                    v-model="settingJson.show_wallet_usdt"
-                    @change="changeWallet('usdt', $event)"
-                    >Ví USDT</vs-checkbox
-                  >
-                  <div class="absolute" style="top: 0; right: 0">
-                    <IconCrypto
-                      style="width: 20px"
-                      coinname="USDT"
-                      color="color"
-                      format="svg"
-                    />
-                  </div>
-                </li>
-                <li class="mb-4 relative">
-                  <vs-checkbox
-                    v-model="settingJson.show_wallet_vnd"
-                    @change="changeWallet('vnd', $event)"
-                    >Ví VNĐ</vs-checkbox
-                  >
-                  <div class="absolute" style="top: 0; right: 0">
-                    <img
-                      width="20"
-                      :src="
-                        require('@/assets/images/sky/icon_bank/vnd-mini.svg')
-                      "
-                    />
-                  </div>
-                </li>
-
-                <div v-if="settingJson.show_wallet_vnd">
-                  <vs-textarea
-                    rows="15"
-                    style="display: inline-block"
-                    class="m-2 mb-4"
-                    label-placeholder="Thông tin ngân hàng"
-                    v-model="settingJson.bankInfo"
-                  />
-                </div>
-              </ul>
-              <p><i>Ghi chú: Các Ví chứa các khoản tiền NẠP và Rút</i></p>
-            </div>
-          </div>
-        </div>
-
-        <div class="vx-col w-full md:w-1/2 lg:w-6/12 xl:w-6/12 mb-base">
-          <p class="mb-4">
-            <span style="text-decoration: overline"
-              >[THIẾT LẬP QUOTE USD đồng COIN]: </span
-            ><i>( Mặc định Auto Update )</i>
-          </p>
-          <div class="vx-row">
-            <div class="vx-col centerx md:w-1/2 lg:w-2/4 xl:w-2/4">
-              <vs-input
-                type="number"
-                style="display: inline-block"
-                class="m-2 mb-4"
-                label-placeholder="Auto Update Seconds"
-                v-model="settingJson.timeLoopUpdateQuote"
-              />
-              <p class="m-2 mb-4">
-                <i>Chú ý: Thời gian được tính bằng (giây)</i>
-              </p>
-              <div class="m-2 block">
-                <vs-switch
-                  v-model="checkOnOffAutoQuote"
-                  @change="checkOnOffAutoQuote = !checkOnOffAutoQuote"
-                >
-                  <span slot="on">Bật</span>
-                  <span slot="off">Tắt</span>
-                </vs-switch>
-              </div>
-              <p class="m-2"><i>Chú ý: Bật / tắt Auto cập nhật USD Quote</i></p>
-            </div>
-            <div class="vx-col centerx md:w-1/2 lg:w-2/4 xl:w-2/4">
-              <p class="mb-4">Quote USD:</p>
-              <vs-input
-                type="number"
-                style="display: inline-block"
-                class="m-2 mb-4"
-                :label-placeholder="`1 USD = ${formatPrice(
-                  1 / settingJson.quote_USD_BTC,
-                  6
-                )} BTC`"
-                v-model="settingJson.quote_USD_BTC"
-              />
-              <vs-input
-                type="number"
-                style="display: inline-block"
-                class="m-2 mb-4"
-                :label-placeholder="`1 USD = ${formatPrice(
-                  1 / settingJson.quote_USD_ETH,
-                  4
-                )} ETH`"
-                v-model="settingJson.quote_USD_ETH"
-              />
-              <vs-input
-                type="number"
-                style="display: inline-block"
-                class="m-2 mb-4"
-                :label-placeholder="`1 USD = ${formatPrice(
-                  1 / settingJson.quote_USD_USDT,
-                  2
-                )} USDT`"
-                v-model="settingJson.quote_USD_USDT"
-              />
-              <vs-input
-                type="number"
-                style="display: inline-block"
-                class="m-2 mb-4"
-                :label-placeholder="`1 USD = ${formatPrice(
-                  1 / settingJson.quote_USD_PAYPAL,
-                  2
-                )} PAYPAL`"
-                v-model="settingJson.quote_USD_PAYPAL"
-              />
-              <vs-input
-                type="number"
-                style="display: inline-block"
-                class="m-2 mb-4"
-                :label-placeholder="`1 USD = ${formatPrice(
-                  settingJson.quote_USD_VND,
-                  2
-                )} VNĐ`"
-                v-model="settingJson.quote_USD_VND"
-              />
-              <p><i>Chú ý: Paypal mặc định là 1</i></p>
-            </div>
-          </div>
-        </div>
-
-        <div class="vx-col w-full mb-base">
-          <div class="vx-row">
-            <div class="vx-col centerx md:w-1/2 lg:w-3/12 xl:w-3/12">
-              <p class="mb-4">
-                <span style="text-decoration: overline"
-                  >[THIẾT LẬP BẢO TRÌ]:
-                </span>
-              </p>
-              <vs-checkbox
-                v-model="settingJson.maintenance"
-                @change="changeActiveBaoTri($event)"
-                >Bảo trì</vs-checkbox
-              >
-              <p class="mb-4"><i>- Ghi chú: Bảo trì hệ thống</i></p>
-              <p class="mb-4">
-                <span style="text-decoration: overline"
-                  >[THIẾT LẬP MẠNG NẠP TIỀN]:
-                </span>
-              </p>
-              <vs-radio v-model="settingJson.default_netw_pay" vs-value="ct"
-                >Chính thức</vs-radio
-              >
-              <p></p>
-              <vs-radio v-model="settingJson.default_netw_pay" vs-value="tn"
-                >Thử nghiệm</vs-radio
-              >
-              <p>
-                <b
-                  >- Mạng đang sử dụng là:
-                  {{
-                    settingJson.default_netw_pay == "tn"
-                      ? "Thử nghiệm"
-                      : "Chính thức"
-                  }}</b
-                >
-              </p>
-              <p>
-                <i
-                  >- Ghi chú: Mạng nạp tiền mặc định BSC <br /><a
-                    href="https://bscscan.com"
-                    >https://bscscan.com</a
-                  ></i
-                >
-              </p>
-            </div>
-            <div class="vx-col centerx md:w-1/2 lg:w-3/12 xl:w-3/12">
-              <p class="mb-4">
-                <span style="text-decoration: overline"
-                  >[THIẾT LẬP ĐỊA CHỈ VÍ]:
-                </span>
-              </p>
-              <vs-input
-                style="display: inline-block"
-                class="m-2 mb-4"
-                v-model="settingJson.ADDRESS_ETH_USDT"
-                label-placeholder="Địa chỉ Ví nhận tiền"
-              />
-              <vs-input
-                style="display: inline-block"
-                class="m-2 mb-4"
-                v-model="settingJson.PRIVATE_KEY_ADDRESS_ETH_USDT"
-                label-placeholder="Private KEY Ví nhận tiền"
-              />
-              <vs-input
-                style="display: inline-block"
-                class="m-2 mb-4"
-                v-model="settingJson.ADDRESS_ETH_TRANSACTION"
-                label-placeholder="Địa chỉ Ví gửi tiền"
-              />
-              <vs-input
-                style="display: inline-block"
-                class="m-2 mb-4"
-                v-model="settingJson.PRIVATE_KEY_ETH_TRANSACTION"
-                label-placeholder="Private KEY Ví gửi tiền"
-              />
-              <p>
-                <i
-                  >- Ghi chú: Là địa chỉ Ví dùng để chi trả cho người chơi rút
-                  tiền <b>(Vui lòng liên kết 2 mạng BEP20 và ERC20)</b></i
-                >
-              </p>
-            </div>
-
-            <!-- Thiêt lập giải đấu -->
-
-            <div class="vx-col centerx md:w-1/2 lg:w-6/12 xl:w-6/12">
-              <p class="mb-4">
-                <span style="text-decoration: overline"
-                  >[THIẾT LẬP GIẢI ĐẤU VÀ RÚT THĂM MAY MẮN]:
-                </span>
-              </p>
-              <p class="m-2 mb-4">Giải đấu</p>
-              <div class="m-2 block">
-                <vs-switch
-                  v-model="settingJson.is_active_champion"
-                  @change="
-                    settingJson.is_active_champion =
-                      !settingJson.is_active_champion
-                  "
-                >
-                  <span slot="on">Bật</span>
-                  <span slot="off">Tắt</span>
-                </vs-switch>
-              </div>
-
-              <p class="m-2 mb-4">Rút thăm may mắn</p>
-              <div class="m-2 block">
-                <vs-switch
-                  v-model="settingJson.is_active_lucky_draw"
-                  @change="
-                    settingJson.is_active_lucky_draw =
-                      !settingJson.is_active_lucky_draw
-                  "
-                >
-                  <span slot="on">Bật</span>
-                  <span slot="off">Tắt</span>
-                </vs-switch>
-              </div>
-
-              <p class="mb-4 mt-4">
-                <span style="text-decoration: overline"
-                  >[THIẾT LẬP MÃ 2FA]:
-                </span>
-              </p>
-              <div class="m-2 block">
-                <vs-switch :value="active2fa" @change="show2faPopup = true">
-                  <span slot="on">Bật</span>
-                  <span slot="off">Tắt</span>
-                </vs-switch>
-              </div>
-            </div>
-
-            <!-- // -->
-
-            <!-- hỗ TRỢ -->
-
-            <div class="vx-col centerx w-full lg:w-1/2">
-              <p class="my-4">
-                <span style="text-decoration: overline"
-                  >[THIẾT LẬP HỖ TRỢ]:
-                </span>
-              </p>
-               <vs-input
-                style="display: inline-block"
-                class="m-2 mb-4 w-full"
-                v-model="settingJson.support.telegram"
-                label-placeholder="Telegram"
-              />
-
-              <vs-input
-                style="display: inline-block"
-                class="m-2 mb-4 w-full"
-                v-model="settingJson.support.zalo"
-                label-placeholder="Zalo"
-              />
-
-              <vs-input
-                style="display: inline-block"
-                class="m-2 mb-4 w-full"
-                v-model="settingJson.support.mail"
-                label-placeholder="Email"
-              />
-            </div>
-            <!-- END HỖ TRỢ -->
-          </div>
-        </div>
-
-        <vs-button
-          class="w-full"
-          color="success"
-          type="filled"
-          @click="clickSubmitSetting"
-          >Cập nhật</vs-button
-        >
-        <vs-prompt
-          title="Xác thực Google"
-          :active.sync="show2faPopup"
-          :buttons-hidden="true"
-        >
-          <VuePerfectScrollbar class="google-authen-2fa-scroll">
-            <google-auth :active2fa="active2fa" :toggle2fa="toggle2fa" />
-          </VuePerfectScrollbar>
-        </vs-prompt>
-      </div>
-    </template>
+            </el-switch>
+            <p>{{ $t("NoteEnableDisable") }}</p>
+          </el-form-item>
+        </el-col>
+      </el-row>
+    </el-form>
+    <vs-button
+      class=""
+      color="success"
+      type="filled"
+      @click="clickSubmitSetting"
+    >
+      {{ $t("Update") }}
+    </vs-button>
   </div>
 </template>
 
@@ -413,7 +123,6 @@ export default {
   data() {
     return {
       cnSv: 0,
-
       checkOnOffAutoQuote: true,
       radioBC: "payeer",
       settingJson: {
@@ -465,14 +174,13 @@ export default {
         is_active_champion: false, //Bật tắt giải đấu
         is_active_lucky_draw: false, // bặt tắt rút thăm
 
-        support:{
+        support: {
           telegram: "",
           zalo: "",
           mail: "",
-        }
+        },
       },
       active2fa: false,
-      show2faPopup: false,
       code_2fa: "",
     };
   },
@@ -498,7 +206,6 @@ export default {
   methods: {
     toggle2fa() {
       this.active2fa = !this.active2fa;
-      this.show2faPopup = false;
     },
 
     formatPrice(value, minimum) {
@@ -515,32 +222,31 @@ export default {
       this.settingJson.maintenance = o;
     },
 
-    changeWallet(val, event) {
-      let o = event.target.checked;
+    changeWallet(val, checked) {
       switch (val) {
         case "usdt":
-          this.settingJson.show_wallet_usdt = o;
+          this.settingJson.show_wallet_usdt = checked;
           break;
         case "btc":
-          this.settingJson.show_wallet_btc = o;
+          this.settingJson.show_wallet_btc = checked;
           break;
         case "eth":
-          this.settingJson.show_wallet_eth = o;
+          this.settingJson.show_wallet_eth = checked;
           break;
         case "paypal":
-          this.settingJson.show_wallet_paypal = o;
+          this.settingJson.show_wallet_paypal = checked;
           break;
         case "vnd":
-          this.settingJson.show_wallet_vnd = o;
+          this.settingJson.show_wallet_vnd = checked;
           break;
       }
     },
 
     async clickSubmitSetting() {
       const check = await this.$store.dispatch("check2fa");
-      if(!check){
+      if (!check) {
         return;
-      };
+      }
       let obj = {
         qUSDT: this.settingJson.quote_USD_USDT,
         qETH: this.settingJson.quote_USD_ETH,
@@ -613,9 +319,7 @@ export default {
 
     connectSever() {
       var _this = this;
-
       this.connection = new WebSocket(config.BASE_URL_SOCKET_SYS);
-
       this.connection.onopen = function () {
         console.log(
           "Successfully connected to the echo websocket server systems..."
@@ -650,8 +354,6 @@ export default {
             icon: "icon-message-square",
           });
         }
-
-        //console.log('Socket is closed. Reconnect will be attempted in 5 second.', e.reason);
         if (_this.cnSv <= 5) {
           setTimeout(() => {
             _this.connectSever();
@@ -659,18 +361,6 @@ export default {
           }, 5000);
         }
       };
-
-      // _this.connection.onerror = function(err) {
-      //   //console.error('Socket encountered error: ', err.message, 'Closing socket');
-      //    _this.$vs.notify({
-      //         text:'Kết nối máy chủ thất bại.',
-      //         color:'danger',
-      //         position:'top-right',
-      //         iconPack: 'feather',
-      //         icon:'icon-message-square'
-      //       });
-      //   _this.connection.close();
-      // };
 
       this.connection.onmessage = function (event) {
         let data = JSON.parse(event.data);
@@ -734,20 +424,13 @@ export default {
           _this.settingJson.is_active_champion = dl.isActiveChampion;
           _this.settingJson.is_active_lucky_draw = dl.isActiveluckyDraw;
 
-          _this.settingJson.support = void 0 !== dl.support ? dl.support : _this.settingJson.support;
+          _this.settingJson.support =
+            void 0 !== dl.support ? dl.support : _this.settingJson.support;
         }
       };
     },
   },
   created() {
-    // if(!moduleDataList.isRegistered) {
-    //   this.$store.registerModule('dataList', moduleDataList)
-    //   moduleDataList.isRegistered = true
-    // }
-    //this.$store.registerModule('dataList', this.productsFake);
-    //this.$store.dispatch("dataList/fetchDataListItems")
-    //console.log(this.productsFake);
-    //console.log(this.$store.state.dataList);
     AuthenticationService.checkOn2fa()
       .then((res) => {
         if (res.data.success == 1) {
@@ -761,127 +444,17 @@ export default {
   },
   mounted() {
     this.isMounted = true;
-
     this.connectSever();
   },
 };
 </script>
 
 <style lang="scss">
-#list-tool-setting {
-  .vs-con-table {
-    /*
-      Below media-queries is fix for responsiveness of action buttons
-      Note: If you change action buttons or layout of this page, Please remove below style
-    */
-    @media (max-width: 689px) {
-      .vs-table--search {
-        margin-left: 0;
-        max-width: unset;
-        width: 100%;
-
-        .vs-table--search-input {
-          width: 100%;
-        }
-      }
-    }
-
-    @media (max-width: 461px) {
-      .items-per-page-handler {
-        display: none;
-      }
-    }
-
-    @media (max-width: 341px) {
-      .data-list-btn-container {
-        width: 100%;
-
-        .dd-actions,
-        .btn-add-new {
-          width: 100%;
-          margin-right: 0 !important;
-        }
-      }
-    }
-
-    .product-name {
-      max-width: 23rem;
-    }
-
-    .vs-table--header {
-      display: flex;
-      flex-wrap: wrap;
-      margin-left: 1.5rem;
-      margin-right: 1.5rem;
-      > span {
-        display: flex;
-        flex-grow: 1;
-      }
-
-      .vs-table--search {
-        padding-top: 0;
-
-        .vs-table--search-input {
-          padding: 0.9rem 2.5rem;
-          font-size: 1rem;
-
-          & + i {
-            left: 1rem;
-          }
-
-          &:focus + i {
-            left: 1rem;
-          }
-        }
-      }
-    }
-
-    .vs-table {
-      border-collapse: separate;
-      border-spacing: 0 1.3rem;
-      padding: 0 1rem;
-
-      tr {
-        box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.05);
-        td {
-          padding: 20px;
-          &:first-child {
-            border-top-left-radius: 0.5rem;
-            border-bottom-left-radius: 0.5rem;
-          }
-          &:last-child {
-            border-top-right-radius: 0.5rem;
-            border-bottom-right-radius: 0.5rem;
-          }
-        }
-        td.td-check {
-          padding: 20px !important;
-        }
-      }
-    }
-
-    .vs-table--thead {
-      th {
-        padding-top: 0;
-        padding-bottom: 0;
-
-        .vs-table-text {
-          text-transform: uppercase;
-          font-weight: 600;
-        }
-      }
-      th.td-check {
-        padding: 0 15px !important;
-      }
-      tr {
-        background: none;
-        box-shadow: none;
-      }
-    }
-
-    .vs-table--pagination {
-      justify-content: center;
-    }
+.data-list-container {
+  padding: 1rem;
+  h4 {
+    font-size: 16px;
+    margin-bottom: 10px;
   }
 }
 </style>

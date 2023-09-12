@@ -28,6 +28,10 @@ body {
 }
 
 .vx-logo {
+  img{
+    max-width: 240px;
+    max-height: 80px;
+  }
   .vx-logo-text{
     font-size: 22px;
     font-weight: 600;
@@ -37,12 +41,11 @@ body {
 
 .router-view {
   position: relative;
-  padding: 2.2rem;
+  // padding: 2.2rem;
+  padding: 1rem;
 
   @media (max-width: 576px) {
     padding: 1.2rem !important;
-
-
     .footer-sticky & {
       padding-bottom: 5rem !important;
     }

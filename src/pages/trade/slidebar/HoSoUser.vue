@@ -151,7 +151,7 @@
           >Đổi</vs-button
         >
         <p class="clearfix"></p>
-<!--        <span v-if="!DISABLE_2FA" class="d-flex" style="font-size: 12px; margin-bottom: 5px"
+        <!--        <span v-if="!DISABLE_2FA" class="d-flex" style="font-size: 12px; margin-bottom: 5px"
           >Bắt buộc bật 2FA để rút tiền hoặc cập nhật các bảo mật.</span
         >
         <p class="clearfix"></p>
@@ -170,7 +170,6 @@
       <vs-popup
         background-color="rgba(0,0,0,.6)"
         :background-color-popup="colorxChangePass"
-
         title="Đổi mật khẩu"
         :active.sync="popupActiveChangePass"
       >
@@ -242,9 +241,6 @@
         </VuePerfectScrollbar>
       </vs-prompt>
     </VuePerfectScrollbar>
-    <!--<div class="flex flex-wrap items-center p-6" slot="footer">
-        <vs-button class="mt-5 w-full" color="danger" type="border" icon-pack="feather" icon="icon-log-out" @click="logOutUser">Đăng xuất</vs-button>
-    </div>-->
   </vs-sidebar>
 </template>
 
@@ -313,7 +309,7 @@ export default {
         maxScrollbarLength: 60,
         wheelSpeed: 0.6,
       },
-      DISABLE_2FA: false
+      DISABLE_2FA: false,
     };
   },
   //   filters: {
@@ -349,20 +345,11 @@ export default {
 
     showHoSoSetting() {
       this.toggleDataSidebar(true);
-      this.isSidebarActiveLocal = false
+      this.isSidebarActiveLocal = false;
     },
 
     toggleDataSidebar(val = false) {
       this.SidebarHSSetting = val;
-    },
-
-    logOutUser() {
-      localStorage.removeItem("tokenUser");
-      localStorage.removeItem("INFO");
-      getData.Notify = 0;
-      localStorage.removeItem("stateOpen");
-
-      window.location.href = window.location.origin + "/login";
     },
 
     ChangeNewPass() {

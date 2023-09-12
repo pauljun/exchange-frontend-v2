@@ -82,10 +82,7 @@
                 <span class="mr-2">Tác vụ</span>
                 <feather-icon icon="ChevronDownIcon" svgClasses="h-4 w-4" />
               </div> -->
-
-             
             </vs-dropdown>
-
           </div>
 
           <!-- ITEMS PER PAGE -->
@@ -366,7 +363,6 @@ export default {
       }
     },
 
-
     getOrderStatusColor(status) {
       if (status == 0) return "warning";
       if (status == 1) return "success";
@@ -504,8 +500,6 @@ export default {
       AuthenticationService.getDepositListHistoryAgency(this.email, f).then(
         (resp) => {
           if (resp.data.success == 4) {
-            localStorage.removeItem("token");
-            this.$router.push("/pages/login").catch(() => {});
           } else {
             this.productsFake = resp.data.data;
           }

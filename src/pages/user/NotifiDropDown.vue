@@ -295,8 +295,6 @@ export default {
     getHMS(value) {
       if (value) {
         let now = moment(String(value)).fromNow();
-        //let mim = moment(String(value)).format('mm');
-        //let sec = moment(String(value)).format('ss');
         return now;
       }
     },
@@ -304,7 +302,7 @@ export default {
     getListNotifi() {
       this.unreadNotifications = [];
       let obj = {
-        e: getData.email,
+        email: getData.email,
       };
 
       AuthenticationService.getListNotifi(obj).then((res) => {
@@ -425,8 +423,8 @@ export default {
 </g>
 </g>
 </svg>`;
-        case 'streak-challenge':
-          return `<svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><polyline points="20 12 20 22 4 22 4 12"></polyline><rect x="2" y="7" width="20" height="5"></rect><line x1="12" y1="22" x2="12" y2="7"></line><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path></svg>`
+        case "streak-challenge":
+          return `<svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><polyline points="20 12 20 22 4 22 4 12"></polyline><rect x="2" y="7" width="20" height="5"></rect><line x1="12" y1="22" x2="12" y2="7"></line><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path></svg>`;
         default:
           break;
       }
@@ -494,12 +492,12 @@ export default {
 
 <style scoped lang="scss">
 .notification-item-status {
-  background-color: #F1DD48 !important;
+  background-color: #f1dd48 !important;
   display: block;
   width: 10px;
   height: 10px;
   border-radius: 10px;
-  background: #F1DD48;
+  background: #f1dd48;
   position: absolute;
   top: 18px;
   right: 18px;

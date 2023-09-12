@@ -8,27 +8,26 @@
 ==========================================================================================*/
 
 const actions = {
-
   // /////////////////////////////////////////////
   // COMPONENTS
   // /////////////////////////////////////////////
 
   // Vertical NavMenu
   updateVerticalNavMenuWidth({ commit }, width) {
-    commit('UPDATE_VERTICAL_NAV_MENU_WIDTH', width)
+    commit('UPDATE_VERTICAL_NAV_MENU_WIDTH', width);
   },
 
   // VxAutoSuggest
   updateStarredPage({ commit }, payload) {
-    commit('UPDATE_STARRED_PAGE', payload)
+    commit('UPDATE_STARRED_PAGE', payload);
   },
 
   // The Navbar
   arrangeStarredPagesLimited({ commit }, list) {
-    commit('ARRANGE_STARRED_PAGES_LIMITED', list)
+    commit('ARRANGE_STARRED_PAGES_LIMITED', list);
   },
   arrangeStarredPagesMore({ commit }, list) {
-    commit('ARRANGE_STARRED_PAGES_MORE', list)
+    commit('ARRANGE_STARRED_PAGES_MORE', list);
   },
 
   // /////////////////////////////////////////////
@@ -36,10 +35,10 @@ const actions = {
   // /////////////////////////////////////////////
 
   toggleContentOverlay({ commit }) {
-    commit('TOGGLE_CONTENT_OVERLAY')
+    commit('TOGGLE_CONTENT_OVERLAY');
   },
   updateTheme({ commit }, val) {
-    commit('UPDATE_THEME', val)
+    commit('UPDATE_THEME', val);
   },
 
   // /////////////////////////////////////////////
@@ -47,19 +46,19 @@ const actions = {
   // /////////////////////////////////////////////
 
   updateUserInfo({ commit }, payload) {
-    commit('UPDATE_USER_INFO', payload)
+    commit('UPDATE_USER_INFO', payload);
   },
   updateUserRole({ dispatch }, payload) {
     // Change client side
-    payload.aclChangeRole(payload.userRole)
+    payload.aclChangeRole(payload.userRole);
 
     // Make API call to server for changing role
 
     // Change userInfo in localStorage and store
-    dispatch('updateUserInfo', { userRole: payload.userRole })
+    dispatch('updateUserInfo', { userRole: payload.userRole });
   },
   setToken({ commit }, token) {
-    commit('SET_TOKEN', token, { root: true })
+    commit('SET_TOKEN', token, { root: true });
   },
 
   set2FA({ commit }, status) {
@@ -72,14 +71,14 @@ const actions = {
 
   check2fa({ commit, state }) {
     return new Promise((resolve) => {
-      if (state.auth2FA) {
-        resolve(true);
-      }
-      commit('TOGGLE_2FA_POPUP', true);
-      resolve(false);
+      resolve(true);
+      // if (state.auth2FA) {
+      //   resolve(true);
+      // }
+      // commit('TOGGLE_2FA_POPUP', true);
+      // resolve(false);
     });
+  }
+};
 
-  },
-}
-
-export default actions
+export default actions;

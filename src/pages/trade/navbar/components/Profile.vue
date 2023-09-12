@@ -3,186 +3,39 @@
     class="the-navbar__user-meta flex items-center text-acc"
     v-if="activeUserInfo.displayName != ''"
   >
-    <!--<div class="the-navbar__user-meta flex items-center"> -->
-    <!-- <div class="text-right leading-tight hidden sm:block">
-      <p class="font-semibold">{{ activeUserInfo.displayName }}</p>
-     <small>Available</small>
-    </div> -->
-   <!-- <div class="streak">
-      <div class="nav-streak-rewards">
-        &lt;!&ndash; <router-link to="/streak-challenge"> &ndash;&gt;
-          <span class="nav-streak-rewards-label d-block"> Prize Pool </span>
-          <span class="nav-streak-rewards-value d-block">${{ this.nFormatter(prize, 2) }}</span>
-        &lt;!&ndash; </router-link> &ndash;&gt;
-      </div>
-    </div>-->
     <div class="info-money">
       <div class="money-i">
         <div class="wrapper-money">
           <div class="text-money">
-            Ví tiền: {{
-              this.formatPrice($store.state.currentBalance === 0 ? blObj.blLive : $store.state.currentBalance)
+            Ví tiền:
+            {{
+              this.formatPrice(
+                $store.state.currentBalance === 0
+                  ? blObj.blLive
+                  : $store.state.currentBalance
+              )
             }}
-<!--            {{
-              isAcc
-                  ? this.nFormatter(blObj.blLive, 0)
-                  : this.nFormatter(blObj.blDemo, 0)
-            }}-->
           </div>
         </div>
       </div>
     </div>
-    <!--<div class="info-money">
-      <vs-dropdown vs-custom-content vs-trigger-click>
-        <div class="money-i">
-          <div class="wrapper-money">
-            <p class="title">
-              {{ isAcc ? "Tài khoản Thực" : "Tài khoản Demo" }}
-            </p>
-            <div class="text-money">
-              $
-              {{
-                isAcc
-                  ? this.nFormatter(blObj.blLive, 2)
-                  : this.nFormatter(blObj.blDemo, 2)
-              }}
-            </div>
-          </div>
-          <feather-icon icon="ChevronDownIcon" svgClasses="arr_down" />
-        </div>
-        <vs-dropdown-menu class="dropdown-account">
-          <div class="accLive" @click="changeAccount(1)">
-            <span :class="`mr-2 radioButton ${isAcc ? 'active' : ''}`"></span>
-            <div class="left">
-              <span class="title">Tài khoản Thực</span>
-              <span class="text">$ {{ formatPrice(blObj.blLive, 2) }}</span>
-            </div>
-            <div class="right">
-              <svg
-                @click="clickShowPopTrans()"
-                xmlns="http://www.w3.org/2000/svg"
-                width="46"
-                height="29"
-                viewBox="0 0 46 29"
-              >
-                <g
-                  data-v-3bbff296=""
-                  id="Group_13378"
-                  data-name="Group 13378"
-                  transform="translate(-230 -71)"
-                >
-                  <g
-                    data-v-3bbff296=""
-                    id="Group_13375"
-                    data-name="Group 13375"
-                  >
-                    <g
-                      data-v-3bbff296=""
-                      id="Group_13376"
-                      data-name="Group 13376"
-                    >
-                      <rect
-                        data-v-3bbff296=""
-                        id="Rectangle_4298"
-                        data-name="Rectangle 4298"
-                        width="46"
-                        height="29"
-                        rx="4"
-                        transform="translate(230 71)"
-                        fill="#E66E06"
-                      ></rect>
-                    </g>
-                  </g>
-                  <g
-                    data-v-3bbff296=""
-                    id="Group_13377"
-                    data-name="Group 13377"
-                  >
-                    <g
-                      data-v-3bbff296=""
-                      id="conversion"
-                      transform="translate(246.725 78.133)"
-                    >
-                      <path
-                        data-v-3bbff296=""
-                        id="Path_13963"
-                        data-name="Path 13963"
-                        d="M15.692,7.459H1V6.123H14.079L10.072,2.116l.945-.944,5.147,5.147a.668.668,0,0,1-.472,1.14Z"
-                        transform="translate(-1 -1.172)"
-                        stroke="#fff"
-                        class="fill-color"
-                      ></path>
-                      <path
-                        data-v-3bbff296=""
-                        id="Path_13964"
-                        data-name="Path 13964"
-                        d="M6.342,34.287,1.2,29.14A.668.668,0,0,1,1.668,28H16.359v1.336H3.28l4.007,4.007Z"
-                        transform="translate(-1 -19.042)"
-                        stroke="#fff"
-                        class="fill-color"
-                      ></path>
-                    </g>
-                  </g>
-                </g>
-              </svg>
-            </div>
-          </div>
-          <hr style="border-color: #111c35" />
-          <div class="accDemo" @click.stop="changeAccount(0)">
-            <span :class="`mr-2 radioButton ${!isAcc ? 'active' : ''}`"></span>
-            <div class="left">
-              <span class="title">Tài khoản Demo</span>
-              <span class="text">$ {{ formatPrice(blObj.blDemo, 2) }}</span>
-            </div>
-            <div class="right" @click.stop="reloadBalanceDemo()">
-              <svg
-                data-v-b495ff56=""
-                xmlns="http://www.w3.org/2000/svg"
-                width="17.795"
-                height="18.488"
-                viewBox="0 0 17.795 18.488"
-                id="refill-balance"
-              >
-                <g
-                  data-v-b495ff56=""
-                  id="refresh-01"
-                  transform="translate(-1 0.081)"
-                >
-                  <path
-                    data-v-b495ff56=""
-                    id="Path_26259"
-                    data-name="Path 26259"
-                    d="M18.8,7.366,17.555-.081,14.993,2.481a8.8,8.8,0,1,0,2.9,10.641.8.8,0,0,0-1.468-.642,7.215,7.215,0,1,1-2.573-8.854l-2.5,2.5Z"
-                    fill="#fff"
-                  ></path>
-                </g>
-              </svg>
-            </div>
-          </div>
-        </vs-dropdown-menu>
-      </vs-dropdown>
-    </div>-->
 
     <div class="maddmoney con-img ml-3 mr-3">
       <vs-button
         class="add-money"
-        @click="(popupActiveNapNhanh = true), getBalanceWalletClick(),(getSetSys.isDepositOpen = true),
-                              (getSetSys.isWithdraOpen = false)"
+        @click="
+          (popupActiveNapNhanh = true),
+            getBalanceWalletClick(),
+            (getSetSys.isDepositOpen = true),
+            (getSetSys.isWithdraOpen = false)
+        "
       >
-        <span class="nowrap">{{ isMobile ? "Nạp" : "Nạp nhanh" }}</span>
+        <span class="nowrap">
+          {{ isMobile ? "Nạp" : "Nạp nhanh" }}
+        </span>
       </vs-button>
-      <!-- <vs-button type="line" icon-pack="feather" :color="colorNT" icon="icon-dollar-sign" @click.stop="viewNapTien()">Nạp nhanh</vs-button> -->
     </div>
 
-    <!-- <div class="tele-support">
-      <a :href="config.support.telegram" target="_blank" title="Hỗ trợ khách hàng">
-        <img :src="require('@/assets/images/sky/bot.svg')" alt="">
-      </a>
-    </div> -->
-    <!--<div class="con-img ml-3">
-      <vs-button type="line" icon-pack="feather" :color="colorRT" icon="icon-dollar-sign" @click.stop="viewRutTien()">Rút tiền</vs-button>
-    </div> -->
-    <!--设置-->
     <div
       class="con-img ml-3 mr-3 cursor-pointer msetting"
       @click="popupActiveCaiDat = true"
@@ -404,24 +257,6 @@
     <div class="con-img ml-3 mr-3 text-center relative cursor-pointer mTT">
       <notification-drop-down />
     </div>
-    <!-- <div class="con-img ml-3 mr-3 cursor-pointer mhelper" @click.stop="viewHelp()">
-      <svg class="block text-center h-5" width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <g clip-path="url(#clip0_17_2)">
-        <path d="M10.506 18.428H14.467C14.7792 18.4281 15.0883 18.3667 15.3768 18.2473C15.6652 18.1279 15.9273 17.9528 16.1481 17.7321C16.3688 17.5113 16.5439 17.2492 16.6633 16.9608C16.7827 16.6723 16.8441 16.3632 16.844 16.051V13.675" stroke="#C1C5DB" stroke-width="2" stroke-miterlimit="10" stroke-linecap="square"/>
-        <path d="M4.961 9.71399H1V13.675C1 14.0951 1.16689 14.498 1.46394 14.795C1.761 15.0921 2.1639 15.259 2.584 15.259H4.961V9.71399Z" stroke="#C1C5DB" stroke-width="2" stroke-miterlimit="10" stroke-linecap="square"/>
-        <path d="M16.844 9.71399H12.883V15.259H15.26C15.6801 15.259 16.083 15.0921 16.3801 14.795C16.6771 14.498 16.844 14.0951 16.844 13.675V9.71399Z" stroke="#C1C5DB" stroke-width="2" stroke-miterlimit="10" stroke-linecap="square"/>
-        <path d="M16.844 9.714V8.922C16.844 7.88167 16.6391 6.85152 16.241 5.89038C15.8429 4.92924 15.2593 4.05593 14.5237 3.3203C13.7881 2.58467 12.9148 2.00114 11.9536 1.60303C10.9925 1.20491 9.96233 1 8.922 1C6.82095 1 4.80596 1.83464 3.3203 3.3203C1.83464 4.80596 1 6.82095 1 8.922V9.714" stroke="#C1C5DB" stroke-width="2" stroke-miterlimit="10" stroke-linecap="square"/>
-        </g>
-        <defs>
-        <clipPath id="clip0_17_2">
-        <rect width="17.844" height="19.428" fill="white"/>
-        </clipPath>
-        </defs>
-      </svg>
-
-      <span>Trợ giúp</span>
-    </div> -->
-
     <div
       v-if="$route.name.trim() === 'client-index'"
       class="mDatLenh con-img ml-3 mr-3 cursor-pointer mdot"
@@ -589,22 +424,6 @@
       </div>
     </div>
 
-    <!-- <div class="menuMobileTopMobile">
-        <div class="icon" @click="isMenuMobie = !isMenuMobie">
-          <feather-icon icon="ListIcon" svgClasses="w-8 h-8"/>
-        </div>
-    </div>
-    <div class="tabMenuMobileTOP flex items-center justify-center" :class="{'open': isMenuMobie}">
-      <div class="con-img ml-3 mr-3 cursor-pointer" @click="popupActiveCaiDat = true">
-        <feather-icon icon="SettingsIcon" svgClasses="w-5 h-5" class="block text-center h-5"/>
-        <span>Cài Đặt</span>
-      </div>
-      <div class="con-img ml-3 mr-3 cursor-pointer" @click.stop="viewHoSo()">
-        <feather-icon icon="UserIcon" svgClasses="w-5 h-5" class="block text-center h-5"/>
-        <span>Hồ Sơ</span>
-      </div>
-    </div> -->
-
     <ho-so-user-info
       :isSidebarActive="addNewDataSidebar"
       @closeSidebar="toggleDataSidebar"
@@ -620,129 +439,12 @@
       @closeSidebar="toggleDataSidebarHisOrder"
     />
 
-    <!-- <vs-dropdown vs-custom-content vs-trigger-click class="cursor-pointer">
-
-      <div class="con-img ml-3">
-        <feather-icon icon="UserIcon" svgClasses="w-8 h-8" />
-        <img v-if="activeUserInfo.photoURL" key="onlineImg" :src="activeUserInfo.photoURL" alt="user-img" width="40" height="40" class="rounded-full shadow-md cursor-pointer block" />
-      </div>
-
-      <vs-dropdown-menu class="vx-navbar-dropdown">
-        <ul style="min-width: 9rem">
-
-          <li
-            class="flex py-2 px-4 cursor-pointer hover:bg-primary hover:text-white"
-            @click="$router.push('/pages/profile').catch(() => {})">
-            <feather-icon icon="UserIcon" svgClasses="w-4 h-4" />
-            <span class="ml-2">Profile</span>
-          </li>
-
-          <li
-            class="flex py-2 px-4 cursor-pointer hover:bg-primary hover:text-white"
-            @click="$router.push('/apps/email').catch(() => {})">
-            <feather-icon icon="MailIcon" svgClasses="w-4 h-4" />
-            <span class="ml-2">Inbox</span>
-          </li>
-
-          <li
-            class="flex py-2 px-4 cursor-pointer hover:bg-primary hover:text-white"
-            @click="$router.push('/apps/todo').catch(() => {})">
-            <feather-icon icon="CheckSquareIcon" svgClasses="w-4 h-4" />
-            <span class="ml-2">Tasks</span>
-          </li>
-
-          <li
-            class="flex py-2 px-4 cursor-pointer hover:bg-primary hover:text-white"
-            @click="$router.push('/apps/chat').catch(() => {})">
-            <feather-icon icon="MessageSquareIcon" svgClasses="w-4 h-4" />
-            <span class="ml-2">Chat</span>
-          </li>
-
-          <li
-            class="flex py-2 px-4 cursor-pointer hover:bg-primary hover:text-white"
-            @click="$router.push('/apps/eCommerce/wish-list').catch(() => {})">
-            <feather-icon icon="HeartIcon" svgClasses="w-4 h-4" />
-            <span class="ml-2">Wish List</span>
-          </li>
-
-          <vs-divider class="m-1" />
-
-          <li
-            class="flex py-2 px-4 cursor-pointer hover:bg-primary hover:text-white"
-            @click="logout">
-            <feather-icon icon="LogOutIcon" svgClasses="w-4 h-4" />
-            <span class="ml-2">Đăng xuất</span>
-          </li>
-        </ul>
-      </vs-dropdown-menu>
-    </vs-dropdown>-->
     <vs-prompt
       class="qDeposit"
       title=""
       :buttons-hidden="true"
       :active.sync="popupActiveNapNhanh"
     >
-      <!--<div class="relative">
-        <vs-button
-          color="#38495d"
-          type="filled"
-          class="w-full text-left"
-          @click="showPopWalSL = !showPopWalSL"
-        >
-          <span class="icon USDT"></span>
-          <span class="white">{{ balanceUSDT }}</span>
-          <feather-icon
-            class="material-icons right-0"
-            icon="ChevronDownIcon"
-            svgClasses="w-4 h-4"
-            style="top: -3px; position: absolute !important"
-          />
-        </vs-button>
-        <div class="listWallShow w-full" :class="{ block: showPopWalSL }">
-          <span
-            class="drop cursor-pointer w-full block"
-            @click="selectWallet('usdt')"
-          >
-            <span class="icon USDT"></span>
-            <span class="white">{{ balanceUSDT }}</span>
-          </span>
-        </div>
-        <p class="white mt-4 mb-2 text-xs">Tiền Nạp</p>
-        <div class="relative">
-          <vs-input
-            class="w-full"
-            placeholder="Vui lòng nhập tiền nạp"
-            @keyup="ttThucNhan"
-            v-model="enterMoneyDeposit"
-          />
-          <span class="allIn cursor-pointer" @click="allEnterWallet()">
-            <span class="uppercase">Tất cả</span>
-          </span>
-        </div>
-
-        <p class="noticeDeposit mt-4 mb-4 text-right">
-          <small>Giá trị nạp tối thiểu là $11</small>
-        </p>
-        <div class="sizeLarge">
-          <p class="white mb-2 title">*Tổng sẽ nhận</p>
-          <p title="0.00" class="receiveAmount white mb-2 text-3xl">
-            ${{ ttNhan }}
-          </p>
-        </div>
-
-        <vs-button
-          class="w-full"
-          color="success"
-          icon-pack="feather"
-          type="relief"
-          @click="(popupActiveNapNhanh = false), submitDeposit()"
-          >Nạp tiền ngay</vs-button
-        >
-
-        <p class="noticeDeposit text-center mt-2">
-          <small>*Giá báo có thể thay đổi</small>
-        </p>
-      </div>-->
       <nap-rut-tien :active.sync="popupActiveNapNhanh" money-type="VND" />
     </vs-prompt>
     <vs-popup
@@ -864,8 +566,8 @@ import AuthenticationService from "@/services/AuthenticationService";
 import I18n from "./i18n";
 import NotificationDropDown from "@/pages/user/NotifiDropDown.vue";
 //import { gsap } from "gsap"
-import config from '@/config';
-import NapRutTien from '@/pages/trade/slidebar/NapRutTien.vue';
+import config from "@/config";
+import NapRutTien from "@/pages/trade/slidebar/NapRutTien.vue";
 import getSetSys from "@/services/settingSys.json";
 
 export default {
@@ -946,63 +648,56 @@ export default {
   },
   methods: {
     getSysWallet() {
-      AuthenticationService.getSetupWallet().then((res) => {
-        let g = res.data.data;
-        getSetSys.quotePriceUSDT = this.replaceAll(
+      AuthenticationService.getSetupWallet()
+        .then((res) => {
+          let g = res.data.data;
+          getSetSys.quotePriceUSDT = this.replaceAll(
             this.formatPrice(g.qUSDT, 2),
             ",",
             ""
-        ); // giá sấp sĩ USD
-        getSetSys.quotePriceETH = this.replaceAll(
+          ); // giá sấp sĩ USD
+          getSetSys.quotePriceETH = this.replaceAll(
             this.formatPrice(g.qETH, 4),
             ",",
             ""
-        ); // giá sấp sĩ USD
-        getSetSys.quotePriceBTC = this.replaceAll(
+          ); // giá sấp sĩ USD
+          getSetSys.quotePriceBTC = this.replaceAll(
             this.formatPrice(g.qBTC, 6),
             ",",
             ""
-        ); // giá sấp sĩ USD
-        getSetSys.quotePricePAYPAL = this.replaceAll(
+          ); // giá sấp sĩ USD
+          getSetSys.quotePricePAYPAL = this.replaceAll(
             this.formatPrice(g.qPaypal, 2),
             ",",
             ""
-        ); //  giá sấp sĩ USD
-        getSetSys.quotePriceVND = this.replaceAll(
+          ); //  giá sấp sĩ USD
+          getSetSys.quotePriceVND = this.replaceAll(
             this.formatPrice(g.qVND, 2),
             ",",
             ""
-        ); //  giá sấp sĩ USD
+          ); //  giá sấp sĩ USD
 
-        getSetSys.typeCurrUseSys = g.tCUseSys; // đồng tiền tệ sử dụng trong hệ thống
+          getSetSys.minDepositBTC = g.mDBTC; // nạp tiền
+          getSetSys.minDepositPaypal = g.mDPaypal;
 
-        getSetSys.minDepositBTC = g.mDBTC; // nạp tiền tối thiểu
-        getSetSys.minDepositETH = g.mDETH; // nạp tiền tối thiểu
-        // 写死
-        // getSetSys.minDepositUSDT = g.mDUSDT; // nạp tiền tối thiểu
-        getSetSys.minDepositPaypal = g.mDPaypal; // nạp tiền tối thiểu
-
-        getSetSys.minWithdrawalBTC = g.mWBTC; // rút tiền tối thiểu
-        getSetSys.minWithdrawalETH = g.mWETH; // rút tiền tối thiểu
-        // getSetSys.minWithdrawalUSDT = g.mWUSDT; // rút tiền tối thiểu
-        getSetSys.minWithdrawalPaypal = g.mWPaypal; // rút tiền tối thiểu
-        // 去掉PAYPAL
-        // getSetSys.isActiveWalletPaypal = g.iAWPaypal; // Bật / tắt đồng COIN sử dụng nạp và gửi tiền trong hệ thống
-        getSetSys.isActiveWalletETH = g.iAWETH; // Bật / tắt đồng COIN sử dụng nạp và gửi tiền trong hệ thống
-        getSetSys.isActiveWalletUSDT = g.iAWUSDT; // Bật / tắt đồng COIN sử dụng nạp và gửi tiền trong hệ thống
-        getSetSys.isActiveWalletBTC = g.iAWBTC; // Bật / tắt đồng COIN sử dụng nạp và gửi tiền trong hệ thống
-        getSetSys.isActiveWalletVND = g.iAWVND; // Bật / tắt đồng COIN sử dụng nạp và gửi tiền trong hệ thống
-
-        getSetSys.feeRutPaypalNoiBo = g.fDPaypalNB;
-        getSetSys.feeRutPaypalAcc = g.fDPaypalAcc;
-        getSetSys.feeRutBTCNoiBo = g.fDBTCNB;
-        getSetSys.feeRutBTCAcc = g.fDBTCAcc;
-        getSetSys.feeRutETHNoiBo = g.fDETHNB;
-        getSetSys.feeRutETHERC20 = g.fDETHERC20;
-        getSetSys.feeRutUSDTNoiBo = g.fDUSDTNB;
-        getSetSys.feeRutUSDTBEP20 = g.fDUSDTBEP20;
-        getSetSys.feeRutUSDTERC20 = g.fDUSDTERC20;
-      });
+          getSetSys.minWithdrawalBTC = g.mWBTC;
+          getSetSys.minWithdrawalETH = g.mWETH;
+          getSetSys.minWithdrawalPaypal = g.mWPaypal; //
+          getSetSys.isActiveWalletETH = g.iAWETH; // Bật /
+          getSetSys.isActiveWalletUSDT = g.iAWUSDT; //
+          getSetSys.isActiveWalletBTC = g.iAWBTC; // Bật /
+          getSetSys.isActiveWalletVND = g.iAWVND; // Bật /
+          getSetSys.feeRutPaypalNoiBo = g.fDPaypalNB;
+          getSetSys.feeRutPaypalAcc = g.fDPaypalAcc;
+          getSetSys.feeRutBTCNoiBo = g.fDBTCNB;
+          getSetSys.feeRutBTCAcc = g.fDBTCAcc;
+          getSetSys.feeRutETHNoiBo = g.fDETHNB;
+          getSetSys.feeRutETHERC20 = g.fDETHERC20;
+          getSetSys.feeRutUSDTNoiBo = g.fDUSDTNB;
+          getSetSys.feeRutUSDTBEP20 = g.fDUSDTBEP20;
+          getSetSys.feeRutUSDTERC20 = g.fDUSDTERC20;
+        })
+        .catch(() => {});
     },
     clickShowPopTrans() {
       this.popupTransferActive = true;
@@ -1149,31 +844,6 @@ export default {
       }
     },
 
-    // numberTo(start, end, duration, currency = false){
-
-    //   console.log()
-    //   this.blanceStart = end
-
-    //   clearInterval(mm);
-    //   var range = end - start;
-    //   var minTimer = 50;
-    //   var stepTime = Math.abs(Math.floor(duration / range));
-    //   stepTime = Math.max(stepTime, minTimer);
-    //   var startTime = new Date().getTime();
-    //   var endTime = startTime + duration;
-
-    //   var mm = setInterval(() => {
-    //       var now = new Date().getTime();
-    //       var remaining = Math.max((endTime - now) / duration, 0);
-    //       var value = (end - (remaining * range))>>0;
-    //       var blance = currency ? this.formatPrice(value, 2) : value;
-    //       this.isAcc ? getData.blLive = blance : getData.blDemo = blance
-    //       if (value == end) {
-    //         clearInterval(mm);
-    //       }
-    //   }, stepTime);
-    // },
-
     OnOffSound() {
       if (this.switchAmThanh) {
         localStorage.setItem("SOUND", true);
@@ -1319,10 +989,10 @@ export default {
         //currency: '',
         minimumFractionDigits: minimum,
       });
-      let val = Number(value).toFixed(0)
+      let val = Number(value).toFixed(0);
       return formatter.format(val);
     },
-      // 转义
+    // 转义
     nFormatter(num, digits) {
       const lookup = [
         { value: 1, symbol: "" },
@@ -1365,32 +1035,10 @@ export default {
       this.addNewDataSidebar = val;
     },
 
-    logout() {
-      // // if user is logged in via auth0
-      // if (this.$auth.profile) this.$auth.logOut();
-
-      // // if user is logged in via firebase
-      // const firebaseCurrentUser = firebase.auth().currentUser
-
-      // if (firebaseCurrentUser) {
-      //     firebase.auth().signOut().then(() => {
-      //         this.$router.push('/pages/login').catch(() => {})
-      //     })
-      // }
-      // // If JWT login
-      // if(localStorage.getItem("accessToken")) {
-      //   localStorage.removeItem("accessToken")
-      //   this.$router.push('/pages/login').catch(() => {})
-      // }
-
-      // // Change role on logout. Same value as initialRole of acj.js
-      // this.$acl.change('admin')
-      // localStorage.removeItem('userInfo')
-      localStorage.removeItem("tokenUser");
-
-      // This is just for demo Purpose. If user clicks on logout -> redirect
-      this.$router.push("/login").catch(() => {});
-    },
+    // logout() {
+    //   localStorage.removeItem("tokenUser");
+    //   this.$router.push("/login").catch(() => {});
+    // },
   },
   created() {
     let checkSound = localStorage.hasOwnProperty("SOUND");
@@ -1412,9 +1060,6 @@ export default {
     } else {
       this.isAcc = getData.isAccount = 0;
       this.$store.commit("SET_ACCOUNT_TYPE", 0);
-      // localStorage.setItem("BO_BALANCE_TYPE", "LIVE");
-      // this.isAcc = getData.isAccount = 1;
-      // this.$store.commit("SET_ACCOUNT_TYPE", 1);
     }
 
     AuthenticationService.getPrizeUser().then((resp) => {
@@ -1422,7 +1067,7 @@ export default {
         this.prize = resp.data.data.sum;
       }
     });
-    this.getSysWallet()
+    this.getSysWallet();
   },
   mounted() {
     let stateOpen = localStorage.getItem("stateOpen");
@@ -1480,7 +1125,7 @@ export default {
 
 .radioButton.active {
   &:after {
-    background-color: #F1DD48;
+    background-color: #f1dd48;
     filter: brightness(130%);
   }
 }
@@ -1697,8 +1342,26 @@ export default {
   height: 40px !important;
   cursor: pointer;
   background-image: linear-gradient(to bottom right, #ff3cac, #562b7c, #2b86c5);
-  -webkit-clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
-  clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+  -webkit-clip-path: polygon(
+    30% 0%,
+    70% 0%,
+    100% 30%,
+    100% 70%,
+    70% 100%,
+    30% 100%,
+    0% 70%,
+    0% 30%
+  );
+  clip-path: polygon(
+    30% 0%,
+    70% 0%,
+    100% 30%,
+    100% 70%,
+    70% 100%,
+    30% 100%,
+    0% 70%,
+    0% 30%
+  );
   padding: 3px;
 }
 
@@ -1837,7 +1500,7 @@ export default {
   }
 }
 @media (min-width: 600px) {
-  .info-money{
+  .info-money {
     display: none !important;
   }
 }
@@ -1993,7 +1656,7 @@ export default {
   }
 }
 .add-money {
-  background: #F1DD48 !important;
+  background: #f1dd48 !important;
   color: #fff !important;
   font-weight: 600;
   border-radius: 10px;

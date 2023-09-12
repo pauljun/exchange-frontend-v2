@@ -234,7 +234,7 @@ export default {
   },
   mounted() {
     let obj = {
-      e: getData.email,
+      email: getData.email,
     };
 
     AuthenticationService.getListNotifi(obj).then((res) => {

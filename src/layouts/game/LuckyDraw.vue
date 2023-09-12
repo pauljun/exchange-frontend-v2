@@ -13,9 +13,9 @@
     />
 
     <div class="btn">
-      <vs-button @click="saveEmail" :disabled="loading.email"
-        >Lưu danh sách email</vs-button
-      >
+      <vs-button @click="saveEmail" :disabled="loading.email">
+        Lưu danh sách email
+      </vs-button>
     </div>
 
     <vs-textarea
@@ -26,9 +26,9 @@
     />
 
     <div class="btn">
-      <vs-button @click="saveNickname" :disabled="loading.nickname"
-        >Lưu danh sách nickname</vs-button
-      >
+      <vs-button @click="saveNickname" :disabled="loading.nickname">
+        Lưu danh sách nickname
+      </vs-button>
     </div>
   </div>
 </template>
@@ -43,28 +43,28 @@ export default {
       nickname: "",
       loading: {
         email: false,
-        nickname: false
-      }
+        nickname: false,
+      },
     };
   },
   methods: {
     async saveEmail() {
       const check = await this.$store.dispatch("check2fa");
-      if(!check){
+      if (!check) {
         return;
-      };
+      }
       this.loading.email = true;
       AuthenticationService.createLuckyDrawAdmin(
         { email: this.email },
         "email"
-      ).then(resp => {
+      ).then((resp) => {
         if (resp.data.success) {
           this.loading.email = false;
 
           return this.$vs.notify({
             text: `Lưu danh sách email thành công!`,
             color: "success",
-            position: "top-right"
+            position: "top-right",
           });
         } else {
           this.loading.email = false;
@@ -72,28 +72,28 @@ export default {
             text: resp.data.message,
             color: "danger",
             iconPack: "feather",
-            icon: "icon-alert-circle"
+            icon: "icon-alert-circle",
           });
         }
       });
     },
     async saveNickname() {
       const check = await this.$store.dispatch("check2fa");
-      if(!check){
+      if (!check) {
         return;
-      };
+      }
       this.loading.nickname = true;
       AuthenticationService.createLuckyDrawAdmin(
         { nickname: this.nickname },
         "nickname"
-      ).then(resp => {
+      ).then((resp) => {
         if (resp.data.success) {
           this.loading.nickname = false;
 
           return this.$vs.notify({
             text: `Lưu danh sách nickname thành công!`,
             color: "success",
-            position: "top-right"
+            position: "top-right",
           });
         } else {
           this.loading.nickname = false;
@@ -101,17 +101,17 @@ export default {
             text: resp.data.message,
             color: "danger",
             iconPack: "feather",
-            icon: "icon-alert-circle"
+            icon: "icon-alert-circle",
           });
         }
       });
-    }
+    },
   },
   created() {
     let token = localStorage.getItem("token");
     this.$store.dispatch("setToken", token);
 
-    AuthenticationService.getLuckyDrawAdmin().then(resp => {
+    AuthenticationService.getLuckyDrawAdmin().then((resp) => {
       this.$vs.loading.close("#loading-corners > .con-vs-loading");
 
       if (resp.data.success == 4) {
@@ -119,19 +119,19 @@ export default {
         this.$router.push("/pages/login").catch(() => {});
       } else {
         const result = resp.data.data;
-        const resultEmail = result.find((e) => e.type === 'email');
-        const resultNickname = result.find((e) => e.type === 'nickname');
+        const resultEmail = result.find((e) => e.type === "email");
+        const resultNickname = result.find((e) => e.type === "nickname");
 
         if (resultEmail) {
-          this.email = resultEmail.email.replaceAll('|', '\n');
+          this.email = resultEmail.email.replaceAll("|", "\n");
         }
 
         if (resultNickname) {
-          this.nickname = resultNickname.nickname.replaceAll('|', '\n');
+          this.nickname = resultNickname.nickname.replaceAll("|", "\n");
         }
       }
     });
-  }
+  },
 };
 </script>
 

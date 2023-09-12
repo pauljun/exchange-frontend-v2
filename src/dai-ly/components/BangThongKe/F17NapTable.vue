@@ -15,110 +15,6 @@
         :data-source="products"
         :row-key="(record, index) => index"
       >
-        <!-- <template slot="thead">
-          <vs-th sort-key="account">Tài khoản</vs-th>
-          <vs-th sort-key="type">Loại tiền</vs-th>
-          <vs-th sort-key="amount">Số tiền</vs-th>
-          <vs-th sort-key="note">Ghi chú</vs-th>
-          <vs-th sort-key="status">Trạng thái</vs-th>
-          <vs-th sort-key="datecreate">Thời gian</vs-th>
-
-        </template> -->
-
-        <!-- <template slot-scope="{ data }">
-          <tbody>
-            <vs-tr :data="tr" :key="indextr" v-for="(tr, indextr) in data">
-              <vs-td>
-                <p class="de-name font-medium truncate">
-                  {{ tr.from_u }}<br />Mô tả: {{ tr.type }}
-                </p>
-              </vs-td>
-
-              <vs-td>
-                <p class="de-name font-medium truncate">
-                  <span>
-                    <IconCrypto
-                      style="width: 20px"
-                      :coinname="getIconType(tr.currency)"
-                      color="color"
-                      format="svg"
-                      v-if="tr.paypal == null"
-                    />
-                    <img width="20" :src="typeMoney(tr.currency).i" v-else />
-                    {{ typeMoney(tr.currency).t }}
-                  </span>
-                </p>
-              </vs-td>
-
-              <vs-td>
-                <p class="de-amount">
-                  {{ getAmountDecimal(tr.currency, tr.amount) }}<br />
-                </p>
-              </vs-td>
-
-              <vs-td>
-                <p class="de-note">{{ tr.note }}</p>
-              </vs-td>
-
-              <vs-td>
-                <vs-chip
-                  :color="getOrderStatusColor(tr.status)"
-                  class="de-status"
-                  >{{ getOrderStatusColorText(tr.status) | title }}</vs-chip
-                >
-              </vs-td>
-
-              <vs-td>
-                <p class="de-create">{{ formatDate(tr.created_at) }}</p>
-              </vs-td>
-
-              <vs-td class="whitespace-no-wrap text-center">
-                <vx-tooltip
-                  v-if="tr.currency == 'vnd' && tr.status === 0"
-                  style="float: left"
-                  color="primary"
-                  text="Xử lý"
-                >
-                  <vs-button
-                    color="dark"
-                    type="line"
-                    icon-pack="feather"
-                    icon="icon-feather"
-                    @click.stop="toggleDataSidebarHandleMoney(tr)"
-                  ></vs-button>
-                </vx-tooltip>
-                <vx-tooltip
-                  v-if="tr.delete_status == 0"
-                  style="float: left"
-                  color="danger"
-                  text="Xóa"
-                >
-                  <vs-button
-                    color="dark"
-                    type="line"
-                    icon-pack="feather"
-                    icon="icon-trash"
-                    @click.stop="deleteDeposit(tr.id, indextr, 1)"
-                  ></vs-button>
-                </vx-tooltip>
-                <vx-tooltip
-                  v-else
-                  style="float: left"
-                  color="warning"
-                  text="Thu hồi"
-                >
-                  <vs-button
-                    color="dark"
-                    type="line"
-                    icon-pack="feather"
-                    icon="icon-arrow-up-left"
-                    @click.stop="deleteDeposit(tr.id, indextr, 0)"
-                  ></vs-button>
-                </vx-tooltip>
-              </vs-td>
-            </vs-tr>
-          </tbody>
-        </template>  -->
         <template slot="account" slot-scope="row"
           >{{ row.from_u }}<br />Mô tả: {{ row.type }}</template
         >
@@ -144,9 +40,7 @@
           <p class="de-note">{{ row.note }}</p>
         </template>
         <template slot="status" slot-scope="row">
-          <a-tag :color="getOrderStatusColor(row.status)">
-           Thành công
-        </a-tag>
+          <a-tag :color="getOrderStatusColor(row.status)"> Thành công </a-tag>
         </template>
         <template slot="createdAt" slot-scope="row">
           <p class="de-create">{{ formatDate(row.created_at) }}</p>
@@ -158,7 +52,6 @@
 
 <script>
 import moment from "moment";
-import Vue from "vue";
 
 const columns = [
   {
@@ -247,44 +140,6 @@ export default {
       this.reloadList(timeQuery);
     },
 
-    // deleteDeposit(id, index, val) {
-    //   let token = localStorage.getItem("token");
-    //   this.$store.dispatch("setToken", token);
-    //   let obj = {
-    //     id: id,
-    //     val: val,
-    //   };
-    //   AuthenticationService.deleteTrashByID(obj).then((resp) => {
-    //     if (resp.data.success) {
-    //       Vue.delete(this.productsFake, index);
-    //       this.popupDeleteActive = false;
-    //       return this.$vs.notify({
-    //         text: "Đã xóa thành công",
-    //         color: "success",
-    //         iconPack: "feather",
-    //         icon: "icon-check",
-    //       });
-    //     } else {
-    //       localStorage.removeItem("token");
-    //       this.$router.push("/pages/login").catch(() => {});
-    //     }
-    //   });
-    // },
-
-    // trashDataDeposit() {
-    //   let token = localStorage.getItem("token");
-    //   this.$store.dispatch("setToken", token);
-
-    //   AuthenticationService.getDepositAllTrash().then((resp) => {
-    //     if (!resp.data.success) {
-    //       localStorage.removeItem("token");
-    //       this.$router.push("/pages/login").catch(() => {});
-    //     } else {
-    //       this.productsFake = resp.data.data;
-    //     }
-    //   });
-    // },
-
     getOrderStatusColor(status) {
       if (status == 0) return "orange";
       if (status == 1) return "green";
@@ -371,13 +226,6 @@ export default {
     formatJson(filterVal, jsonData) {
       return jsonData.map((v) =>
         filterVal.map((j) => {
-          // Add col name which needs to be translated
-          // if (j === 'timestamp') {
-          //   return parseTime(v[j])
-          // } else {
-          //   return v[j]
-          // }
-
           return v[j];
         })
       );
