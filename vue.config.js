@@ -59,16 +59,5 @@ module.exports = {
       type: 'filesystem'
     }
   },
-  devServer: {
-    proxy: {
-      '/api': {
-        target: 'http://43.155.165.51/', // 需要代理的域名
-        changeOrigin: true,
-        pathRewrite: {
-          '^/api': ''
-        }
-      }
-    }
-  },
   transpileDependencies: true
 };
